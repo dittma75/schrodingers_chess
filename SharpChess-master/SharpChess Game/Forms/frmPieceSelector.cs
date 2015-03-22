@@ -99,6 +99,16 @@ namespace SharpChess
         /// </summary>
         private PictureBox picWhiteRook;
 
+        /// <summary>
+        /// The pic black concealed.
+        /// </summary>
+        private PictureBox picBlackConcealed;
+
+        /// <summary>
+        /// The pic white concealed.
+        /// </summary>
+        private PictureBox picWhiteConcealed;
+
         #endregion
 
         #region Constructors and Destructors
@@ -176,6 +186,8 @@ namespace SharpChess
             this.picBlackBishop = new PictureBox();
             this.picBlackRook = new PictureBox();
             this.picBlackQueen = new PictureBox();
+            this.picBlackConcealed = new PictureBox();
+            this.picWhiteConcealed = new PictureBox();
             this.SuspendLayout();
 
             // picWhiteQueen
@@ -298,6 +310,36 @@ namespace SharpChess
             this.picBlackQueen.MouseEnter += new EventHandler(this.picMouseEnter);
             this.picBlackQueen.MouseLeave += new EventHandler(this.picMouseLeave);
 
+            // picWhiteConcealed
+            this.picWhiteConcealed.BackColor = System.Drawing.Color.FromArgb(255, 128, 0);
+            this.picWhiteConcealed.Image = (System.Drawing.Image)resources.GetObject("picWhiteConcealed.Image");
+            this.picWhiteConcealed.Location = new Point(0, 0);
+            this.picWhiteConcealed.Name = "picWhiteConcealed";
+            this.picWhiteConcealed.Size = new Size(42, 42);
+            this.picWhiteConcealed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picWhiteConcealed.TabIndex = 8;
+            this.picWhiteConcealed.TabStop = false;
+            this.picWhiteConcealed.Tag = "Concealed";
+            this.picWhiteConcealed.Visible = false;
+            this.picWhiteConcealed.Click += new EventHandler(this.picPiece_Click);
+            this.picWhiteConcealed.MouseEnter += new EventHandler(this.picMouseEnter);
+            this.picWhiteConcealed.MouseLeave += new EventHandler(this.picMouseLeave);
+
+            // picBlackConcealed
+            this.picBlackConcealed.BackColor = System.Drawing.Color.Transparent;
+            this.picBlackConcealed.Image = (System.Drawing.Image)resources.GetObject("picBlackConcealed.Image");
+            this.picBlackConcealed.Location = new Point(0, 0);
+            this.picBlackConcealed.Name = "picBlackConcealed";
+            this.picBlackConcealed.Size = new Size(42, 42);
+            this.picBlackConcealed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picBlackConcealed.TabIndex = 9;
+            this.picBlackConcealed.TabStop = false;
+            this.picBlackConcealed.Tag = "Concealed";
+            this.picBlackConcealed.Visible = false;
+            this.picBlackConcealed.Click += new EventHandler(this.picPiece_Click);
+            this.picBlackConcealed.MouseEnter += new EventHandler(this.picMouseEnter);
+            this.picBlackConcealed.MouseLeave += new EventHandler(this.picMouseLeave);
+
             // frmPieceSelector
             this.AutoScaleBaseSize = new Size(5, 13);
             this.BackColor = System.Drawing.Color.FromArgb(229, 197, 105);
@@ -306,10 +348,12 @@ namespace SharpChess
             this.Controls.Add(this.picBlackBishop);
             this.Controls.Add(this.picBlackRook);
             this.Controls.Add(this.picBlackQueen);
+            this.Controls.Add(this.picBlackConcealed);
             this.Controls.Add(this.picWhiteKnight);
             this.Controls.Add(this.picWhiteBishop);
             this.Controls.Add(this.picWhiteRook);
             this.Controls.Add(this.picWhiteQueen);
+            this.Controls.Add(this.picWhiteConcealed);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -338,6 +382,7 @@ namespace SharpChess
                     this.picWhiteRook.Visible = true;
                     this.picWhiteBishop.Visible = true;
                     this.picWhiteKnight.Visible = true;
+                    this.picWhiteConcealed.Visible = true;
                     break;
 
                 case Player.PlayerColourNames.Black:
@@ -345,6 +390,7 @@ namespace SharpChess
                     this.picBlackRook.Visible = true;
                     this.picBlackBishop.Visible = true;
                     this.picBlackKnight.Visible = true;
+                    this.picBlackConcealed.Visible = true;
                     break;
             }
         }
