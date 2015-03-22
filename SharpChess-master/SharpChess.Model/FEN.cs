@@ -48,7 +48,21 @@ namespace SharpChess.Model
         {
             get
             {
-                return "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+                /*Start position is:
+                 * all Concealed black row + King
+                 * all black Pawns
+                 * 8 empty spaces
+                 * 8 empty spaces
+                 * 8 empty spaces
+                 * 8 empty spaces
+                 * all white Pawns
+                 * all Concealed white row + King
+                 * no castling ability
+                 * no en passant target square
+                 * no half moves
+                 * first move of the game
+                 */
+                return "cccckccc/pppppppp/8/8/8/8/PPPPPPPP/CCCCKCCC w - - 0 1";
             }
         }
 
