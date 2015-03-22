@@ -181,6 +181,8 @@
     <EmbeddedResource Include="Cursors\WhitePawn.cur" />
     <EmbeddedResource Include="Cursors\WhiteQueen.cur" />
     <EmbeddedResource Include="Cursors\WhiteRook.cur" />
+    <Content Include="Cursors\BlackConcealed.cur" />
+    <Content Include="Cursors\WhiteConcealed.cur" />
     <Content Include="SharpChessIcon.ico" />
   </ItemGroup>
   <ItemGroup>

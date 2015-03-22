@@ -64,6 +64,7 @@
     <Compile Include="AI\Search.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="BoardDebug.cs" />
+    <Compile Include="Concealed.cs" />
     <Compile Include="FEN.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="IPieceTop.cs" />
