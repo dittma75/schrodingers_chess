@@ -92,19 +92,23 @@ namespace SharpChess.Model
 
                 //The rest of the pieces are concealed.
                 case PieceNames.Bishop:
-                    this.Top = new Concealed(this, new PieceBishop(this));
+                    //this.Top = new Concealed(this, new PieceBishop(this));
+                    this.Top = new PieceBishop(this);
                     break;
 
                 case PieceNames.Knight:
-                    this.Top = new Concealed(this, new PieceKnight(this));
+                    //this.Top = new Concealed(this, new PieceKnight(this));
+                    this.Top = new PieceKnight(this);
                     break;
 
                 case PieceNames.Rook:
-                    this.Top = new Concealed(this, new PieceRook(this));
+                    //this.Top = new Concealed(this, new PieceRook(this));
+                    this.Top = new PieceRook(this);
                     break;
 
                 case PieceNames.Queen:
-                    this.Top = new Concealed(this, new PieceQueen(this));
+                    //this.Top = new Concealed(this, new PieceQueen(this));
+                    this.Top = new PieceQueen(this);
                     break;
             }
         }

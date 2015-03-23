@@ -2103,6 +2103,80 @@
             Captures, checks and promotions.
             </summary>
         </member>
+        <member name="T:SharpChess.Model.Concealed">
+            <summary>
+            A concealed piece top.
+            </summary>
+        </member>
+        <member name="F:SharpChess.Model.Concealed.SquareValues">
+            <summary>
+            Simple positional piece-square score values.
+            </summary>
+        </member>
+        <member name="M:SharpChess.Model.Concealed.#ctor(SharpChess.Model.Piece,SharpChess.Model.IPieceTop)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpChess.Model.Concealed"/> class.
+            </summary>
+            <param name="pieceBase">
+            Base part of the piece.
+            </param>
+        </member>
+        <member name="M:SharpChess.Model.Concealed.GenerateLazyMoves(SharpChess.Model.Moves,SharpChess.Model.Moves.MoveListNames)">
+            <summary>
+            Generate "lazy" moves for this piece, which is all usual legal moves, but also includes moves that put the king in check.
+            </summary>
+            <param name="moves">
+            Moves list that will be populated with lazy moves.
+            </param>
+            <param name="movesType">
+            Types of moves to include. e.g. All, or captures-only.
+            </param>
+        </member>
+        <member name="M:SharpChess.Model.Concealed.revealPiece">
+            <summary>
+            Reveals the concealed piece as what it actually is.
+            </summary>
+        </member>
+        <member name="P:SharpChess.Model.Concealed.Abbreviation">
+            <summary>
+            Gets Abbreviation.
+            </summary>
+        </member>
+        <member name="P:SharpChess.Model.Concealed.Base">
+            <summary>
+            Gets the base part of the piece. i.e. the bit that sits on the chess square.
+            </summary>
+        </member>
+        <member name="P:SharpChess.Model.Concealed.BasicValue">
+            <summary>
+            Gets basic value of the piece. e.g. pawn = 1, bishop = 3, queen = 9
+            </summary>
+        </member>
+        <member name="P:SharpChess.Model.Concealed.ImageIndex">
+            <summary>
+            Gets the image index for this piece. Used to determine which graphic image is displayed for thie piece.
+            </summary>
+        </member>
+        <member name="P:SharpChess.Model.Concealed.IsCapturable">
+            <summary>
+            Gets a value indicating whether the piece is capturable. Kings aren't, everything else is.
+            </summary>
+        </member>
+        <member name="P:SharpChess.Model.Concealed.Name">
+            <summary>
+            Gets the piece's name.
+            </summary>
+        </member>
+        <member name="P:SharpChess.Model.Concealed.PositionalPoints">
+            <summary>
+            Gets the positional points assigned to this piece.
+            </summary>
+        </member>
+        <member name="P:SharpChess.Model.Concealed.Value">
+            <summary>
+            Gets the material value of this piece.
+            </summary>
+        </member>
         <member name="T:SharpChess.Model.AI.HistoryHeuristic">
             <summary>
             Represents the History Heuristic used to improve moved ordering.
@@ -4055,6 +4129,11 @@
         <member name="F:SharpChess.Model.Piece.PieceNames.King">
             <summary>
               The king.
+            </summary>
+        </member>
+        <member name="F:SharpChess.Model.Piece.PieceNames.Concealed">
+            <summary>
+              The Schrodinger hidden piece.
             </summary>
         </member>
         <member name="T:SharpChess.Model.Move">
