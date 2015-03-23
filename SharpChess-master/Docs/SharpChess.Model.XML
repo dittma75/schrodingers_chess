@@ -2137,7 +2137,21 @@
             Reveals the concealed piece as what it actually is.
             </summary>
         </member>
-        <member name="M:SharpChess.Model.Concealed.AddAndVerifyMove(SharpChess.Model.Square,SharpChess.Model.Moves)">
+        <member name="M:SharpChess.Model.Concealed.AddMovePair(SharpChess.Model.Moves,System.Int32)">
+            <summary>
+            Adds a set of moves for one space and two spaces forward to the
+            moves list in the positive and negative directions of the
+            offset starting from the location of the piece.
+            </summary>
+            <param name="moves">moves list to add teh move to</param>
+            <param name="offset">direction of move
+                +/-1 is right/left, 
+                +/-15 is up/down left,
+                +/-16 is up/down,
+                +/-17 is up/down right
+            </param>
+        </member>
+        <member name="M:SharpChess.Model.Concealed.AddMove(SharpChess.Model.Square,SharpChess.Model.Moves)">
             <summary>
             Verifies the move to be added and, if valid, adds it.
             </summary>
