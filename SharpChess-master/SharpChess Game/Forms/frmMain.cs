@@ -95,7 +95,7 @@ namespace SharpChess
         /// The m_acur piece cursors.
         /// </summary>
         private readonly Cursor[] m_acurPieceCursors = new Cursor[12];
-        //private readonly Cursor[] m_acurPieceCursors = new Cursor[14];
+//        private readonly Cursor[] m_acurPieceCursors = new Cursor[14];
 
         /// <summary>
         /// The m_form move analysis.
@@ -1155,6 +1155,8 @@ namespace SharpChess
             this.imgPieces.Images.SetKeyName(9, "");
             this.imgPieces.Images.SetKeyName(10, "");
             this.imgPieces.Images.SetKeyName(11, "");
+            this.imgPieces.Images.SetKeyName(12, "Concealed_Black.gif");
+            this.imgPieces.Images.SetKeyName(13, "Concealed_White.gif");
             // 
             // mnu
             // 
@@ -2076,9 +2078,8 @@ namespace SharpChess
             this.m_acurPieceCursors[9] = new Cursor(asmMain.GetManifestResourceStream(strPath + "WhitePawn.cur"));
             this.m_acurPieceCursors[10] = new Cursor(asmMain.GetManifestResourceStream(strPath + "BlackQueen.cur"));
             this.m_acurPieceCursors[11] = new Cursor(asmMain.GetManifestResourceStream(strPath + "WhiteQueen.cur"));
-/*          this.m_acurPieceCursors[12] = new Cursor(asmMain.GetManifestResourceStream(strPath + "BlackConcealed.cur"));
-            this.m_acurPieceCursors[13] = new Cursor(asmMain.GetManifestResourceStream(strPath + "WhiteConcealed.cur"));
- */
+//            this.m_acurPieceCursors[12] = new Cursor(asmMain.GetManifestResourceStream(strPath + "BlackConcealed.cur"));
+//            this.m_acurPieceCursors[13] = new Cursor(asmMain.GetManifestResourceStream(strPath + "WhiteConcealed.cur"));
         }
 
         /// <summary>

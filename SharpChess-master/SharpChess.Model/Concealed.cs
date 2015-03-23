@@ -58,6 +58,11 @@ namespace SharpChess.Model
         /// <param name="pieceBase">
         /// Base part of the piece.
         /// </param>
+        public Concealed(Piece pieceBase)
+        {
+            this.Base = pieceBase;
+        }
+
         public Concealed(Piece pieceBase, IPieceTop revealed_piece_top)
         {
             this.Base = pieceBase;
@@ -91,7 +96,8 @@ namespace SharpChess.Model
         {
             get
             {
-                return revealed_piece_top.BasicValue;
+                return 0;
+                //return revealed_piece_top.BasicValue;
             }
         }
 
@@ -101,9 +107,8 @@ namespace SharpChess.Model
         public int ImageIndex
         {
             get
-            {
-                return this.Base.Player.Colour == Player.PlayerColourNames.White ? 3 : 2;
-//                return this.Base.Player.Colour == Player.PlayerColourNames.White ? 13 : 12;
+            {                
+                return this.Base.Player.Colour == Player.PlayerColourNames.White ? 13 : 12;
             }
         }
 
@@ -176,7 +181,8 @@ namespace SharpChess.Model
         {
             get
             {
-                return revealed_piece_top.Value;
+                return 0;
+                //return revealed_piece_top.Value;
             }
         }
 

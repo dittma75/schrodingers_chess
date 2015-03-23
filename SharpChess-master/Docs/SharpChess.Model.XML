@@ -2113,7 +2113,7 @@
             Simple positional piece-square score values.
             </summary>
         </member>
-        <member name="M:SharpChess.Model.Concealed.#ctor(SharpChess.Model.Piece,SharpChess.Model.IPieceTop)">
+        <member name="M:SharpChess.Model.Concealed.#ctor(SharpChess.Model.Piece)">
             <summary>
             Initializes a new instance of the <see cref="T:SharpChess.Model.Concealed"/> class.
             </summary>

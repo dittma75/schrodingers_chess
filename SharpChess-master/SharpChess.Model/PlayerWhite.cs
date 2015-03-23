@@ -112,8 +112,8 @@ namespace SharpChess.Model
             this.Pieces.Add(new Piece(Piece.PieceNames.Knight, this, 1, 0, Piece.PieceIdentifierCodes.WhiteQueensKnight));
             this.Pieces.Add(new Piece(Piece.PieceNames.Knight, this, 6, 0, Piece.PieceIdentifierCodes.WhiteKingsKnight));
 
-            //A second white queen to test concealed.
-            this.Pieces.Add(new Piece(Piece.PieceNames.Queen, this, 4, 4, Piece.PieceIdentifierCodes.WhiteQueen));
+            //Concealed testing
+            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 4, 4, Piece.PieceIdentifierCodes.WhiteQueen));
         }
 
         #endregion

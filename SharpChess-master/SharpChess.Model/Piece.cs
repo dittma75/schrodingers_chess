@@ -110,6 +110,10 @@ namespace SharpChess.Model
                     //this.Top = new Concealed(this, new PieceQueen(this));
                     this.Top = new PieceQueen(this);
                     break;
+
+                case PieceNames.Concealed:
+                    this.Top = new Concealed(this);
+                    break;
             }
         }
 
