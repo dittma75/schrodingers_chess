@@ -47,6 +47,13 @@ namespace SharpChess.Model
 
         #region Public Properties
 
+        public bool IsConcealed
+        {
+            get
+            {
+                return true;
+            }
+        }
         /// <summary>
         /// Gets Abbreviation.
         /// </summary>
@@ -81,7 +88,14 @@ namespace SharpChess.Model
         {
             get
             {
-                return this.Base.Player.Colour == Player.PlayerColourNames.White ? 11 : 10;
+                if (this.IsConcealed)
+                {
+                    return this.Base.Player.Colour == Player.PlayerColourNames.White ? 13 : 12;
+                }
+                else
+                {
+                    return this.Base.Player.Colour == Player.PlayerColourNames.White ? 11 : 10;
+                }
             }
         }
 

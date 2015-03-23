@@ -94,8 +94,7 @@ namespace SharpChess
         /// <summary>
         /// The m_acur piece cursors.
         /// </summary>
-        private readonly Cursor[] m_acurPieceCursors = new Cursor[12];
-//        private readonly Cursor[] m_acurPieceCursors = new Cursor[14];
+        private readonly Cursor[] m_acurPieceCursors = new Cursor[14];
 
         /// <summary>
         /// The m_form move analysis.
@@ -2065,7 +2064,6 @@ namespace SharpChess
 
             // The relative pathname of an embedded resource begins with a period
             string strPath = strAsmName + ".Cursors.";
-
             this.m_acurPieceCursors[0] = new Cursor(asmMain.GetManifestResourceStream(strPath + "BlackBishop.cur"));
             this.m_acurPieceCursors[1] = new Cursor(asmMain.GetManifestResourceStream(strPath + "WhiteBishop.cur"));
             this.m_acurPieceCursors[2] = new Cursor(asmMain.GetManifestResourceStream(strPath + "BlackRook.cur"));
@@ -2078,8 +2076,11 @@ namespace SharpChess
             this.m_acurPieceCursors[9] = new Cursor(asmMain.GetManifestResourceStream(strPath + "WhitePawn.cur"));
             this.m_acurPieceCursors[10] = new Cursor(asmMain.GetManifestResourceStream(strPath + "BlackQueen.cur"));
             this.m_acurPieceCursors[11] = new Cursor(asmMain.GetManifestResourceStream(strPath + "WhiteQueen.cur"));
-//            this.m_acurPieceCursors[12] = new Cursor(asmMain.GetManifestResourceStream(strPath + "BlackConcealed.cur"));
-//            this.m_acurPieceCursors[13] = new Cursor(asmMain.GetManifestResourceStream(strPath + "WhiteConcealed.cur"));
+            
+//            Test to show that the system can't find the added resources for some reason.  White Pawns will turn into Black Bishops when grabbed.
+//            this.m_acurPieceCursors[9] = new Cursor(asmMain.GetManifestResourceStream(strPath + "BlackBishop.cur"));
+//            this.m_acurPieceCursors[12] = new Cursor(asmMain.GetManifestResourceStream(strPath + "BlackConcealed.gif"));
+//            this.m_acurPieceCursors[13] = new Cursor(asmMain.GetManifestResourceStream(strPath + "WhiteConcealed.gif"));
         }
 
         /// <summary>
