@@ -1154,8 +1154,8 @@ namespace SharpChess
             this.imgPieces.Images.SetKeyName(9, "");
             this.imgPieces.Images.SetKeyName(10, "");
             this.imgPieces.Images.SetKeyName(11, "");
-            this.imgPieces.Images.SetKeyName(12, "Concealed_Black.gif");
-            this.imgPieces.Images.SetKeyName(13, "Concealed_White.gif");
+            this.imgPieces.Images.SetKeyName(12, "BlackConcealed.ico");
+            this.imgPieces.Images.SetKeyName(13, "WhiteConcealed.ico");
             // 
             // mnu
             // 
@@ -2076,11 +2076,8 @@ namespace SharpChess
             this.m_acurPieceCursors[9] = new Cursor(asmMain.GetManifestResourceStream(strPath + "WhitePawn.cur"));
             this.m_acurPieceCursors[10] = new Cursor(asmMain.GetManifestResourceStream(strPath + "BlackQueen.cur"));
             this.m_acurPieceCursors[11] = new Cursor(asmMain.GetManifestResourceStream(strPath + "WhiteQueen.cur"));
-            
-//            Test to show that the system can't find the added resources for some reason.  White Pawns will turn into Black Bishops when grabbed.
-//            this.m_acurPieceCursors[9] = new Cursor(asmMain.GetManifestResourceStream(strPath + "BlackBishop.cur"));
-//            this.m_acurPieceCursors[12] = new Cursor(asmMain.GetManifestResourceStream(strPath + "BlackConcealed.gif"));
-//            this.m_acurPieceCursors[13] = new Cursor(asmMain.GetManifestResourceStream(strPath + "WhiteConcealed.gif"));
+            this.m_acurPieceCursors[12] = new Cursor(asmMain.GetManifestResourceStream(strPath + "BlackConcealed.cur"));
+            this.m_acurPieceCursors[13] = new Cursor(asmMain.GetManifestResourceStream(strPath + "WhiteConcealed.cur"));
         }
 
         /// <summary>
