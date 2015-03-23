@@ -383,8 +383,8 @@ namespace SharpChess.Model
         private static bool FenCheck1PiecePlace(string fenString)
         {
             // TODO Investigate why whiteRook and blackRook are assigned values but never used.
-            int whiteKing = 0, whiteQueen = 0, whiteRook = 0, whiteBishop = 0, whiteKnight = 0, whitePawn = 0, whiteConcealed = 0; // White
-            int blackKing = 0, blackQueen = 0, blackRook = 0, blackBishop = 0, blackKnight = 0, blackPawn = 0, blackConcealed = 0; // Black
+            int whiteKing = 0, whiteQueen = 0, whiteRook = 0, whiteBishop = 0, whiteKnight = 0, whitePawn = 0; // White
+            int blackKing = 0, blackQueen = 0, blackRook = 0, blackBishop = 0, blackKnight = 0, blackPawn = 0; // Black
             int squareNumber = 0, slashNumber = 0;
             for (int indChar = 0; indChar < fenString.Length; indChar++)
             {
@@ -436,14 +436,6 @@ namespace SharpChess.Model
                         break;
                     case 'p':
                         blackPawn++;
-                        squareNumber++;
-                        break;
-                    case 'C':
-                        whiteConcealed++;
-                        squareNumber++;
-                        break;
-                    case 'c':
-                        blackConcealed++;
                         squareNumber++;
                         break;
                     case '/':
@@ -1009,17 +1001,17 @@ namespace SharpChess.Model
                         break;
 
                     case 'K':
-                    //case 'Q':
-                    //case 'R':
-                    //case 'B':
-                    //case 'N':
+                    case 'Q':
+                    case 'R':
+                    case 'B':
+                    case 'N':
                     case 'P':
                     case 'C':
                     case 'k':
-                    //case 'q':
-                    //case 'r':
-                    //case 'b':
-                    //case 'n':
+                    case 'q':
+                    case 'r':
+                    case 'b':
+                    case 'n':
                     case 'p':
                     case 'c':
                         MovePieceToFenPosition(
