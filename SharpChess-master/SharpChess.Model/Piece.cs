@@ -81,30 +81,28 @@ namespace SharpChess.Model
 
             switch (name)
             {
-                //Kings and Pawns are not concealed.
                 case PieceNames.Pawn:
                     this.Top = new PiecePawn(this);
                     break;
-                    
-                case PieceNames.King:
-                    this.Top = new PieceKing(this);
-                    break;
 
-                //The rest of the pieces are concealed.
                 case PieceNames.Bishop:
-                    this.Top = new Concealed(this, new PieceBishop(this));
+                    this.Top = new PieceBishop(this);
                     break;
 
                 case PieceNames.Knight:
-                    this.Top = new Concealed(this, new PieceKnight(this));
+                    this.Top = new PieceKnight(this);
                     break;
 
                 case PieceNames.Rook:
-                    this.Top = new Concealed(this, new PieceRook(this));
+                    this.Top = new PieceRook(this);
                     break;
 
                 case PieceNames.Queen:
-                    this.Top = new Concealed(this, new PieceQueen(this));
+                    this.Top = new PieceQueen(this);
+                    break;
+
+                case PieceNames.King:
+                    this.Top = new PieceKing(this);
                     break;
             }
         }
@@ -312,12 +310,7 @@ namespace SharpChess.Model
             /// <summary>
             ///   The king.
             /// </summary>
-            King,
-            
-            /// <summary>
-            ///   The Schrodinger hidden piece.
-            /// </summary>
-            Concealed
+            King
         }
 
         #endregion
