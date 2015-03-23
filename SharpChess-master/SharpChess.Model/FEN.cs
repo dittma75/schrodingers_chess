@@ -915,6 +915,9 @@ namespace SharpChess.Model
                 case "P":
                     piecename = Piece.PieceNames.Pawn;
                     break;
+                case "C":
+                    piecename = Piece.PieceNames.Concealed;
+                    break;
             }
 
             // Try to find the required piece in from the available pool of captured 
@@ -989,12 +992,14 @@ namespace SharpChess.Model
                     case 'B':
                     case 'N':
                     case 'P':
+                    case 'C':
                     case 'k':
                     case 'q':
                     case 'r':
                     case 'b':
                     case 'n':
                     case 'p':
+                    case 'c':
                         MovePieceToFenPosition(
                             ref acharPiecePlacement[intIndex], intFile, intRank, blnAnyLocation, blnAllowPromotion);
                         intFile++;
@@ -1052,6 +1057,9 @@ namespace SharpChess.Model
                     case 'P':
                         strPieceName += " White Pawn";
                         break;
+                    case 'C':
+                        strPieceName += " White Concealed";
+                        break;
                     case 'k':
                         strPieceName += " Black King";
                         break;
@@ -1069,6 +1077,9 @@ namespace SharpChess.Model
                         break;
                     case 'p':
                         strPieceName += " Black Pawn";
+                        break;
+                    case 'c':
+                        strPieceName += " Black Concealed";
                         break;
                 }
             }
