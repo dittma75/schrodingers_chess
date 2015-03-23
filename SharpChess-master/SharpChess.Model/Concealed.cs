@@ -62,13 +62,13 @@ namespace SharpChess.Model
         {
             this.Base = pieceBase;
         }
-
+        /*
         public Concealed(Piece pieceBase, IPieceTop revealed_piece_top)
         {
             this.Base = pieceBase;
             this.revealed_piece_top = revealed_piece_top;
         }
-
+        */
         #endregion
 
         #region Public Properties
@@ -201,10 +201,108 @@ namespace SharpChess.Model
         /// </param>
         public void GenerateLazyMoves(Moves moves, Moves.MoveListNames movesType)
         {
-            Board.AppendPiecePath(moves, this.Base, this.Base.Player, 17, movesType);
-            Board.AppendPiecePath(moves, this.Base, this.Base.Player, 15, movesType);
-            Board.AppendPiecePath(moves, this.Base, this.Base.Player, -15, movesType);
-            Board.AppendPiecePath(moves, this.Base, this.Base.Player, -17, movesType);
+            switch (movesType)
+            {
+                case Moves.MoveListNames.All:
+                    //Try to add the move right 1 space move.
+                    Square square = Board.GetSquare(this.Base.Square.Ordinal + 1);
+                    AddAndVerifyMove(square, moves);
+
+                    /*Try to add the move right 2 spaces move if the board square exists and
+                     *there are no pieces in the way.
+                     */
+                    if (square != null && square.Piece == null)
+                    {
+                        AddAndVerifyMove(Board.GetSquare(this.Base.Square.Ordinal + 2), moves);
+                    }
+
+                    //Try to add the move upper left 1 space move.
+                    square = Board.GetSquare(this.Base.Square.Ordinal + 15);
+                    AddAndVerifyMove(square, moves);
+                    
+                    /*Try to add the move upper left 2 spaces move if the board square exists and
+                     *there are no pieces in the way.
+                     */
+                    if (square != null && square.Piece == null)
+                    {
+                        AddAndVerifyMove(Board.GetSquare(this.Base.Square.Ordinal + 30), moves);
+                    }
+
+                    //Try to add the move up 1 space move.
+                    square = Board.GetSquare(this.Base.Square.Ordinal + 16);
+                    AddAndVerifyMove(square, moves);
+
+                    /*Try to add the move up 2 spaces move if the board square exists and
+                     *there are no pieces in the way.
+                     */
+                    if (square != null && square.Piece == null)
+                    {
+                        AddAndVerifyMove(Board.GetSquare(this.Base.Square.Ordinal + 32), moves);
+                    }
+
+                    //Try to add the move upper right 1 space move.
+                    square = Board.GetSquare(this.Base.Square.Ordinal + 17);
+                    AddAndVerifyMove(square, moves);
+
+                    /*Try to add the move upper right 2 spaces move if the board square exists and
+                     *there are no pieces in the way.
+                     */
+                    if (square != null && square.Piece == null)
+                    {
+                        AddAndVerifyMove(Board.GetSquare(this.Base.Square.Ordinal + 34), moves);
+                    }
+
+                    //Try to add the move left 1 space move.
+                    square = Board.GetSquare(this.Base.Square.Ordinal - 1);
+                    AddAndVerifyMove(square, moves);
+
+                    /*Try to add the move left 2 spaces move if the board square exists and
+                     *there are no pieces in the way.
+                     */
+                    if (square != null && square.Piece == null)
+                    {
+                        AddAndVerifyMove(Board.GetSquare(this.Base.Square.Ordinal - 2), moves);
+                    }
+
+                    //Try to add the move lower left 1 space move.
+                    square = Board.GetSquare(this.Base.Square.Ordinal - 15);
+                    AddAndVerifyMove(square, moves);
+
+                    /*Try to add the move lower left 2 spaces move if the board square exists and
+                     *there are no pieces in the way.
+                     */
+                    if (square != null && square.Piece == null)
+                    {
+                        AddAndVerifyMove(Board.GetSquare(this.Base.Square.Ordinal - 30), moves);
+                    }
+
+                    //Try to add the move down 1 space move.
+                    square = Board.GetSquare(this.Base.Square.Ordinal - 16);
+                    AddAndVerifyMove(square, moves);
+
+                    /*Try to add the move down 2 spaces move if the board square exists and
+                     *there are no pieces in the way.
+                     */
+                    if (square != null && square.Piece == null)
+                    {
+                        AddAndVerifyMove(Board.GetSquare(this.Base.Square.Ordinal - 32), moves);
+                    }
+                    
+                    //Try to add the move lower right 1 space move.
+                    square = Board.GetSquare(this.Base.Square.Ordinal - 17);
+                    AddAndVerifyMove(square, moves);
+
+                    /*Try to add the move lower right 2 spaces move if the board square exists and
+                     *there are no pieces in the way.
+                     */
+                    if (square != null && square.Piece == null)
+                    {
+                        AddAndVerifyMove(Board.GetSquare(this.Base.Square.Ordinal - 34), moves);
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
 
         /// <summary>
@@ -214,6 +312,23 @@ namespace SharpChess.Model
         {
             //Add this piece's hidden_piece_type to this player's Pieces list at this piece's Square
             //Remove this piece from player's Pieces
+        }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Verifies the move to be added and, if valid, adds it.
+        /// </summary>
+        /// <param name="square">The square that the piece could move to.</param>
+        /// <param name="moves">The moves list to add the move to.</param>
+        private void AddAndVerifyMove(Square square, Moves moves)
+        {
+            if (square != null &&
+                (square.Piece == null ||
+                (square.Piece.Player.Colour != this.Base.Player.Colour && square.Piece.IsCapturable)))
+            {
+                moves.Add(0, 0, Move.MoveNames.Standard, this.Base, this.Base.Square, square, square.Piece, 0, 0);
+            }
         }
         #endregion
     }

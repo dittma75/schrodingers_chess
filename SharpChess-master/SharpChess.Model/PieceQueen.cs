@@ -47,6 +47,9 @@ namespace SharpChess.Model
 
         #region Public Properties
 
+        /// <summary>
+        /// Is this piece still concealed?
+        /// </summary>
         public bool IsConcealed
         {
             get

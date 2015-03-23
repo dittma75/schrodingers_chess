@@ -2137,6 +2137,13 @@
             Reveals the concealed piece as what it actually is.
             </summary>
         </member>
+        <member name="M:SharpChess.Model.Concealed.AddAndVerifyMove(SharpChess.Model.Square,SharpChess.Model.Moves)">
+            <summary>
+            Verifies the move to be added and, if valid, adds it.
+            </summary>
+            <param name="square">The square that the piece could move to.</param>
+            <param name="moves">The moves list to add the move to.</param>
+        </member>
         <member name="P:SharpChess.Model.Concealed.Abbreviation">
             <summary>
             Gets Abbreviation.
@@ -2863,6 +2870,11 @@
             <param name="movesType">
             Types of moves to include. e.g. All, or captures-only.
             </param>
+        </member>
+        <member name="P:SharpChess.Model.PieceQueen.IsConcealed">
+            <summary>
+            Is this piece still concealed?
+            </summary>
         </member>
         <member name="P:SharpChess.Model.PieceQueen.Abbreviation">
             <summary>
