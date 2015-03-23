@@ -102,16 +102,16 @@ namespace SharpChess.Model
             this.Pieces.Add(new Piece(Piece.PieceNames.Pawn, this, 7, 6, Piece.PieceIdentifierCodes.BlackPawn8));
 
             //The Queen, Rooks, Bishop, and Knights are concealed.
-            this.Pieces.Add(new Piece(Piece.PieceNames.Queen, this, 3, 7, Piece.PieceIdentifierCodes.BlackQueen));
+            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 3, 7, Piece.PieceIdentifierCodes.BlackQueen));
 
-            this.Pieces.Add(new Piece(Piece.PieceNames.Rook, this, 0, 7, Piece.PieceIdentifierCodes.BlackQueensRook));
-            this.Pieces.Add(new Piece(Piece.PieceNames.Rook, this, 7, 7, Piece.PieceIdentifierCodes.BlackKingsRook));
+            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 0, 7, Piece.PieceIdentifierCodes.BlackQueensRook));
+            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 7, 7, Piece.PieceIdentifierCodes.BlackKingsRook));
 
-            this.Pieces.Add(new Piece(Piece.PieceNames.Bishop, this, 2, 7, Piece.PieceIdentifierCodes.BlackQueensBishop));
-            this.Pieces.Add(new Piece(Piece.PieceNames.Bishop, this, 5, 7, Piece.PieceIdentifierCodes.BlackKingsBishop));
+            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 2, 7, Piece.PieceIdentifierCodes.BlackQueensBishop));
+            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 5, 7, Piece.PieceIdentifierCodes.BlackKingsBishop));
 
-            this.Pieces.Add(new Piece(Piece.PieceNames.Knight, this, 1, 7, Piece.PieceIdentifierCodes.BlackQueensKnight));
-            this.Pieces.Add(new Piece(Piece.PieceNames.Knight, this, 6, 7, Piece.PieceIdentifierCodes.BlackKingsKnight));
+            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 1, 7, Piece.PieceIdentifierCodes.BlackQueensKnight));
+            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 6, 7, Piece.PieceIdentifierCodes.BlackKingsKnight));
         }
 
         #endregion
