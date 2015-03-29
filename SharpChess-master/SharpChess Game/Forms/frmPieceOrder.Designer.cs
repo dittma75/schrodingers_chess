@@ -45,6 +45,7 @@
             this.numericUpDownKnight2 = new System.Windows.Forms.NumericUpDown();
             this.errorMessage = new System.Windows.Forms.Label();
             this.randomOrder = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Bishop1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Queen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Knight1)).BeginInit();
@@ -126,11 +127,11 @@
             // 
             // SelectOrder
             // 
-            this.SelectOrder.Location = new System.Drawing.Point(174, 106);
+            this.SelectOrder.Location = new System.Drawing.Point(174, 150);
             this.SelectOrder.Name = "SelectOrder";
-            this.SelectOrder.Size = new System.Drawing.Size(108, 23);
+            this.SelectOrder.Size = new System.Drawing.Size(139, 23);
             this.SelectOrder.TabIndex = 0;
-            this.SelectOrder.Text = "Select Order";
+            this.SelectOrder.Text = "Select Order (Human)";
             this.SelectOrder.UseVisualStyleBackColor = true;
             this.SelectOrder.Click += new System.EventHandler(this.SelectOrder_Click);
             // 
@@ -291,7 +292,8 @@
             // errorMessage
             // 
             this.errorMessage.AutoSize = true;
-            this.errorMessage.Location = new System.Drawing.Point(11, 90);
+            this.errorMessage.ForeColor = System.Drawing.Color.Red;
+            this.errorMessage.Location = new System.Drawing.Point(17, 90);
             this.errorMessage.Name = "errorMessage";
             this.errorMessage.Size = new System.Drawing.Size(182, 13);
             this.errorMessage.TabIndex = 21;
@@ -300,19 +302,29 @@
             // 
             // randomOrder
             // 
-            this.randomOrder.Location = new System.Drawing.Point(53, 106);
+            this.randomOrder.Location = new System.Drawing.Point(14, 150);
             this.randomOrder.Name = "randomOrder";
-            this.randomOrder.Size = new System.Drawing.Size(104, 23);
+            this.randomOrder.Size = new System.Drawing.Size(143, 23);
             this.randomOrder.TabIndex = 22;
-            this.randomOrder.Text = "Random Order";
+            this.randomOrder.Text = "Random Order (Computer)";
             this.randomOrder.UseVisualStyleBackColor = true;
             this.randomOrder.Click += new System.EventHandler(this.randomOrder_Click);
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(16, 112);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(224, 35);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Select \"Random Order\" for Computer players.  Use \"Select Order\" for human players" +
+    ".";
             // 
             // frmPieceOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(325, 140);
+            this.ClientSize = new System.Drawing.Size(325, 183);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.randomOrder);
             this.Controls.Add(this.errorMessage);
             this.Controls.Add(this.numericUpDownKnight2);
@@ -370,5 +382,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDownKnight2;
         private System.Windows.Forms.Label errorMessage;
         private System.Windows.Forms.Button randomOrder;
+        private System.Windows.Forms.Label label2;
     }
 }
