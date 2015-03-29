@@ -35,6 +35,7 @@ namespace SharpChess
 
     using SharpChess.Model;
     using SharpChess.Model.AI;
+    using SharpChess.Forms;
 
     #endregion
 
@@ -714,7 +715,6 @@ namespace SharpChess
         {
             this.AssignMenuChecks();
         }
-
         #endregion
 
         #region Methods
@@ -2114,6 +2114,8 @@ namespace SharpChess
             formDifficulty.ShowDialog(this);
             if (formDifficulty.Confirmed)
             {
+                frmPieceOrder formPieceOrder = new frmPieceOrder();
+                formPieceOrder.ShowDialog(this);
                 Game.New();
             }
         }

@@ -765,7 +765,6 @@ namespace SharpChess
             Game.UseRandomOpeningMoves = this.chkUseRandomOpeningMoves.Checked;
 
             this.m_blnConfirmed = true;
-
             this.Close();
         }
 

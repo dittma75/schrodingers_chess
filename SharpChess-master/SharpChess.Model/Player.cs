@@ -528,7 +528,6 @@ namespace SharpChess.Model
                 return intValue;
             }
         }
-
         #endregion
 
         #region Public Methods
@@ -862,7 +861,7 @@ namespace SharpChess.Model
         /// <summary>
         /// The set pieces at starting positions.
         /// </summary>
-        protected abstract void SetPiecesAtStartingPositions();
+        protected abstract void SetPiecesAtStartingPositions(int[] order);
 
         #endregion
     }

@@ -52,7 +52,15 @@ namespace SharpChess.Model
         ///   The file name.
         /// </summary>
         private static string saveGameFileName = string.Empty;
+        /// <summary>
+        ///     White concealed piece order to be passed to PlayerWhite
+        /// </summary>
+        public static int[] WhiteOrder = {1, 2, 3, 4, 5, 6, 7};
 
+        /// <summary>
+        ///     Black concealed piece order to be passed to PlayerBlack
+        /// </summary>
+        public static int[] BlackOrder = {1, 2, 3, 4, 5, 6, 7};
         #endregion
 
         #region Constructors and Destructors
@@ -78,8 +86,8 @@ namespace SharpChess.Model
             HashTablePawn.Initialise();
             HashTableCheck.Initialise();
 
-            PlayerWhite = new PlayerWhite();
-            PlayerBlack = new PlayerBlack();
+            PlayerWhite = new PlayerWhite(WhiteOrder);
+            PlayerBlack = new PlayerBlack(BlackOrder);
             PlayerToPlay = PlayerWhite;
             Board.EstablishHashKey();
             OpeningBookSimple.Initialise();
@@ -204,7 +212,6 @@ namespace SharpChess.Model
         #endregion
 
         #region Public Properties
-
         /// <summary>
         ///   Gets the available MegaBytes of free computer memory.
         /// </summary>

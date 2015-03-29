@@ -849,7 +849,7 @@
             The increase pawn count.
             </summary>
         </member>
-        <member name="M:SharpChess.Model.Player.SetPiecesAtStartingPositions">
+        <member name="M:SharpChess.Model.Player.SetPiecesAtStartingPositions(System.Int32[])">
             <summary>
             The set pieces at starting positions.
             </summary>
@@ -1046,12 +1046,12 @@
               Player is in check mate.
             </summary>
         </member>
-        <member name="M:SharpChess.Model.PlayerWhite.#ctor">
+        <member name="M:SharpChess.Model.PlayerWhite.#ctor(System.Int32[])">
             <summary>
             Initializes a new instance of the <see cref="T:SharpChess.Model.PlayerWhite"/> class.
             </summary>
         </member>
-        <member name="M:SharpChess.Model.PlayerWhite.SetPiecesAtStartingPositions">
+        <member name="M:SharpChess.Model.PlayerWhite.SetPiecesAtStartingPositions(System.Int32[])">
             <summary>
             The set pieces at starting positions.
             </summary>
@@ -4434,12 +4434,12 @@
             The player black.
             </summary>
         </member>
-        <member name="M:SharpChess.Model.PlayerBlack.#ctor">
+        <member name="M:SharpChess.Model.PlayerBlack.#ctor(System.Int32[])">
             <summary>
             Initializes a new instance of the <see cref="T:SharpChess.Model.PlayerBlack"/> class.
             </summary>
         </member>
-        <member name="M:SharpChess.Model.PlayerBlack.SetPiecesAtStartingPositions">
+        <member name="M:SharpChess.Model.PlayerBlack.SetPiecesAtStartingPositions(System.Int32[])">
             <summary>
             The set pieces at starting positions.
             </summary>
@@ -4467,6 +4467,16 @@
         <member name="F:SharpChess.Model.Game.saveGameFileName">
             <summary>
               The file name.
+            </summary>
+        </member>
+        <member name="F:SharpChess.Model.Game.WhiteOrder">
+            <summary>
+                White concealed piece order to be passed to PlayerWhite
+            </summary>
+        </member>
+        <member name="F:SharpChess.Model.Game.BlackOrder">
+            <summary>
+                Black concealed piece order to be passed to PlayerBlack
             </summary>
         </member>
         <member name="M:SharpChess.Model.Game.#cctor">

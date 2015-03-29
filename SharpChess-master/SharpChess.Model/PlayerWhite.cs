@@ -35,14 +35,21 @@ namespace SharpChess.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="PlayerWhite"/> class.
         /// </summary>
-        public PlayerWhite()
+        public PlayerWhite(int[] order)
         {
             this.Colour = PlayerColourNames.White;
-            this.Intellegence = PlayerIntellegenceNames.Human;
+            if (order == null)
+            {
+                generateRandomOrder();
+                this.Intellegence = PlayerIntellegenceNames.Computer;
+            }
+            else
+            {
+                this.Intellegence = PlayerIntellegenceNames.Human;
+            }
 
-            this.SetPiecesAtStartingPositions();
+            this.SetPiecesAtStartingPositions(order);
         }
-
         #endregion
 
         #region Public Properties
@@ -79,7 +86,6 @@ namespace SharpChess.Model
                 return 16;
             }
         }
-
         #endregion
 
         #region Methods
@@ -87,7 +93,7 @@ namespace SharpChess.Model
         /// <summary>
         /// The set pieces at starting positions.
         /// </summary>
-        protected override sealed void SetPiecesAtStartingPositions()
+        protected override sealed void SetPiecesAtStartingPositions(int[] order)
         {
             //The King and Pawns are not concealed.
             this.Pieces.Add(this.King = new Piece(Piece.PieceNames.King, this, 4, 0, Piece.PieceIdentifierCodes.WhiteKing));
@@ -100,6 +106,19 @@ namespace SharpChess.Model
             this.Pieces.Add(new Piece(Piece.PieceNames.Pawn, this, 6, 1, Piece.PieceIdentifierCodes.WhitePawn7));
             this.Pieces.Add(new Piece(Piece.PieceNames.Pawn, this, 7, 1, Piece.PieceIdentifierCodes.WhitePawn8));
             
+            /*
+            //The Queen, Rooks, Bishops, and Knights are all concealed.
+            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[3], 0, Piece.PieceIdentifierCodes.WhiteQueen));
+
+            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[0], 0, Piece.PieceIdentifierCodes.WhiteQueensRook));
+            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[7], 0, Piece.PieceIdentifierCodes.WhiteKingsRook));
+
+            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[2], 0, Piece.PieceIdentifierCodes.WhiteQueensBishop));
+            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[5], 0, Piece.PieceIdentifierCodes.WhiteKingsBishop));
+
+            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[1], 0, Piece.PieceIdentifierCodes.WhiteQueensKnight));
+            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[6], 0, Piece.PieceIdentifierCodes.WhiteKingsKnight));
+            */
             //The Queen, Rooks, Bishops, and Knights are all concealed.
             this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 3, 0, Piece.PieceIdentifierCodes.WhiteQueen));
 
@@ -111,11 +130,12 @@ namespace SharpChess.Model
 
             this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 1, 0, Piece.PieceIdentifierCodes.WhiteQueensKnight));
             this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 6, 0, Piece.PieceIdentifierCodes.WhiteKingsKnight));
-
-//          //Concealed testing
-//            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 4, 4, Piece.PieceIdentifierCodes.WhiteQueen));
         }
 
+        private void generateRandomOrder()
+        {
+
+        }
         #endregion
     }
 }
