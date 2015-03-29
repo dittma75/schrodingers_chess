@@ -55,12 +55,12 @@ namespace SharpChess.Model
         /// <summary>
         ///     White concealed piece order to be passed to PlayerWhite
         /// </summary>
-        public static int[] WhiteOrder = {1, 2, 3, 4, 5, 6, 7};
+        public static int[] WhiteOrder = {0, 1, 2, 3, 5, 6, 7};
 
         /// <summary>
         ///     Black concealed piece order to be passed to PlayerBlack
         /// </summary>
-        public static int[] BlackOrder = {1, 2, 3, 4, 5, 6, 7};
+        public static int[] BlackOrder = {0, 1, 2, 3, 5, 6, 7};
         #endregion
 
         #region Constructors and Destructors

@@ -106,30 +106,18 @@ namespace SharpChess.Model
             this.Pieces.Add(new Piece(Piece.PieceNames.Pawn, this, 6, 1, Piece.PieceIdentifierCodes.WhitePawn7));
             this.Pieces.Add(new Piece(Piece.PieceNames.Pawn, this, 7, 1, Piece.PieceIdentifierCodes.WhitePawn8));
             
-            /*
+            
             //The Queen, Rooks, Bishops, and Knights are all concealed.
             this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[3], 0, Piece.PieceIdentifierCodes.WhiteQueen));
 
             this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[0], 0, Piece.PieceIdentifierCodes.WhiteQueensRook));
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[7], 0, Piece.PieceIdentifierCodes.WhiteKingsRook));
+            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[6], 0, Piece.PieceIdentifierCodes.WhiteKingsRook));
 
             this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[2], 0, Piece.PieceIdentifierCodes.WhiteQueensBishop));
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[5], 0, Piece.PieceIdentifierCodes.WhiteKingsBishop));
+            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[4], 0, Piece.PieceIdentifierCodes.WhiteKingsBishop));
 
             this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[1], 0, Piece.PieceIdentifierCodes.WhiteQueensKnight));
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[6], 0, Piece.PieceIdentifierCodes.WhiteKingsKnight));
-            */
-            //The Queen, Rooks, Bishops, and Knights are all concealed.
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 3, 0, Piece.PieceIdentifierCodes.WhiteQueen));
-
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 0, 0, Piece.PieceIdentifierCodes.WhiteQueensRook));
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 7, 0, Piece.PieceIdentifierCodes.WhiteKingsRook));
-
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 2, 0, Piece.PieceIdentifierCodes.WhiteQueensBishop));
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 5, 0, Piece.PieceIdentifierCodes.WhiteKingsBishop));
-
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 1, 0, Piece.PieceIdentifierCodes.WhiteQueensKnight));
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 6, 0, Piece.PieceIdentifierCodes.WhiteKingsKnight));
+            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[5], 0, Piece.PieceIdentifierCodes.WhiteKingsKnight));
         }
 
         private void generateRandomOrder()
