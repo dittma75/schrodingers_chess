@@ -48,27 +48,27 @@ namespace SharpChess.Model
         };
 
         private IPieceTop revealed_piece_top;
+        private Piece.PieceIdentifierCodes identifier;
         #endregion
 
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Concealed"/> class.
+        /// Makes a new concealed piece with information about the piece it will be.
         /// </summary>
         /// <param name="pieceBase">
-        /// Base part of the piece.
+        ///     The base of the piece used for
+        ///     book-keeping on the board
         /// </param>
-        public Concealed(Piece pieceBase)
-        {
-            this.Base = pieceBase;
-        }
-        /*
-        public Concealed(Piece pieceBase, IPieceTop revealed_piece_top)
+        /// <param name="revealed_piece_top">The real type of the piece.</param>
+        /// <param name="identifier">The identifier for the real piece.</param>
+        public Concealed(Piece pieceBase, IPieceTop revealed_piece_top, Piece.PieceIdentifierCodes identifier)
         {
             this.Base = pieceBase;
             this.revealed_piece_top = revealed_piece_top;
+            this.identifier = identifier;
         }
-        */
+        
         #endregion
 
         #region Public Properties
@@ -96,8 +96,7 @@ namespace SharpChess.Model
         {
             get
             {
-                return 0;
-                //return revealed_piece_top.BasicValue;
+                return revealed_piece_top.BasicValue;
             }
         }
 
@@ -181,8 +180,7 @@ namespace SharpChess.Model
         {
             get
             {
-                return 0;
-                //return revealed_piece_top.Value;
+                return revealed_piece_top.Value;
             }
         }
 
@@ -233,6 +231,9 @@ namespace SharpChess.Model
         {
             //Add this piece's hidden_piece_type to this player's Pieces list at this piece's Square
             //Remove this piece from player's Pieces
+            Player player = this.Base.Player;
+            Square square = this.Base.Square;
+            player.Pieces.Add(new Piece(revealed_piece_top.Name, player, square.File, square.Rank, identifier));
         }
         #endregion
 

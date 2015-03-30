@@ -2113,13 +2113,16 @@
             Simple positional piece-square score values.
             </summary>
         </member>
-        <member name="M:SharpChess.Model.Concealed.#ctor(SharpChess.Model.Piece)">
+        <member name="M:SharpChess.Model.Concealed.#ctor(SharpChess.Model.Piece,SharpChess.Model.IPieceTop,SharpChess.Model.Piece.PieceIdentifierCodes)">
             <summary>
-            Initializes a new instance of the <see cref="T:SharpChess.Model.Concealed"/> class.
+            Makes a new concealed piece with information about the piece it will be.
             </summary>
             <param name="pieceBase">
-            Base part of the piece.
+                The base of the piece used for
+                book-keeping on the board
             </param>
+            <param name="revealed_piece_top">The real type of the piece.</param>
+            <param name="identifier">The identifier for the real piece.</param>
         </member>
         <member name="M:SharpChess.Model.Concealed.GenerateLazyMoves(SharpChess.Model.Moves,SharpChess.Model.Moves.MoveListNames)">
             <summary>
@@ -2884,11 +2887,6 @@
             <param name="movesType">
             Types of moves to include. e.g. All, or captures-only.
             </param>
-        </member>
-        <member name="P:SharpChess.Model.PieceQueen.IsConcealed">
-            <summary>
-            Is this piece still concealed?
-            </summary>
         </member>
         <member name="P:SharpChess.Model.PieceQueen.Abbreviation">
             <summary>
@@ -4469,12 +4467,12 @@
               The file name.
             </summary>
         </member>
-        <member name="F:SharpChess.Model.Game.WhiteOrder">
+        <member name="F:SharpChess.Model.Game.white_order">
             <summary>
                 White concealed piece order to be passed to PlayerWhite
             </summary>
         </member>
-        <member name="F:SharpChess.Model.Game.BlackOrder">
+        <member name="F:SharpChess.Model.Game.black_order">
             <summary>
                 Black concealed piece order to be passed to PlayerBlack
             </summary>
@@ -4483,6 +4481,18 @@
             <summary>
               Initializes static members of the <see cref="T:SharpChess.Model.Game"/> class.
             </summary>
+        </member>
+        <member name="M:SharpChess.Model.Game.setWhiteOrder(System.Int32[])">
+            <summary>
+                Sets the order of white concealed pieces.
+            </summary>
+            <param name="order">ranked order for white concealed pieces</param>
+        </member>
+        <member name="M:SharpChess.Model.Game.setBlackOrder(System.Int32[])">
+            <summary>
+                Sets the order of black concealed pieces.
+            </summary>
+            <param name="order">ranked order for black concealed pieces</param>
         </member>
         <member name="M:SharpChess.Model.Game.CaptureAllPieces">
             <summary>
@@ -4591,6 +4601,14 @@
             <summary>
               Undo the last move.
             </summary>
+        </member>
+        <member name="M:SharpChess.Model.Game.parseOrder(System.Int32[])">
+            <summary>
+                Parse the order from piece ranking to actual positions
+                on the chess board.
+            </summary>
+            <param name="order"></param>
+            <returns></returns>
         </member>
         <member name="M:SharpChess.Model.Game.AddSaveGameNode(System.Xml.XmlDocument,System.Xml.XmlElement,SharpChess.Model.Move)">
             <summary>

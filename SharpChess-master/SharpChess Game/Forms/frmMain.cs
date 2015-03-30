@@ -3398,7 +3398,7 @@ namespace SharpChess
         /// </param>
         private void picSquare_MouseDown(object sender, MouseEventArgs e)
         {
-            if (this.m_blnInMouseDown || e.Button != MouseButtons.Left)
+            if (this.m_blnInMouseDown)// || e.Button != MouseButtons.Left)
             {
                 return;
             }
@@ -3438,7 +3438,17 @@ namespace SharpChess
 
                 Game.ResumePondering();
 
-                if (this.m_blnIsLeftMouseButtonDown
+                if (e.Button == MouseButtons.Right && pieceFrom.Name == Piece.PieceNames.Concealed)
+                {
+                    MessageBox.Show("REVEAL!");
+                    Concealed concealed = (Concealed)pieceFrom.Top;
+                    concealed.revealPiece();
+                    //Player player = pieceFrom.Player;
+                    //Concealed concealed = (Concealed) pieceFrom.Top;
+                    //player.Pieces.Remove(pieceFrom);
+                    //player.Pieces.Add(new Piece(Piece.PieceNames.Queen, player, squareFrom.File, squareFrom.Rank, Piece.PieceIdentifierCodes.WhiteQueen));
+                }
+                else if (this.m_blnIsLeftMouseButtonDown
                     && ((PictureBox)sender).DoDragDrop(pieceFrom, DragDropEffects.Move) == DragDropEffects.Move)
                 {
                     Game.SuspendPondering();

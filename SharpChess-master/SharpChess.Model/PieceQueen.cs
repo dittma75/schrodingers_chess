@@ -46,17 +46,6 @@ namespace SharpChess.Model
         #endregion
 
         #region Public Properties
-
-        /// <summary>
-        /// Is this piece still concealed?
-        /// </summary>
-        public bool IsConcealed
-        {
-            get
-            {
-                return true;
-            }
-        }
         /// <summary>
         /// Gets Abbreviation.
         /// </summary>
@@ -91,14 +80,7 @@ namespace SharpChess.Model
         {
             get
             {
-                if (this.IsConcealed)
-                {
-                    return this.Base.Player.Colour == Player.PlayerColourNames.White ? 13 : 12;
-                }
-                else
-                {
-                    return this.Base.Player.Colour == Player.PlayerColourNames.White ? 11 : 10;
-                }
+                return this.Base.Player.Colour == Player.PlayerColourNames.White ? 11 : 10;
             }
         }
 

@@ -56,32 +56,7 @@ namespace SharpChess.Forms
 
             if (valid_order)
             {
-                //Set Game's WhiteOrder variable to record the selected order.
-                for (int i = 0; i < order.Length; i++)
-                {
-                    /* Turn arrangement numbers in to valid row indices.
-                     * The King is always in slot 4 counting from 0.
-                     */
-                    switch (order[i])
-                    {
-                        //Order comes before the King
-                        case 1:     //slot 0
-                        case 2:     //slot 1
-                        case 3:     //slot 2
-                        case 4:     //slot 3
-                            Game.WhiteOrder[i] = order[i] - 1;
-                            break;
-                        case 5:     //slot 5
-                        case 6:     //slot 6
-                        case 7:     //slot 7
-                            Game.WhiteOrder[i] = order[i];
-                            break;
-                        default:
-                            order = null;
-                            this.Close();
-                            break;
-                    }
-                }
+                Game.setWhiteOrder(order);
                 this.Close();
             }
             else
@@ -93,7 +68,7 @@ namespace SharpChess.Forms
 
         private void randomOrder_Click(object sender, EventArgs e)
         {
-            Game.WhiteOrder = null;
+            Game.setWhiteOrder(null);
             this.Close();
         }
     }

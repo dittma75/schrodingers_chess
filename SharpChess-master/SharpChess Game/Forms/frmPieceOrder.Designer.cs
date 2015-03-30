@@ -127,7 +127,7 @@
             // 
             // SelectOrder
             // 
-            this.SelectOrder.Location = new System.Drawing.Point(174, 150);
+            this.SelectOrder.Location = new System.Drawing.Point(174, 160);
             this.SelectOrder.Name = "SelectOrder";
             this.SelectOrder.Size = new System.Drawing.Size(139, 23);
             this.SelectOrder.TabIndex = 0;
@@ -302,7 +302,7 @@
             // 
             // randomOrder
             // 
-            this.randomOrder.Location = new System.Drawing.Point(14, 150);
+            this.randomOrder.Location = new System.Drawing.Point(14, 160);
             this.randomOrder.Name = "randomOrder";
             this.randomOrder.Size = new System.Drawing.Size(143, 23);
             this.randomOrder.TabIndex = 22;
@@ -314,7 +314,7 @@
             // 
             this.label2.Location = new System.Drawing.Point(16, 112);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(224, 35);
+            this.label2.Size = new System.Drawing.Size(224, 45);
             this.label2.TabIndex = 24;
             this.label2.Text = "Select \"Random Order\" for Computer players.  Use \"Select Order\" for human players" +
     ".";
@@ -323,7 +323,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(325, 183);
+            this.ClientSize = new System.Drawing.Size(325, 211);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.randomOrder);
             this.Controls.Add(this.errorMessage);
