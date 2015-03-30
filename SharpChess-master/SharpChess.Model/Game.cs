@@ -55,12 +55,12 @@ namespace SharpChess.Model
         /// <summary>
         ///     White concealed piece order to be passed to PlayerWhite
         /// </summary>
-        private static int[] white_order = {0, 1, 2, 3, 5, 6, 7};
+        private static int[] default_white_order = {0, 1, 2, 3, 5, 6, 7};
 
         /// <summary>
         ///     Black concealed piece order to be passed to PlayerBlack
         /// </summary>
-        private static int[] black_order = {0, 1, 2, 3, 5, 6, 7};
+        private static int[] default_black_order = {0, 1, 2, 3, 5, 6, 7};
         #endregion
 
         #region Constructors and Destructors
@@ -86,8 +86,8 @@ namespace SharpChess.Model
             HashTablePawn.Initialise();
             HashTableCheck.Initialise();
 
-            PlayerWhite = new PlayerWhite(white_order);
-            PlayerBlack = new PlayerBlack(black_order);
+            PlayerWhite = new PlayerWhite(default_white_order);
+            PlayerBlack = new PlayerBlack(default_black_order);
             PlayerToPlay = PlayerWhite;
             Board.EstablishHashKey();
             OpeningBookSimple.Initialise();
@@ -485,28 +485,6 @@ namespace SharpChess.Model
         #region Public Methods
 
         /// <summary>
-        ///     Sets the order of white concealed pieces.
-        /// </summary>
-        /// <param name="order">ranked order for white concealed pieces</param>
-        public static void setWhiteOrder(int[] order)
-        {
-            int[] parsed_order = parseOrder(order);
-            for (int i = 0; i < parsed_order.Length; i++)
-            {
-                white_order[i] = parsed_order[i];
-            }
-        }
-
-        /// <summary>
-        ///     Sets the order of black concealed pieces.
-        /// </summary>
-        /// <param name="order">ranked order for black concealed pieces</param>
-        public static void setBlackOrder(int[] order)
-        {
-            black_order = parseOrder(order);
-        }
-
-        /// <summary>
         ///   Captures all pieces.
         /// </summary>
         public static void CaptureAllPieces()
@@ -572,10 +550,20 @@ namespace SharpChess.Model
         }
 
         /// <summary>
-        ///   Start a new game.
+        ///     Start a new game.
         /// </summary>
         public static void New()
         {
+            New(string.Empty);
+        }
+
+        /// <summary>
+        ///   Start a new game with a given order.
+        /// </summary>
+        public static void New(int[] w_order, int[] b_order)
+        {
+            Game.PlayerWhite = new PlayerWhite(w_order);
+            Game.PlayerBlack = new PlayerBlack(b_order);
             New(string.Empty);
         }
 
@@ -810,44 +798,6 @@ namespace SharpChess.Model
         #endregion
 
         #region Methods
-
-        /// <summary>
-        ///     Parse the order from piece ranking to actual positions
-        ///     on the chess board.
-        /// </summary>
-        /// <param name="order"></param>
-        /// <returns></returns>
-        private static int[] parseOrder(int[] order)
-        {
-            int[] parsed_order = new int[7];
-            //Set Game's white_order variable to record the selected order.
-            for (int i = 0; i < order.Length; i++)
-            {
-                /* Turn arrangement numbers in to valid row indices.
-                 * The King is always in slot 4 counting from 0.
-                 */
-                switch (order[i])
-                {
-                    //These pieces come before the King
-                    case 1:     //slot 0
-                    case 2:     //slot 1
-                    case 3:     //slot 2
-                    case 4:     //slot 3
-                        parsed_order[i] = order[i] - 1;
-                        break;
-                    //These pieces come after the King
-                    case 5:     //slot 5
-                    case 6:     //slot 6
-                    case 7:     //slot 7
-                        parsed_order[i] = order[i];
-                        break;
-                    default:
-                        parsed_order = null;
-                        break;
-                }
-            }
-            return parsed_order;
-        }
         /// <summary>
         ///   Add a move node to the save game XML document.
         /// </summary>

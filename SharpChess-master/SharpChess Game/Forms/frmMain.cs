@@ -2114,9 +2114,16 @@ namespace SharpChess
             formDifficulty.ShowDialog(this);
             if (formDifficulty.Confirmed)
             {
-                frmPieceOrder formPieceOrder = new frmPieceOrder();
-                formPieceOrder.ShowDialog(this);
-                Game.New();
+                //Do piece selection for White player
+                frmPieceOrder whitePieceOrder = new frmPieceOrder(frmPieceOrder.WHITE);
+                whitePieceOrder.ShowDialog(this);
+                
+                //Do piece selection for Black player
+                frmPieceOrder blackPieceOrder = new frmPieceOrder(frmPieceOrder.BLACK);
+                blackPieceOrder.ShowDialog(this);
+
+                //Pass the orders to the
+                Game.New(whitePieceOrder.getOrder(), blackPieceOrder.getOrder());
             }
         }
 

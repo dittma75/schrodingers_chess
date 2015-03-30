@@ -110,22 +110,26 @@ namespace SharpChess.Model
                 case PieceNames.Concealed:
                     switch (this.IdentifierCode)
                     {
+                        //The Concealed piece is a Queen
                         case Piece.PieceIdentifierCodes.WhiteQueen:
                         case Piece.PieceIdentifierCodes.BlackQueen:
                             this.Top = new Concealed(this, new PieceQueen(this), this.IdentifierCode);
                             break;
+                        //The Concealed piece is a Bishop
                         case Piece.PieceIdentifierCodes.WhiteQueensBishop:
                         case Piece.PieceIdentifierCodes.WhiteKingsBishop:
                         case Piece.PieceIdentifierCodes.BlackQueensBishop:
                         case Piece.PieceIdentifierCodes.BlackKingsBishop:
                             this.Top = new Concealed(this, new PieceBishop(this), this.IdentifierCode);
                             break;
+                        //The Concealed piece is a Knight
                         case Piece.PieceIdentifierCodes.WhiteQueensKnight:
                         case Piece.PieceIdentifierCodes.WhiteKingsKnight:
                         case Piece.PieceIdentifierCodes.BlackQueensKnight:
                         case Piece.PieceIdentifierCodes.BlackKingsKnight:
                             this.Top = new Concealed(this, new PieceKnight(this), this.IdentifierCode);
                             break;
+                        //The Concealed piece is a Rook
                         case Piece.PieceIdentifierCodes.WhiteQueensRook:
                         case Piece.PieceIdentifierCodes.WhiteKingsRook:
                         case Piece.PieceIdentifierCodes.BlackQueensRook:

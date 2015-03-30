@@ -64,7 +64,14 @@
             // 
             // Bishop1
             // 
-            this.Bishop1.Image = global::SharpChess.Properties.Resources.Bishop_White;
+            if (this.color == WHITE)
+            {
+                this.Bishop1.Image = global::SharpChess.Properties.Resources.Bishop_White;
+            }
+            else if (this.color == BLACK)
+            {
+                this.Bishop1.Image = global::SharpChess.Properties.Resources.Bishop_Black;
+            }
             this.Bishop1.Location = new System.Drawing.Point(92, 3);
             this.Bishop1.Name = "Bishop1";
             this.Bishop1.Size = new System.Drawing.Size(44, 50);
@@ -73,7 +80,14 @@
             // 
             // Queen
             // 
-            this.Queen.Image = global::SharpChess.Properties.Resources.Queen_White;
+            if (this.color == WHITE)
+            {
+                this.Queen.Image = global::SharpChess.Properties.Resources.Queen_White;
+            }
+            else if (this.color == BLACK)
+            {
+                this.Queen.Image = global::SharpChess.Properties.Resources.Queen_Black;
+            }
             this.Queen.Location = new System.Drawing.Point(136, 3);
             this.Queen.Name = "Queen";
             this.Queen.Size = new System.Drawing.Size(50, 50);
@@ -81,8 +95,15 @@
             this.Queen.TabStop = false;
             // 
             // Knight1
-            // 
-            this.Knight1.Image = global::SharpChess.Properties.Resources.Knight_White;
+            //
+            if (this.color == WHITE)
+            {
+                this.Knight1.Image = global::SharpChess.Properties.Resources.Knight_White;
+            }
+            else if (this.color == BLACK)
+            {
+                this.Knight1.Image = global::SharpChess.Properties.Resources.Knight_Black;
+            }
             this.Knight1.Location = new System.Drawing.Point(45, 3);
             this.Knight1.Name = "Knight1";
             this.Knight1.Size = new System.Drawing.Size(45, 50);
@@ -90,8 +111,15 @@
             this.Knight1.TabStop = false;
             // 
             // Rook1
-            // 
-            this.Rook1.Image = global::SharpChess.Properties.Resources.Rook_White;
+            //
+            if (this.color == WHITE)
+            {
+                this.Rook1.Image = global::SharpChess.Properties.Resources.Rook_White;
+            }
+            else if (this.color == BLACK)
+            {
+                this.Rook1.Image = global::SharpChess.Properties.Resources.Rook_Black;
+            }
             this.Rook1.Location = new System.Drawing.Point(2, 3);
             this.Rook1.Name = "Rook1";
             this.Rook1.Size = new System.Drawing.Size(44, 50);
@@ -100,7 +128,14 @@
             // 
             // Rook2
             // 
-            this.Rook2.Image = global::SharpChess.Properties.Resources.Rook_White;
+            if (this.color == WHITE)
+            {
+                this.Rook2.Image = global::SharpChess.Properties.Resources.Rook_White;
+            }
+            else if (this.color == BLACK)
+            {
+                this.Rook2.Image = global::SharpChess.Properties.Resources.Rook_Black;
+            }
             this.Rook2.Location = new System.Drawing.Point(280, 3);
             this.Rook2.Name = "Rook2";
             this.Rook2.Size = new System.Drawing.Size(44, 50);
@@ -109,7 +144,14 @@
             // 
             // Knight2
             // 
-            this.Knight2.Image = global::SharpChess.Properties.Resources.Knight_White;
+            if (this.color == WHITE)
+            {
+                this.Knight2.Image = global::SharpChess.Properties.Resources.Knight_White;
+            }
+            else if (this.color == BLACK)
+            {
+                this.Knight2.Image = global::SharpChess.Properties.Resources.Knight_Black;
+            }
             this.Knight2.Location = new System.Drawing.Point(229, 3);
             this.Knight2.Name = "Knight2";
             this.Knight2.Size = new System.Drawing.Size(51, 50);
@@ -118,7 +160,14 @@
             // 
             // Bishop2
             // 
-            this.Bishop2.Image = global::SharpChess.Properties.Resources.Bishop_White;
+            if (this.color == WHITE)
+            {
+                this.Bishop2.Image = global::SharpChess.Properties.Resources.Bishop_White;
+            }
+            else if (this.color == BLACK)
+            {
+                this.Bishop2.Image = global::SharpChess.Properties.Resources.Bishop_Black;
+            }
             this.Bishop2.Location = new System.Drawing.Point(185, 3);
             this.Bishop2.Name = "Bishop2";
             this.Bishop2.Size = new System.Drawing.Size(44, 50);

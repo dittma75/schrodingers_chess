@@ -38,7 +38,15 @@ namespace SharpChess.Model
         public PlayerBlack(int[] black_order)
         {
             this.Colour = PlayerColourNames.Black;
-            this.Intellegence = PlayerIntellegenceNames.Computer;
+            if (black_order == null)
+            {
+                generateRandomOrder();
+                this.Intellegence = PlayerIntellegenceNames.Computer;
+            }
+            else
+            {
+                this.Intellegence = PlayerIntellegenceNames.Human;
+            }
 
             this.SetPiecesAtStartingPositions(black_order);
         }
@@ -113,23 +121,12 @@ namespace SharpChess.Model
 
             this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[1], 7, Piece.PieceIdentifierCodes.BlackQueensKnight));
             this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[5], 7, Piece.PieceIdentifierCodes.BlackKingsKnight));
-            
-
-            /*
-            //The Queen, Rooks, Bishop, and Knights are concealed.
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 3, 7, Piece.PieceIdentifierCodes.BlackQueen));
-
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 0, 7, Piece.PieceIdentifierCodes.BlackQueensRook));
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 7, 7, Piece.PieceIdentifierCodes.BlackKingsRook));
-
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 2, 7, Piece.PieceIdentifierCodes.BlackQueensBishop));
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 5, 7, Piece.PieceIdentifierCodes.BlackKingsBishop));
-
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 1, 7, Piece.PieceIdentifierCodes.BlackQueensKnight));
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, 6, 7, Piece.PieceIdentifierCodes.BlackKingsKnight));
-            */
         }
 
+        private void generateRandomOrder()
+        {
+            //stub
+        }
         #endregion
     }
 }

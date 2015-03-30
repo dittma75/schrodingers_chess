@@ -15,22 +15,28 @@ namespace SharpChess.Forms
 
     public partial class frmPieceOrder : Form
     {
-        public frmPieceOrder()
+        private int[] order;
+        public static int WHITE = 0;
+        public static int BLACK = 1;
+        private int color = 0;
+
+        public frmPieceOrder(int color)
         {
+            this.color = color;
             InitializeComponent();
         }
 
         private void SelectOrder_Click(object sender, EventArgs e)
         {
-            int[] order = new int[7];
+            order = new int[7];
             //Set order for each piece.
             order[0] = (int)numericUpDownRook1.Value;
             order[1] = (int)numericUpDownKnight1.Value;
             order[2] = (int)numericUpDownBishop1.Value;
             order[3] = (int)numericUpDownQueen.Value;
-            order[4] = (int)numericUpDownRook2.Value;
+            order[4] = (int)numericUpDownBishop2.Value;
             order[5] = (int)numericUpDownKnight2.Value;
-            order[6] = (int)numericUpDownBishop2.Value;
+            order[6] = (int)numericUpDownRook2.Value;
 
             bool valid_order = true;
 
@@ -56,7 +62,8 @@ namespace SharpChess.Forms
 
             if (valid_order)
             {
-                Game.setWhiteOrder(order);
+                //We're done.
+                parseOrder();
                 this.Close();
             }
             else
@@ -68,8 +75,49 @@ namespace SharpChess.Forms
 
         private void randomOrder_Click(object sender, EventArgs e)
         {
-            Game.setWhiteOrder(null);
+            order = null;
             this.Close();
+        }
+
+        /// <summary>
+        ///     Parse the order from piece ranking to actual positions
+        ///     on the chess board.
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
+        private void parseOrder()
+        {
+            //Set Game's white_order variable to record the selected order.
+            for (int i = 0; i < order.Length; i++)
+            {
+                /* Turn arrangement numbers in to valid row indices.
+                 * The King is always in slot 4 counting from 0.
+                 */
+                switch (order[i])
+                {
+                    //These pieces come before the King
+                    case 1:     //slot 0
+                    case 2:     //slot 1
+                    case 3:     //slot 2
+                    case 4:     //slot 3
+                        order[i] -= 1;
+                        break;
+                    //These pieces come after the King
+                    case 5:     //slot 5
+                    case 6:     //slot 6
+                    case 7:     //slot 7
+                        //do nothing to ranks of these pieces
+                        break;
+                    default:
+                        //Error:  order is null
+                        order = null;
+                        break;
+                }
+            }
+        }
+        public int[] getOrder()
+        {
+            return order;
         }
     }
 }

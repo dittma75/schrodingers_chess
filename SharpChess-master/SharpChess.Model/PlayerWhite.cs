@@ -122,7 +122,7 @@ namespace SharpChess.Model
 
         private void generateRandomOrder()
         {
-
+            //stub
         }
         #endregion
     }
