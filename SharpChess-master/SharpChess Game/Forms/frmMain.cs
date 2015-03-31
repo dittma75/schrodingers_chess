@@ -2110,21 +2110,7 @@ namespace SharpChess
         /// </summary>
         private void NewGame()
         {
-            frmDifficulty formDifficulty = new frmDifficulty();
-            formDifficulty.ShowDialog(this);
-            if (formDifficulty.Confirmed)
-            {
-                //Do piece selection for White player
-                frmPieceOrder whitePieceOrder = new frmPieceOrder(frmPieceOrder.WHITE);
-                whitePieceOrder.ShowDialog(this);
-                
-                //Do piece selection for Black player
-                frmPieceOrder blackPieceOrder = new frmPieceOrder(frmPieceOrder.BLACK);
-                blackPieceOrder.ShowDialog(this);
-
-                //Pass the orders to the
-                Game.New(whitePieceOrder.getOrder(), blackPieceOrder.getOrder());
-            }
+            setUpNewGame();
         }
 
         /// <summary>
@@ -2732,8 +2718,7 @@ namespace SharpChess
         {
             if (!Game.LoadBackup())
             {
-                frmDifficulty formDifficulty = new frmDifficulty();
-                formDifficulty.ShowDialog(this);
+                setUpNewGame();
             }
 
             // Game.StartNormalGame();
@@ -2744,6 +2729,29 @@ namespace SharpChess
             this.RenderClocks();
             this.SetFormState();
             this.timer.Start();
+        }
+
+        /// <summary>
+        ///     Set up the difficulty and Concealed piece order 
+        ///     for a new game.
+        /// </summary>
+        private void setUpNewGame()
+        {
+            frmDifficulty formDifficulty = new frmDifficulty();
+            formDifficulty.ShowDialog(this);
+            if (formDifficulty.Confirmed)
+            {
+                //Do piece selection for White player
+                frmPieceOrder whitePieceOrder = new frmPieceOrder(frmPieceOrder.WHITE);
+                whitePieceOrder.ShowDialog(this);
+
+                //Do piece selection for Black player
+                frmPieceOrder blackPieceOrder = new frmPieceOrder(frmPieceOrder.BLACK);
+                blackPieceOrder.ShowDialog(this);
+
+                //Pass the orders to the
+                Game.New(whitePieceOrder.getOrder(), blackPieceOrder.getOrder());
+            }
         }
 
         /// <summary>
