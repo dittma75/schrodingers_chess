@@ -821,7 +821,8 @@ namespace SharpChess.Model
 
             if (square.Piece != null)
             {
-                if (squarepieceCaptured.Piece != null)
+                //Don't try to capture the piece if this is a RevealMove move.
+                if (squarepieceCaptured.Piece != null && moveName != Model.Move.MoveNames.RevealMove)
                 {
                     Board.HashCodeA ^= squarepieceCaptured.Piece.HashCodeA; // un-XOR the piece taken
                     Board.HashCodeB ^= squarepieceCaptured.Piece.HashCodeB; // un-XOR the piece taken

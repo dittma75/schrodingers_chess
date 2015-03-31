@@ -3453,6 +3453,17 @@ namespace SharpChess
                     Concealed concealed = (Concealed)pieceFrom.Top;
                     //pieceFrom.Capture();
                     Piece revealed_piece = concealed.revealPiece();
+                    //Add the reveal move to the move list.
+                    this.m_movesPossible.Add(Game.TurnNo,
+                                             pieceFrom.Base.LastMoveTurnNo,
+                                             Model.Move.MoveNames.RevealMove,
+                                             pieceFrom.Base,
+                                             pieceFrom.Base.Square,
+                                             pieceFrom.Base.Square,
+                                             null,
+                                             0,
+                                             0
+                    );
                     Game.MakeAMove(Model.Move.MoveNames.RevealMove, revealed_piece, squareFrom);
                     this.RenderBoardColours();
                     Game.ResumePondering();
