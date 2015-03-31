@@ -4427,6 +4427,11 @@
             A null move.
             </summary>
         </member>
+        <member name="F:SharpChess.Model.Move.MoveNames.RevealMove">
+            <summary>
+            A move that reveals a Concealed piece.
+            </summary>
+        </member>
         <member name="T:SharpChess.Model.PlayerBlack">
             <summary>
             The player black.

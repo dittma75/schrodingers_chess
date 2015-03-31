@@ -139,7 +139,12 @@ namespace SharpChess.Model
             /// <summary>
             /// A null move.
             /// </summary>
-            NullMove
+            NullMove,
+
+            /// <summary>
+            /// A move that reveals a Concealed piece.
+            /// </summary>
+            RevealMove
         }
 
         #endregion

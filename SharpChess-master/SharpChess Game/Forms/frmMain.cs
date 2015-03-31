@@ -3447,15 +3447,14 @@ namespace SharpChess
 
                 if (e.Button == MouseButtons.Right && pieceFrom.Name == Piece.PieceNames.Concealed)
                 {
+                    Game.SuspendPondering();
                     MessageBox.Show("REVEAL!");
                     Concealed concealed = (Concealed)pieceFrom.Top;
                     concealed.revealPiece();
-                    //Player player = pieceFrom.Player;
-                    //Concealed concealed = (Concealed) pieceFrom.Top;
-                    //player.Pieces.Remove(pieceFrom);
-                    //player.Pieces.Add(new Piece(Piece.PieceNames.Queen, player, squareFrom.File, squareFrom.Rank, Piece.PieceIdentifierCodes.WhiteQueen));
+                    this.RenderBoardColours();
+                    Game.ResumePondering();
                 }
-                else if (this.m_blnIsLeftMouseButtonDown
+                if (this.m_blnIsLeftMouseButtonDown
                     && ((PictureBox)sender).DoDragDrop(pieceFrom, DragDropEffects.Move) == DragDropEffects.Move)
                 {
                     Game.SuspendPondering();

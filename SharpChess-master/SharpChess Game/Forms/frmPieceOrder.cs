@@ -18,12 +18,30 @@ namespace SharpChess.Forms
         private int[] order;
         public static int WHITE = 0;
         public static int BLACK = 1;
-        private int color = 0;
 
         public frmPieceOrder(int color)
         {
-            this.color = color;
             InitializeComponent();
+            if (color == WHITE)
+            {
+                WhiteBishop1.Visible = true;
+                WhiteBishop2.Visible = true;
+                WhiteKnight1.Visible = true;
+                WhiteKnight2.Visible = true;
+                WhiteRook1.Visible = true;
+                WhiteRook2.Visible = true;
+                WhiteQueen.Visible = true;
+            }
+            else if (color == BLACK)
+            {
+                BlackBishop1.Visible = true;
+                BlackBishop2.Visible = true;
+                BlackKnight1.Visible = true;
+                BlackKnight2.Visible = true;
+                BlackRook1.Visible = true;
+                BlackRook2.Visible = true;
+                BlackQueen.Visible = true;
+            }
         }
 
         private void SelectOrder_Click(object sender, EventArgs e)

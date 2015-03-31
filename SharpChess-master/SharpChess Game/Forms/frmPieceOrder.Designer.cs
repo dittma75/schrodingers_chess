@@ -27,14 +27,14 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-        {
-            this.Bishop1 = new System.Windows.Forms.PictureBox();
-            this.Queen = new System.Windows.Forms.PictureBox();
-            this.Knight1 = new System.Windows.Forms.PictureBox();
-            this.Rook1 = new System.Windows.Forms.PictureBox();
-            this.Rook2 = new System.Windows.Forms.PictureBox();
-            this.Knight2 = new System.Windows.Forms.PictureBox();
-            this.Bishop2 = new System.Windows.Forms.PictureBox();
+        {          
+            this.WhiteBishop1 = new System.Windows.Forms.PictureBox();
+            this.WhiteQueen = new System.Windows.Forms.PictureBox();
+            this.WhiteKnight1 = new System.Windows.Forms.PictureBox();
+            this.WhiteRook1 = new System.Windows.Forms.PictureBox();
+            this.WhiteRook2 = new System.Windows.Forms.PictureBox();
+            this.WhiteKnight2 = new System.Windows.Forms.PictureBox();
+            this.WhiteBishop2 = new System.Windows.Forms.PictureBox();
             this.SelectOrder = new System.Windows.Forms.Button();
             this.numericUpDownRook2 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownRook1 = new System.Windows.Forms.NumericUpDown();
@@ -46,13 +46,20 @@
             this.errorMessage = new System.Windows.Forms.Label();
             this.randomOrder = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.Bishop1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Queen)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Knight1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Rook1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Rook2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Knight2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Bishop2)).BeginInit();
+            this.BlackRook2 = new System.Windows.Forms.PictureBox();
+            this.BlackKnight2 = new System.Windows.Forms.PictureBox();
+            this.BlackBishop2 = new System.Windows.Forms.PictureBox();
+            this.BlackRook1 = new System.Windows.Forms.PictureBox();
+            this.BlackKnight1 = new System.Windows.Forms.PictureBox();
+            this.BlackQueen = new System.Windows.Forms.PictureBox();
+            this.BlackBishop1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.WhiteBishop1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WhiteQueen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WhiteKnight1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WhiteRook1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WhiteRook2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WhiteKnight2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WhiteBishop2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRook2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRook1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownKnight1)).BeginInit();
@@ -60,119 +67,84 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBishop2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQueen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownKnight2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BlackRook2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BlackKnight2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BlackBishop2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BlackRook1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BlackKnight1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BlackQueen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BlackBishop1)).BeginInit();
             this.SuspendLayout();
             // 
-            // Bishop1
+            // WhiteBishop1
             // 
-            if (this.color == WHITE)
-            {
-                this.Bishop1.Image = global::SharpChess.Properties.Resources.Bishop_White;
-            }
-            else if (this.color == BLACK)
-            {
-                this.Bishop1.Image = global::SharpChess.Properties.Resources.Bishop_Black;
-            }
-            this.Bishop1.Location = new System.Drawing.Point(92, 3);
-            this.Bishop1.Name = "Bishop1";
-            this.Bishop1.Size = new System.Drawing.Size(44, 50);
-            this.Bishop1.TabIndex = 1;
-            this.Bishop1.TabStop = false;
+            this.WhiteBishop1.Image = global::SharpChess.Properties.Resources.Bishop_White;
+            this.WhiteBishop1.Location = new System.Drawing.Point(92, 3);
+            this.WhiteBishop1.Name = "WhiteBishop1";
+            this.WhiteBishop1.Size = new System.Drawing.Size(44, 50);
+            this.WhiteBishop1.TabIndex = 1;
+            this.WhiteBishop1.TabStop = false;
+            this.WhiteBishop1.Visible = false;
             // 
-            // Queen
+            // WhiteQueen
             // 
-            if (this.color == WHITE)
-            {
-                this.Queen.Image = global::SharpChess.Properties.Resources.Queen_White;
-            }
-            else if (this.color == BLACK)
-            {
-                this.Queen.Image = global::SharpChess.Properties.Resources.Queen_Black;
-            }
-            this.Queen.Location = new System.Drawing.Point(136, 3);
-            this.Queen.Name = "Queen";
-            this.Queen.Size = new System.Drawing.Size(50, 50);
-            this.Queen.TabIndex = 4;
-            this.Queen.TabStop = false;
+            this.WhiteQueen.Image = global::SharpChess.Properties.Resources.Queen_White;
+            this.WhiteQueen.Location = new System.Drawing.Point(136, 3);
+            this.WhiteQueen.Name = "WhiteQueen";
+            this.WhiteQueen.Size = new System.Drawing.Size(50, 50);
+            this.WhiteQueen.TabIndex = 4;
+            this.WhiteQueen.TabStop = false;
+            this.WhiteQueen.Visible = false;
             // 
-            // Knight1
-            //
-            if (this.color == WHITE)
-            {
-                this.Knight1.Image = global::SharpChess.Properties.Resources.Knight_White;
-            }
-            else if (this.color == BLACK)
-            {
-                this.Knight1.Image = global::SharpChess.Properties.Resources.Knight_Black;
-            }
-            this.Knight1.Location = new System.Drawing.Point(45, 3);
-            this.Knight1.Name = "Knight1";
-            this.Knight1.Size = new System.Drawing.Size(45, 50);
-            this.Knight1.TabIndex = 5;
-            this.Knight1.TabStop = false;
+            // WhiteKnight1
             // 
-            // Rook1
-            //
-            if (this.color == WHITE)
-            {
-                this.Rook1.Image = global::SharpChess.Properties.Resources.Rook_White;
-            }
-            else if (this.color == BLACK)
-            {
-                this.Rook1.Image = global::SharpChess.Properties.Resources.Rook_Black;
-            }
-            this.Rook1.Location = new System.Drawing.Point(2, 3);
-            this.Rook1.Name = "Rook1";
-            this.Rook1.Size = new System.Drawing.Size(44, 50);
-            this.Rook1.TabIndex = 6;
-            this.Rook1.TabStop = false;
+            this.WhiteKnight1.Image = global::SharpChess.Properties.Resources.Knight_White;
+            this.WhiteKnight1.Location = new System.Drawing.Point(45, 3);
+            this.WhiteKnight1.Name = "WhiteKnight1";
+            this.WhiteKnight1.Size = new System.Drawing.Size(45, 50);
+            this.WhiteKnight1.TabIndex = 5;
+            this.WhiteKnight1.TabStop = false;
+            this.WhiteKnight1.Visible = false;
             // 
-            // Rook2
+            // WhiteRook1
             // 
-            if (this.color == WHITE)
-            {
-                this.Rook2.Image = global::SharpChess.Properties.Resources.Rook_White;
-            }
-            else if (this.color == BLACK)
-            {
-                this.Rook2.Image = global::SharpChess.Properties.Resources.Rook_Black;
-            }
-            this.Rook2.Location = new System.Drawing.Point(280, 3);
-            this.Rook2.Name = "Rook2";
-            this.Rook2.Size = new System.Drawing.Size(44, 50);
-            this.Rook2.TabIndex = 9;
-            this.Rook2.TabStop = false;
+            this.WhiteRook1.Image = global::SharpChess.Properties.Resources.Rook_White;
+            this.WhiteRook1.Location = new System.Drawing.Point(2, 3);
+            this.WhiteRook1.Name = "WhiteRook1";
+            this.WhiteRook1.Size = new System.Drawing.Size(44, 50);
+            this.WhiteRook1.TabIndex = 6;
+            this.WhiteRook1.TabStop = false;
+            this.WhiteRook1.Visible = false;
             // 
-            // Knight2
+            // WhiteRook2
             // 
-            if (this.color == WHITE)
-            {
-                this.Knight2.Image = global::SharpChess.Properties.Resources.Knight_White;
-            }
-            else if (this.color == BLACK)
-            {
-                this.Knight2.Image = global::SharpChess.Properties.Resources.Knight_Black;
-            }
-            this.Knight2.Location = new System.Drawing.Point(229, 3);
-            this.Knight2.Name = "Knight2";
-            this.Knight2.Size = new System.Drawing.Size(51, 50);
-            this.Knight2.TabIndex = 8;
-            this.Knight2.TabStop = false;
+            this.WhiteRook2.Image = global::SharpChess.Properties.Resources.Rook_White;
+            this.WhiteRook2.Location = new System.Drawing.Point(280, 3);
+            this.WhiteRook2.Name = "WhiteRook2";
+            this.WhiteRook2.Size = new System.Drawing.Size(44, 50);
+            this.WhiteRook2.TabIndex = 9;
+            this.WhiteRook2.TabStop = false;
+            this.WhiteRook2.Visible = false;
             // 
-            // Bishop2
+            // WhiteKnight2
             // 
-            if (this.color == WHITE)
-            {
-                this.Bishop2.Image = global::SharpChess.Properties.Resources.Bishop_White;
-            }
-            else if (this.color == BLACK)
-            {
-                this.Bishop2.Image = global::SharpChess.Properties.Resources.Bishop_Black;
-            }
-            this.Bishop2.Location = new System.Drawing.Point(185, 3);
-            this.Bishop2.Name = "Bishop2";
-            this.Bishop2.Size = new System.Drawing.Size(44, 50);
-            this.Bishop2.TabIndex = 7;
-            this.Bishop2.TabStop = false;
+            this.WhiteKnight2.Image = global::SharpChess.Properties.Resources.Knight_White;
+            this.WhiteKnight2.Location = new System.Drawing.Point(229, 3);
+            this.WhiteKnight2.Name = "WhiteKnight2";
+            this.WhiteKnight2.Size = new System.Drawing.Size(51, 50);
+            this.WhiteKnight2.TabIndex = 8;
+            this.WhiteKnight2.TabStop = false;
+            this.WhiteKnight2.Visible = false;
+            // 
+            // WhiteBishop2
+            // 
+            this.WhiteBishop2.Image = global::SharpChess.Properties.Resources.Bishop_White;
+            this.WhiteBishop2.Location = new System.Drawing.Point(185, 3);
+            this.WhiteBishop2.Name = "WhiteBishop2";
+            this.WhiteBishop2.Size = new System.Drawing.Size(44, 50);
+            this.WhiteBishop2.TabIndex = 7;
+            this.WhiteBishop2.TabStop = false;
+            this.WhiteBishop2.Visible = false;
             // 
             // SelectOrder
             // 
@@ -368,11 +340,88 @@
             this.label2.Text = "Select \"Random Order\" for Computer players.  Use \"Select Order\" for human players" +
     ".";
             // 
+            // BlackRook2
+            // 
+            this.BlackRook2.Image = global::SharpChess.Properties.Resources.Rook_Black;
+            this.BlackRook2.Location = new System.Drawing.Point(279, 4);
+            this.BlackRook2.Name = "BlackRook2";
+            this.BlackRook2.Size = new System.Drawing.Size(44, 50);
+            this.BlackRook2.TabIndex = 31;
+            this.BlackRook2.TabStop = false;
+            this.BlackRook2.Visible = false;
+            // 
+            // BlackKnight2
+            // 
+            this.BlackKnight2.Image = global::SharpChess.Properties.Resources.Knight_Black;
+            this.BlackKnight2.Location = new System.Drawing.Point(228, 4);
+            this.BlackKnight2.Name = "BlackKnight2";
+            this.BlackKnight2.Size = new System.Drawing.Size(51, 50);
+            this.BlackKnight2.TabIndex = 30;
+            this.BlackKnight2.TabStop = false;
+            this.BlackKnight2.Visible = false;
+            // 
+            // BlackBishop2
+            // 
+            this.BlackBishop2.Image = global::SharpChess.Properties.Resources.Bishop_Black;
+            this.BlackBishop2.Location = new System.Drawing.Point(184, 4);
+            this.BlackBishop2.Name = "BlackBishop2";
+            this.BlackBishop2.Size = new System.Drawing.Size(44, 50);
+            this.BlackBishop2.TabIndex = 29;
+            this.BlackBishop2.TabStop = false;
+            this.BlackBishop2.Visible = false;
+            // 
+            // BlackRook1
+            // 
+            this.BlackRook1.Image = global::SharpChess.Properties.Resources.Rook_Black;
+            this.BlackRook1.Location = new System.Drawing.Point(1, 4);
+            this.BlackRook1.Name = "BlackRook1";
+            this.BlackRook1.Size = new System.Drawing.Size(44, 50);
+            this.BlackRook1.TabIndex = 28;
+            this.BlackRook1.TabStop = false;
+            this.BlackRook1.Visible = false;
+            // 
+            // BlackKnight1
+            // 
+            this.BlackKnight1.Image = global::SharpChess.Properties.Resources.Knight_Black;
+            this.BlackKnight1.Location = new System.Drawing.Point(44, 4);
+            this.BlackKnight1.Name = "BlackKnight1";
+            this.BlackKnight1.Size = new System.Drawing.Size(45, 50);
+            this.BlackKnight1.TabIndex = 27;
+            this.BlackKnight1.TabStop = false;
+            this.BlackKnight1.Visible = false;
+            // 
+            // BlackQueen
+            // 
+            this.BlackQueen.Image = global::SharpChess.Properties.Resources.Queen_Black;
+            this.BlackQueen.Location = new System.Drawing.Point(135, 4);
+            this.BlackQueen.Name = "BlackQueen";
+            this.BlackQueen.Size = new System.Drawing.Size(50, 50);
+            this.BlackQueen.TabIndex = 26;
+            this.BlackQueen.TabStop = false;
+            this.BlackQueen.Visible = false;
+            // 
+            // BlackBishop1
+            // 
+            this.BlackBishop1.Image = global::SharpChess.Properties.Resources.Bishop_Black;
+            this.BlackBishop1.Location = new System.Drawing.Point(91, 4);
+            this.BlackBishop1.Name = "BlackBishop1";
+            this.BlackBishop1.Size = new System.Drawing.Size(44, 50);
+            this.BlackBishop1.TabIndex = 25;
+            this.BlackBishop1.TabStop = false;
+            this.BlackBishop1.Visible = false;
+            // 
             // frmPieceOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(325, 211);
+            this.Controls.Add(this.BlackRook2);
+            this.Controls.Add(this.BlackKnight2);
+            this.Controls.Add(this.BlackBishop2);
+            this.Controls.Add(this.BlackRook1);
+            this.Controls.Add(this.BlackKnight1);
+            this.Controls.Add(this.BlackQueen);
+            this.Controls.Add(this.BlackBishop1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.randomOrder);
             this.Controls.Add(this.errorMessage);
@@ -383,23 +432,23 @@
             this.Controls.Add(this.numericUpDownKnight1);
             this.Controls.Add(this.numericUpDownRook1);
             this.Controls.Add(this.numericUpDownRook2);
-            this.Controls.Add(this.Rook2);
-            this.Controls.Add(this.Knight2);
-            this.Controls.Add(this.Bishop2);
-            this.Controls.Add(this.Rook1);
-            this.Controls.Add(this.Knight1);
-            this.Controls.Add(this.Queen);
-            this.Controls.Add(this.Bishop1);
+            this.Controls.Add(this.WhiteRook2);
+            this.Controls.Add(this.WhiteKnight2);
+            this.Controls.Add(this.WhiteBishop2);
+            this.Controls.Add(this.WhiteRook1);
+            this.Controls.Add(this.WhiteKnight1);
+            this.Controls.Add(this.WhiteQueen);
+            this.Controls.Add(this.WhiteBishop1);
             this.Controls.Add(this.SelectOrder);
             this.Name = "frmPieceOrder";
             this.Text = "Select Piece Order";
-            ((System.ComponentModel.ISupportInitialize)(this.Bishop1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Queen)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Knight1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Rook1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Rook2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Knight2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Bishop2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WhiteBishop1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WhiteQueen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WhiteKnight1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WhiteRook1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WhiteRook2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WhiteKnight2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WhiteBishop2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRook2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRook1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownKnight1)).EndInit();
@@ -407,6 +456,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBishop2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQueen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownKnight2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BlackRook2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BlackKnight2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BlackBishop2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BlackRook1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BlackKnight1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BlackQueen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BlackBishop1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -414,13 +470,13 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox Bishop1;
-        private System.Windows.Forms.PictureBox Queen;
-        private System.Windows.Forms.PictureBox Knight1;
-        private System.Windows.Forms.PictureBox Rook1;
-        private System.Windows.Forms.PictureBox Rook2;
-        private System.Windows.Forms.PictureBox Knight2;
-        private System.Windows.Forms.PictureBox Bishop2;
+        private System.Windows.Forms.PictureBox WhiteBishop1;
+        private System.Windows.Forms.PictureBox WhiteQueen;
+        private System.Windows.Forms.PictureBox WhiteKnight1;
+        private System.Windows.Forms.PictureBox WhiteRook1;
+        private System.Windows.Forms.PictureBox WhiteRook2;
+        private System.Windows.Forms.PictureBox WhiteKnight2;
+        private System.Windows.Forms.PictureBox WhiteBishop2;
         private System.Windows.Forms.Button SelectOrder;
         private System.Windows.Forms.NumericUpDown numericUpDownRook2;
         private System.Windows.Forms.NumericUpDown numericUpDownRook1;
@@ -432,5 +488,12 @@
         private System.Windows.Forms.Label errorMessage;
         private System.Windows.Forms.Button randomOrder;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox BlackRook2;
+        private System.Windows.Forms.PictureBox BlackKnight2;
+        private System.Windows.Forms.PictureBox BlackBishop2;
+        private System.Windows.Forms.PictureBox BlackRook1;
+        private System.Windows.Forms.PictureBox BlackKnight1;
+        private System.Windows.Forms.PictureBox BlackQueen;
+        private System.Windows.Forms.PictureBox BlackBishop1;
     }
 }
