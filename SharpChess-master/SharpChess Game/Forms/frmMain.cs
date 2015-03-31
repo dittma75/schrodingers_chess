@@ -3445,16 +3445,19 @@ namespace SharpChess
 
                 Game.ResumePondering();
 
+                //Right clicking a concealed piece reveals it.
                 if (e.Button == MouseButtons.Right && pieceFrom.Name == Piece.PieceNames.Concealed)
                 {
                     Game.SuspendPondering();
                     MessageBox.Show("REVEAL!");
                     Concealed concealed = (Concealed)pieceFrom.Top;
-                    concealed.revealPiece();
+                    //pieceFrom.Capture();
+                    Piece revealed_piece = concealed.revealPiece();
+                    Game.MakeAMove(Model.Move.MoveNames.RevealMove, revealed_piece, squareFrom);
                     this.RenderBoardColours();
                     Game.ResumePondering();
                 }
-                if (this.m_blnIsLeftMouseButtonDown
+                else if (this.m_blnIsLeftMouseButtonDown
                     && ((PictureBox)sender).DoDragDrop(pieceFrom, DragDropEffects.Move) == DragDropEffects.Move)
                 {
                     Game.SuspendPondering();
