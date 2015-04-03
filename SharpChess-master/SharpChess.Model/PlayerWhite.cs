@@ -105,19 +105,20 @@ namespace SharpChess.Model
             this.Pieces.Add(new Piece(Piece.PieceNames.Pawn, this, 5, 1, Piece.PieceIdentifierCodes.WhitePawn6));
             this.Pieces.Add(new Piece(Piece.PieceNames.Pawn, this, 6, 1, Piece.PieceIdentifierCodes.WhitePawn7));
             this.Pieces.Add(new Piece(Piece.PieceNames.Pawn, this, 7, 1, Piece.PieceIdentifierCodes.WhitePawn8));
-            
-            
+
+
             //The Queen, Rooks, Bishops, and Knights are all concealed.
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[3], 0, Piece.PieceIdentifierCodes.WhiteQueen));
+            Piece.PieceIdentifierCodes[] ids = new Piece.PieceIdentifierCodes[7];
+            ids[0] = Piece.PieceIdentifierCodes.WhiteQueensRook;
+            ids[1] = Piece.PieceIdentifierCodes.WhiteQueensKnight;
+            ids[2] = Piece.PieceIdentifierCodes.WhiteQueensBishop;
+            ids[3] = Piece.PieceIdentifierCodes.WhiteQueen;
+            ids[4] = Piece.PieceIdentifierCodes.WhiteKingsBishop;
+            ids[5] = Piece.PieceIdentifierCodes.WhiteKingsKnight;
+            ids[6] = Piece.PieceIdentifierCodes.WhiteKingsRook;
 
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[0], 0, Piece.PieceIdentifierCodes.WhiteQueensRook));
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[6], 0, Piece.PieceIdentifierCodes.WhiteKingsRook));
-
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[2], 0, Piece.PieceIdentifierCodes.WhiteQueensBishop));
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[4], 0, Piece.PieceIdentifierCodes.WhiteKingsBishop));
-
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[1], 0, Piece.PieceIdentifierCodes.WhiteQueensKnight));
-            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, order[5], 0, Piece.PieceIdentifierCodes.WhiteKingsKnight));
+            //Arrange and place the concealed pieces.
+            addArrangedPieces(order, ids);
         }
 
         private void generateRandomOrder()

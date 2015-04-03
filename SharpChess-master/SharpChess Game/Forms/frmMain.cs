@@ -3457,21 +3457,25 @@ namespace SharpChess
                 if (e.Button == MouseButtons.Right && pieceFrom.Name == Piece.PieceNames.Concealed)
                 {
                     Game.SuspendPondering();
-                    MessageBox.Show("REVEAL!");
+                    /* Cast the Top of this piece as a Concealed piece.
+                     * We know that it is a Concealed piece because its name
+                     * is Concealed.
+                     */
                     Concealed concealed = (Concealed)pieceFrom.Top;
-                    //pieceFrom.Capture();
+                    //Get the piece that the Concealed piece is hiding.
                     Piece revealed_piece = concealed.revealPiece();
                     //Add the reveal move to the move list.
                     this.m_movesPossible.Add(Game.TurnNo,
                                              pieceFrom.Base.LastMoveTurnNo,
                                              Model.Move.MoveNames.RevealMove,
-                                             pieceFrom.Base,
-                                             pieceFrom.Base.Square,
-                                             pieceFrom.Base.Square,
-                                             null,
+                                             pieceFrom.Base,        //Piece affected
+                                             pieceFrom.Base.Square, //Start square
+                                             pieceFrom.Base.Square, //End square
+                                             null,                  //Piece to be captured
                                              0,
                                              0
                     );
+                    //Actually do the reveal move.
                     Game.MakeAMove(Model.Move.MoveNames.RevealMove, revealed_piece, squareFrom);
                     this.RenderBoardColours();
                     Game.ResumePondering();

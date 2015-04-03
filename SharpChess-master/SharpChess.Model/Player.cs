@@ -863,6 +863,66 @@ namespace SharpChess.Model
         /// </summary>
         protected abstract void SetPiecesAtStartingPositions(int[] order);
 
+        /// <summary>
+        ///     Adds the Concealed pieces according to the given order
+        /// </summary>
+        /// <param name="order">
+        ///     order for this arrangement
+        ///     Position of Pieces in the order array:
+        ///     0 - First Rook
+        ///     1 - First Knight
+        ///     2 - First Bishop
+        ///     3 - Queen
+        ///     4 - Second Bishop
+        ///     5 - Second Knight
+        ///     6 - Second Rook
+        /// </param>
+        /// <param name="ids">
+        ///     list of identifier codes in order for this arrangement
+        /// </param>
+        protected void addArrangedPieces(int[] order, Piece.PieceIdentifierCodes[] ids)
+        {
+            if (order == null)
+            {
+                order = generateRandomOrder();
+            }
+            
+
+            int rank = 0;
+            if (this is PlayerBlack)
+            {
+                rank = 7;
+            }
+
+            /* Add the concealed pieces by matching the order to the ids
+             * and using the rank that specifies the back row for this
+             * player color.
+             */
+            for (int i = 0; i < order.Length; i++)
+            {
+                addConcealedPiece(order[i], rank, ids[i]);
+            }
+        }
+
+        /// <summary>
+        ///     Add a concealed piece based on its file, rank, and piece id.
+        /// </summary>
+        /// <param name="file">Column of piece on chess board</param>
+        /// <param name="rank">Row of peice on chess board</param>
+        /// <param name="id">Identifier</param>
+        private void addConcealedPiece(int file, int rank, Piece.PieceIdentifierCodes id)
+        {
+            this.Pieces.Add(new Piece(Piece.PieceNames.Concealed, this, file, rank, id));
+        }
+
+        /// <summary>
+        ///     Generates a random order for concealed pieces for an AI player.
+        /// </summary>
+        /// <returns></returns>
+        private int[] generateRandomOrder()
+        {
+            return null;
+        }
         #endregion
     }
 }

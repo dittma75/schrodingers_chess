@@ -854,6 +854,33 @@
             The set pieces at starting positions.
             </summary>
         </member>
+        <member name="M:SharpChess.Model.Player.addArrangedPieces(System.Int32[],SharpChess.Model.Piece.PieceIdentifierCodes[])">
+            <summary>
+                Adds the Concealed pieces according to the given order
+            </summary>
+            <param name="order">
+                order for this arrangement
+                Position of Pieces in the order array:
+                0 - First Rook
+                1 - First Knight
+                2 - First Bishop
+                3 - Queen
+                4 - Second Bishop
+                5 - Second Knight
+                6 - Second Rook
+            </param>
+            <param name="ids">
+                list of identifier codes in order for this arrangement
+            </param>
+        </member>
+        <member name="M:SharpChess.Model.Player.addConcealedPiece(System.Int32,System.Int32,SharpChess.Model.Piece.PieceIdentifierCodes)">
+            <summary>
+                Add a concealed piece based on its file, rank, and piece id.
+            </summary>
+            <param name="file">Column of piece on chess board</param>
+            <param name="rank">Row of peice on chess board</param>
+            <param name="id">Identifier</param>
+        </member>
         <member name="P:SharpChess.Model.Player.Brain">
             <summary>
               Gets the player's chess brain. Contains all computer AI chess logic.
