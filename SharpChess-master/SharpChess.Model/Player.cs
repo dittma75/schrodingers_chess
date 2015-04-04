@@ -923,19 +923,23 @@ namespace SharpChess.Model
         /// <returns></returns>
         private int[] generateRandomOrder()
         {
+            //Make a vector list of the potential order to use.
             List<int> order_numbers = new List<int>();
             for (int i = 1; i <= 7; i++)
             {
                 order_numbers.Add(i);
             }
 
+            //This will be the order array that is returned.
             int[] order = new int[7];
             Random random = new Random();
 
+            //Assign each order number in the vector to a slot in order randomly
             for (int i = 0; i < 7; i++)
             {
                 int next_index = random.Next(0, order_numbers.Count);
                 order[i] = order_numbers[next_index];
+                //Remove used numbers to prevent duplicates.
                 order_numbers.RemoveAt(next_index);
             }
             return order;
