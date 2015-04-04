@@ -323,9 +323,9 @@
             // 
             // randomOrder
             // 
-            this.randomOrder.Location = new System.Drawing.Point(14, 160);
+            this.randomOrder.Location = new System.Drawing.Point(7, 160);
             this.randomOrder.Name = "randomOrder";
-            this.randomOrder.Size = new System.Drawing.Size(143, 23);
+            this.randomOrder.Size = new System.Drawing.Size(154, 23);
             this.randomOrder.TabIndex = 22;
             this.randomOrder.Text = "Random Order (Computer)";
             this.randomOrder.UseVisualStyleBackColor = true;

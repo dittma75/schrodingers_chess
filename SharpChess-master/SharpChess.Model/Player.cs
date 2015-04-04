@@ -28,6 +28,8 @@ namespace SharpChess.Model
     #region Using
 
     using SharpChess.Model.AI;
+    using System.Collections.Generic;
+    using System;
 
     #endregion
 
@@ -921,7 +923,22 @@ namespace SharpChess.Model
         /// <returns></returns>
         private int[] generateRandomOrder()
         {
-            return null;
+            List<int> order_numbers = new List<int>();
+            for (int i = 1; i <= 7; i++)
+            {
+                order_numbers.Add(i);
+            }
+
+            int[] order = new int[7];
+            Random random = new Random();
+
+            for (int i = 0; i < 7; i++)
+            {
+                int next_index = random.Next(0, order_numbers.Count);
+                order[i] = order_numbers[next_index];
+                order_numbers.RemoveAt(next_index);
+            }
+            return order;
         }
         #endregion
     }

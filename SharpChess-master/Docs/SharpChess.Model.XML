@@ -881,6 +881,12 @@
             <param name="rank">Row of peice on chess board</param>
             <param name="id">Identifier</param>
         </member>
+        <member name="M:SharpChess.Model.Player.generateRandomOrder">
+            <summary>
+                Generates a random order for concealed pieces for an AI player.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="P:SharpChess.Model.Player.Brain">
             <summary>
               Gets the player's chess brain. Contains all computer AI chess logic.
