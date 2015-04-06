@@ -674,157 +674,57 @@ namespace SharpChess.Model
         /// </returns>
         public bool PlayerCanAttackSquare(Player player)
         {
-            Piece piece;
+            bool can_attack = false;
 
             // Pawn
-            piece = Board.GetPiece(this.Ordinal - player.PawnAttackLeftOffset);
-            if (piece != null && piece.Name == Piece.PieceNames.Pawn && piece.Player.Colour == player.Colour)
-            {
-                return true;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - player.PawnAttackRightOffset);
-            if (piece != null && piece.Name == Piece.PieceNames.Pawn && piece.Player.Colour == player.Colour)
+            can_attack = checkForPawnAttacker(player);
+            if (can_attack)
             {
                 return true;
             }
 
             // Knight
-            piece = Board.GetPiece(this.Ordinal + 33);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return true;
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 18);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return true;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 14);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return true;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 31);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return true;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 33);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return true;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 18);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return true;
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 14);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return true;
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 31);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
+            can_attack = checkForKnightAttacker(player);
+            if (can_attack)
             {
                 return true;
             }
 
             // Bishop & Queen
-            if (Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, 15) != null)
+            //Look for an attacker along horizontal/vertical lines.
+            can_attack = checkForBishopLineAttacker(player);
+            //If found, this piece is under attack by a Bishop/Queen.
+            if (can_attack)
             {
                 return true;
             }
-
-            if (Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, 17) != null)
-            {
-                return true;
-            }
-
-            if (Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, -15) != null)
-            {
-                return true;
-            }
-
-            if (Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, -17) != null)
-            {
-                return true;
-            }
+            
 
             // Rook & Queen
-            if (Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, 1) != null)
+            //Look for an attacker along horizontal/vertical lines.
+            can_attack = checkForRookLineAttacker(player);
+            //If found, this piece is under attack by a Rook.
+            if (can_attack)
             {
                 return true;
             }
 
-            if (Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, -1) != null)
-            {
-                return true;
-            }
+            // Concealed
+            //Look for a Concealed piece that can attack this square.
+            can_attack = checkForConcealedAttacker(player);
 
-            if (Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, 16) != null)
-            {
-                return true;
-            }
-
-            if (Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, -16) != null)
+            //If found, this piece is under attack by a Concealed piece.
+            if (can_attack)
             {
                 return true;
             }
 
             // King!
-            piece = Board.GetPiece(this.Ordinal + 16);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return true;
-            }
+            //Look for a King that can attack this square.
+            can_attack = checkForKingAttacker(player);
 
-            piece = Board.GetPiece(this.Ordinal + 17);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return true;
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 1);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return true;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 15);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return true;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 16);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return true;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 17);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return true;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 1);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return true;
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 15);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
+            //If found, this piece is under attack by a King piece.
+            if (can_attack)
             {
                 return true;
             }
@@ -1344,6 +1244,145 @@ namespace SharpChess.Model
             return null;
         }
 
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        ///     Check for Pawn attacker.
+        /// </summary>
+        /// <param name="player">Enemy Player</param>
+        /// <returns>true if attacker, false otherwise</returns>
+        private bool checkForPawnAttacker(Player player)
+        {
+            Piece piece = Board.GetPiece(this.Ordinal - player.PawnAttackLeftOffset);
+            if (piece != null && piece.Name == Piece.PieceNames.Pawn &&
+                piece.Player.Colour == player.Colour)
+            {
+                return true;
+            }
+
+            piece = Board.GetPiece(this.Ordinal - player.PawnAttackRightOffset);
+            if (piece != null && piece.Name == Piece.PieceNames.Pawn &&
+                piece.Player.Colour == player.Colour)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        ///     Check for an attacker in the spots that a Knight
+        ///     could attack from.
+        /// </summary>
+        /// <param name="player">Enemy Player</param>
+        /// <returns>true if attacker, false otherwise</returns>
+        private bool checkForKnightAttacker(Player player)
+        {
+            int[] move_offsets = new int[] { -14, 14, -18, 18, -31, 31, -33, 33 };
+            foreach (int offset in move_offsets)
+            {
+                //Check each offset spot for a Knight attacker.
+                Piece piece = Board.GetPiece(this.Ordinal + offset);
+                if (piece != null && piece.Name == Piece.PieceNames.Knight &&
+                    piece.Player.Colour == player.Colour)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        ///     Check for attackers that go along horizontal/vertical lines,
+        ///     like Rooks and Queens.
+        /// </summary>
+        /// <param name="player">Enemy player</param>
+        /// <returns>true if there is an attacker, false otherwise</returns>
+        private bool checkForRookLineAttacker(Player player)
+        {
+            int[] move_offsets = new int[] { -1, 1, -16, 16 };
+            foreach (int offset in move_offsets)
+            {
+                //Check the line aligned with this offset for an attacker.
+                if (Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, offset) != null)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        ///     Check for attackers that go along diagonal lines,
+        ///     like Bishops and Queens.
+        /// </summary>
+        /// <param name="player">Enemy Player</param>
+        /// <returns>true if attacker, false otherwise</returns>
+        private bool checkForBishopLineAttacker(Player player)
+        {
+            int[] move_offsets = new int[] { -15, 15, -17, 17 };
+            foreach (int offset in move_offsets)
+            {
+                //Check the line aligned with this offset for an attacker.
+                if (Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, offset) != null)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        ///     Check to see if a Concealed piece can attack this square.
+        /// </summary>
+        /// <param name="player">Enemy Player</param>
+        /// <returns>true if attacker, false otherwise</returns>
+        private bool checkForConcealedAttacker(Player player)
+        {
+            //List of move offsets for a Concealed piece.
+            int[] move_offsets = new int[] { -1, 1, -15, 15, -16, 16, -17, 17 };
+            foreach (int offset in move_offsets)
+            {
+                //Check the first square of a Concealed piece's move.
+                Piece piece = Board.GetPiece(this.Ordinal + offset);
+                if (piece != null && piece.Name == Piece.PieceNames.Concealed &&
+                    piece.Player.Colour == player.Colour)
+                {
+                    return true;
+                }
+
+                //If the first square isn't blocked, check the second square.
+                if (piece == null)
+                {
+                    piece = Board.GetPiece(this.Ordinal + 2 * offset);
+                    if (piece != null && piece.Name == Piece.PieceNames.Concealed &&
+                        piece.Player.Colour == player.Colour)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        ///     Check for King attacker.
+        /// </summary>
+        /// <param name="player">Enemy Player</param>
+        /// <returns>true if attacker, false otherwise</returns>
+        private bool checkForKingAttacker(Player player)
+        {
+            int[] move_offset = new int[] { -1, 1, 15, -15, 16, -16, 17, -17 };
+            foreach (int offset in move_offset)
+            {
+                Piece piece = Board.GetPiece(this.Ordinal + offset);
+                if (piece != null && piece.Name == Piece.PieceNames.King &&
+                    piece.Player.Colour == player.Colour)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         #endregion
     }
 }

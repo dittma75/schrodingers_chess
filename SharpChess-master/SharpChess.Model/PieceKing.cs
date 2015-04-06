@@ -100,59 +100,63 @@ namespace SharpChess.Model
         {
             get
             {
-                // King hasnt moved
-                if (this.Base.HasMoved)
-                {
-                    return false;
-                }
+                /* In Schrodinger's Chess, pieces can be reordered.  Hence,
+                 * castling makes no sense.
+                 */
+                //// King hasnt moved
+                //if (this.Base.HasMoved)
+                //{
+                //    return false;
+                //}
 
-                // Rook is still there i.e. hasnt been taken
-                Piece pieceRook = this.Base.Player.Colour == Player.PlayerColourNames.White ? Board.GetPiece(7, 0) : Board.GetPiece(7, 7);
-                if (pieceRook == null || pieceRook.Name != Piece.PieceNames.Rook || pieceRook.Player.Colour != this.Base.Player.Colour)
-                {
-                    return false;
-                }
+                //// Rook is still there i.e. hasnt been taken
+                //Piece pieceRook = this.Base.Player.Colour == Player.PlayerColourNames.White ? Board.GetPiece(7, 0) : Board.GetPiece(7, 7);
+                //if (pieceRook == null || pieceRook.Name != Piece.PieceNames.Rook || pieceRook.Player.Colour != this.Base.Player.Colour)
+                //{
+                //    return false;
+                //}
 
-                if (!pieceRook.IsInPlay)
-                {
-                    return false;
-                }
+                //if (!pieceRook.IsInPlay)
+                //{
+                //    return false;
+                //}
 
-                // King's Rook has moved
-                if (pieceRook.HasMoved)
-                {
-                    return false;
-                }
+                //// King's Rook has moved
+                //if (pieceRook.HasMoved)
+                //{
+                //    return false;
+                //}
 
-                // All squares between King and Rook are unoccupied
-                if (Board.GetPiece(this.Base.Square.Ordinal + 1) != null)
-                {
-                    return false;
-                }
+                //// All squares between King and Rook are unoccupied
+                //if (Board.GetPiece(this.Base.Square.Ordinal + 1) != null)
+                //{
+                //    return false;
+                //}
 
-                if (Board.GetPiece(this.Base.Square.Ordinal + 2) != null)
-                {
-                    return false;
-                }
+                //if (Board.GetPiece(this.Base.Square.Ordinal + 2) != null)
+                //{
+                //    return false;
+                //}
 
-                // King is not in check
-                if (this.Base.Player.IsInCheck)
-                {
-                    return false;
-                }
+                //// King is not in check
+                //if (this.Base.Player.IsInCheck)
+                //{
+                //    return false;
+                //}
 
-                // The king does not move over a square that is attacked by an enemy piece during the castling move
-                if (Board.GetSquare(this.Base.Square.Ordinal + 1).PlayerCanAttackSquare(this.Base.Player.OpposingPlayer))
-                {
-                    return false;
-                }
+                //// The king does not move over a square that is attacked by an enemy piece during the castling move
+                //if (Board.GetSquare(this.Base.Square.Ordinal + 1).PlayerCanAttackSquare(this.Base.Player.OpposingPlayer))
+                //{
+                //    return false;
+                //}
 
-                if (Board.GetSquare(this.Base.Square.Ordinal + 2).PlayerCanAttackSquare(this.Base.Player.OpposingPlayer))
-                {
-                    return false;
-                }
+                //if (Board.GetSquare(this.Base.Square.Ordinal + 2).PlayerCanAttackSquare(this.Base.Player.OpposingPlayer))
+                //{
+                //    return false;
+                //}
 
-                return true;
+                //return true;
+                return false;
             }
         }
 
@@ -163,64 +167,68 @@ namespace SharpChess.Model
         {
             get
             {
-                // King hasnt moved
-                if (this.Base.HasMoved)
-                {
-                    return false;
-                }
+                /* In Schrodinger's Chess, pieces can be reordered.  Hence,
+                 * castling makes no sense.
+                 */
+                //// King hasnt moved
+                //if (this.Base.HasMoved)
+                //{
+                //    return false;
+                //}
 
-                // Rook is still there i.e. hasnt been taken
-                Piece pieceRook = this.Base.Player.Colour == Player.PlayerColourNames.White ? Board.GetPiece(0, 0) : Board.GetPiece(0, 7);
-                if (pieceRook == null || pieceRook.Name != Piece.PieceNames.Rook || pieceRook.Player.Colour != this.Base.Player.Colour)
-                {
-                    return false;
-                }
+                //// Rook is still there i.e. hasnt been taken
+                //Piece pieceRook = this.Base.Player.Colour == Player.PlayerColourNames.White ? Board.GetPiece(0, 0) : Board.GetPiece(0, 7);
+                //if (pieceRook == null || pieceRook.Name != Piece.PieceNames.Rook || pieceRook.Player.Colour != this.Base.Player.Colour)
+                //{
+                //    return false;
+                //}
 
-                if (!pieceRook.IsInPlay)
-                {
-                    return false;
-                }
+                //if (!pieceRook.IsInPlay)
+                //{
+                //    return false;
+                //}
 
-                // King's Rook hasnt moved
-                if (pieceRook.HasMoved)
-                {
-                    return false;
-                }
+                //// King's Rook hasnt moved
+                //if (pieceRook.HasMoved)
+                //{
+                //    return false;
+                //}
 
-                // All squares between King and Rook are unoccupied
-                if (Board.GetPiece(this.Base.Square.Ordinal - 1) != null)
-                {
-                    return false;
-                }
+                //// All squares between King and Rook are unoccupied
+                //if (Board.GetPiece(this.Base.Square.Ordinal - 1) != null)
+                //{
+                //    return false;
+                //}
 
-                if (Board.GetPiece(this.Base.Square.Ordinal - 2) != null)
-                {
-                    return false;
-                }
+                //if (Board.GetPiece(this.Base.Square.Ordinal - 2) != null)
+                //{
+                //    return false;
+                //}
 
-                if (Board.GetPiece(this.Base.Square.Ordinal - 3) != null)
-                {
-                    return false;
-                }
+                //if (Board.GetPiece(this.Base.Square.Ordinal - 3) != null)
+                //{
+                //    return false;
+                //}
 
-                // King is not in check
-                if (this.Base.Player.IsInCheck)
-                {
-                    return false;
-                }
+                //// King is not in check
+                //if (this.Base.Player.IsInCheck)
+                //{
+                //    return false;
+                //}
 
-                // The king does not move over a square that is attacked by an enemy piece during the castling move
-                if (Board.GetSquare(this.Base.Square.Ordinal - 1).PlayerCanAttackSquare(this.Base.Player.OpposingPlayer))
-                {
-                    return false;
-                }
+                //// The king does not move over a square that is attacked by an enemy piece during the castling move
+                //if (Board.GetSquare(this.Base.Square.Ordinal - 1).PlayerCanAttackSquare(this.Base.Player.OpposingPlayer))
+                //{
+                //    return false;
+                //}
 
-                if (Board.GetSquare(this.Base.Square.Ordinal - 2).PlayerCanAttackSquare(this.Base.Player.OpposingPlayer))
-                {
-                    return false;
-                }
+                //if (Board.GetSquare(this.Base.Square.Ordinal - 2).PlayerCanAttackSquare(this.Base.Player.OpposingPlayer))
+                //{
+                //    return false;
+                //}
 
-                return true;
+                //return true;
+                return false;
             }
         }
 
@@ -301,59 +309,59 @@ namespace SharpChess.Model
                     intPoints -= this.Openness(this.Base.Square);
 
                     // Penalty for half-open adjacent files
-                    bool blnHasFiendlyPawn = false;
+                    bool blnHasFriendlyPawn = false;
                     Square squareThis = Board.GetSquare(this.Base.Square.File, this.Base.Square.Rank);
                     while (squareThis != null)
                     {
                         piece = squareThis.Piece;
                         if (piece != null && piece.Name == Piece.PieceNames.Pawn && piece.Player.Colour == this.Base.Player.Colour)
                         {
-                            blnHasFiendlyPawn = true;
+                            blnHasFriendlyPawn = true;
                             break;
                         }
 
                         squareThis = Board.GetSquare(squareThis.Ordinal + this.Base.Player.PawnForwardOffset);
                     }
 
-                    if (!blnHasFiendlyPawn)
+                    if (!blnHasFriendlyPawn)
                     {
                         intPoints -= 200;
                     }
 
-                    blnHasFiendlyPawn = false;
+                    blnHasFriendlyPawn = false;
                     squareThis = Board.GetSquare(this.Base.Square.File + 1, this.Base.Square.Rank);
                     while (squareThis != null)
                     {
                         piece = squareThis.Piece;
                         if (piece != null && piece.Name == Piece.PieceNames.Pawn && piece.Player.Colour == this.Base.Player.Colour)
                         {
-                            blnHasFiendlyPawn = true;
+                            blnHasFriendlyPawn = true;
                             break;
                         }
 
                         squareThis = Board.GetSquare(squareThis.Ordinal + this.Base.Player.PawnForwardOffset);
                     }
 
-                    if (!blnHasFiendlyPawn)
+                    if (!blnHasFriendlyPawn)
                     {
                         intPoints -= 200;
                     }
 
-                    blnHasFiendlyPawn = false;
+                    blnHasFriendlyPawn = false;
                     squareThis = Board.GetSquare(this.Base.Square.File - 1, this.Base.Square.Rank);
                     while (squareThis != null)
                     {
                         piece = squareThis.Piece;
                         if (piece != null && piece.Name == Piece.PieceNames.Pawn && piece.Player.Colour == this.Base.Player.Colour)
                         {
-                            blnHasFiendlyPawn = true;
+                            blnHasFriendlyPawn = true;
                             break;
                         }
 
                         squareThis = Board.GetSquare(squareThis.Ordinal + this.Base.Player.PawnForwardOffset);
                     }
 
-                    if (!blnHasFiendlyPawn)
+                    if (!blnHasFriendlyPawn)
                     {
                         intPoints -= 200;
                     }

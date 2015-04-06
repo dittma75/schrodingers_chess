@@ -3664,6 +3664,51 @@
             List of pieces.
             </returns>
         </member>
+        <member name="M:SharpChess.Model.Square.checkForPawnAttacker(SharpChess.Model.Player)">
+            <summary>
+                Check for Pawn attacker.
+            </summary>
+            <param name="player">Enemy Player</param>
+            <returns>true if attacker, false otherwise</returns>
+        </member>
+        <member name="M:SharpChess.Model.Square.checkForKnightAttacker(SharpChess.Model.Player)">
+            <summary>
+                Check for an attacker in the spots that a Knight
+                could attack from.
+            </summary>
+            <param name="player">Enemy Player</param>
+            <returns>true if attacker, false otherwise</returns>
+        </member>
+        <member name="M:SharpChess.Model.Square.checkForRookLineAttacker(SharpChess.Model.Player)">
+            <summary>
+                Check for attackers that go along horizontal/vertical lines,
+                like Rooks and Queens.
+            </summary>
+            <param name="player">Enemy player</param>
+            <returns>true if there is an attacker, false otherwise</returns>
+        </member>
+        <member name="M:SharpChess.Model.Square.checkForBishopLineAttacker(SharpChess.Model.Player)">
+            <summary>
+                Check for attackers that go along diagonal lines,
+                like Bishops and Queens.
+            </summary>
+            <param name="player">Enemy Player</param>
+            <returns>true if attacker, false otherwise</returns>
+        </member>
+        <member name="M:SharpChess.Model.Square.checkForConcealedAttacker(SharpChess.Model.Player)">
+            <summary>
+                Check to see if a Concealed piece can attack this square.
+            </summary>
+            <param name="player">Enemy Player</param>
+            <returns>true if attacker, false otherwise</returns>
+        </member>
+        <member name="M:SharpChess.Model.Square.checkForKingAttacker(SharpChess.Model.Player)">
+            <summary>
+                Check for King attacker.
+            </summary>
+            <param name="player">Enemy Player</param>
+            <returns>true if attacker, false otherwise</returns>
+        </member>
         <member name="P:SharpChess.Model.Square.Colour">
             <summary>
               Gets the colour of this square: black or white!
