@@ -319,6 +319,7 @@ namespace SharpChess.Model
         /// </param>
         public void AttackersMoveList(Moves moves, Player player)
         {
+            /*************************************************REFACTOR*******************************************/
             Piece piece;
 
             // Pawn
@@ -504,6 +505,7 @@ namespace SharpChess.Model
         /// </returns>
         public Pieces PlayersPiecesAttackingThisSquare(Player player)
         {
+            /*************************************************REFACTOR*******************************************/
             Piece piece;
             Pieces pieces = new Pieces();
 
@@ -784,6 +786,7 @@ namespace SharpChess.Model
         /// </returns>
         public int DefencePointsForPlayer(Player player)
         {
+            /*************************************************REFACTOR*******************************************/
             Piece piece;
             int value = 0;
             int bestValue = 0;
@@ -1016,6 +1019,7 @@ namespace SharpChess.Model
         /// </returns>
         public Piece CheapestPieceDefendingThisSquare(Player player)
         {
+            /*************************************************REFACTOR*******************************************/
             Piece piece;
             Piece pieceBest = null;
 
