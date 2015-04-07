@@ -3709,6 +3709,151 @@
             <param name="player">Enemy Player</param>
             <returns>true if attacker, false otherwise</returns>
         </member>
+        <member name="M:SharpChess.Model.Square.addPawnAttackMoves(SharpChess.Model.Moves,SharpChess.Model.Player)">
+            <summary>
+                Add the attacking pawn's moves to the list.
+            </summary>
+            <param name="moves">The moves list to add to.</param>
+            <param name="player">The player who owns the pawn.</param>
+        </member>
+        <member name="M:SharpChess.Model.Square.addKnightAttackMoves(SharpChess.Model.Moves,SharpChess.Model.Player)">
+            <summary>
+                Add the attacking knight's moves to the moves list.
+            </summary>
+            <param name="moves">The moves list to add to.</param>
+            <param name="player">Player who owns the knight.</param>
+        </member>
+        <member name="M:SharpChess.Model.Square.addBishopAttackMoves(SharpChess.Model.Moves,SharpChess.Model.Player)">
+            <summary>
+                Add the attacking bishop's moves to the move list.
+            </summary>
+            <param name="moves">The moves list to add to</param>
+            <param name="player">The player who owns the bishop</param>
+        </member>
+        <member name="M:SharpChess.Model.Square.addRookAttackMoves(SharpChess.Model.Moves,SharpChess.Model.Player)">
+            <summary>
+                Add the attacking rook's moves to the move list.
+            </summary>
+            <param name="moves">The moves list to add to.</param>
+            <param name="player">The player who owns the rook.</param>
+        </member>
+        <member name="M:SharpChess.Model.Square.addKingAttackMoves(SharpChess.Model.Moves,SharpChess.Model.Player)">
+            <summary>
+                Add the attacking king's moves to the move list.
+            </summary>
+            <param name="moves">The moves list to add to.</param>
+            <param name="player">The player who owns the king.</param>
+        </member>
+        <member name="M:SharpChess.Model.Square.addConcealedAttackMoves(SharpChess.Model.Moves,SharpChess.Model.Player)">
+            <summary>
+                Add the attacking concealed piece's moves to the move list.
+            </summary>
+            <param name="moves">The moves list to add to.</param>
+            <param name="player">The player who owns the concealed piece.</param>
+        </member>
+        <member name="M:SharpChess.Model.Square.addAttackingPawns(SharpChess.Model.Pieces,SharpChess.Model.Player)">
+            <summary>
+                Add any attacking pawns to the attacking pieces list.
+            </summary>
+            <param name="pieces">Attacking pieces list.</param>
+            <param name="player">Player who owns the pawn.</param>
+        </member>
+        <member name="M:SharpChess.Model.Square.addAttackingKnights(SharpChess.Model.Pieces,SharpChess.Model.Player)">
+            <summary>
+                Add any attacking knights to the attacking pieces list.
+            </summary>
+            <param name="pieces">The attacking pieces list.</param>
+            <param name="player">The player who owns the knight.</param>
+        </member>
+        <member name="M:SharpChess.Model.Square.addAttackingBishops(SharpChess.Model.Pieces,SharpChess.Model.Player)">
+            <summary>
+                Add any attacking bishops to the attacking pieces list.
+            </summary>
+            <param name="pieces">The attacking pieces list.</param>
+            <param name="player">The player who owns the bishop.</param>
+        </member>
+        <member name="M:SharpChess.Model.Square.addAttackingRooks(SharpChess.Model.Pieces,SharpChess.Model.Player)">
+            <summary>
+                Add any attacking rooks to the attacking pieces list.
+            </summary>
+            <param name="pieces">The attacking pieces list.</param>
+            <param name="player">The player who owns the rook.</param>
+        </member>
+        <member name="M:SharpChess.Model.Square.addAttackingKing(SharpChess.Model.Pieces,SharpChess.Model.Player)">
+            <summary>
+                Add the attacking king to the attacking pieces list.
+            </summary>
+            <param name="pieces">The attacking pieces list.</param>
+            <param name="player">The player who owns the king.</param>
+        </member>
+        <member name="M:SharpChess.Model.Square.addAttackingConcealeds(SharpChess.Model.Pieces,SharpChess.Model.Player)">
+            <summary>
+                Add any attacking concealed pieces to the attacking
+                pieces list.
+            </summary>
+            <param name="pieces">The attacking pieces list.</param>
+            <param name="player">The player who owns the concealed piece.</param>
+        </member>
+        <member name="M:SharpChess.Model.Square.findPawnDefender(SharpChess.Model.Player)">
+            <summary>
+                Look for pawns that can defend this square.
+            </summary>
+            <param name="player">The player that owns the pawn.</param>
+            <returns>
+                A pawn if one defends this square,
+                null otherwise.
+            </returns>
+        </member>
+        <member name="M:SharpChess.Model.Square.findKnightDefender(SharpChess.Model.Player)">
+            <summary>
+                Look for knights that can defend this square.
+            </summary>
+            <param name="player">The player that owns the knight.</param>
+            <returns>
+                A knight if one defends this square,
+                null otherwise.
+            </returns>
+        </member>
+        <member name="M:SharpChess.Model.Square.findBishopDefender(SharpChess.Model.Player)">
+            <summary>
+                Look for bishops that can defend this square.
+            </summary>
+            <param name="player">The player that owns the bishop.</param>
+            <returns>
+                A bishop if one defends this square,
+                null otherwise.
+            </returns>
+        </member>
+        <member name="M:SharpChess.Model.Square.findConcealedDefender(SharpChess.Model.Player)">
+            <summary>
+                Look for concealed pieces that can defend this square.
+            </summary>
+            <param name="player">The player that owns the concealed piece.</param>
+            <returns>
+                A concealed piece if one defends this square,
+                null otherwise.
+            </returns>
+        </member>
+        <member name="M:SharpChess.Model.Square.findRookDefender(SharpChess.Model.Player)">
+            <summary>
+                Look for rooks that can defend this square.
+            </summary>
+            <param name="player">The player that owns the rook.</param>
+            <returns>
+                A rook if one defends this square,
+                null otherwise.
+            </returns>
+        </member>
+        <member name="M:SharpChess.Model.Square.findKingDefender(SharpChess.Model.Player)">
+            <summary>
+                Look for a king defending this square.
+            </summary>
+            <param name="player">The player that owns the king.</param>
+            <returns>
+                A king if one defends this square,
+                null otherwise.
+            </returns>
+        </member>
         <member name="P:SharpChess.Model.Square.Colour">
             <summary>
               Gets the colour of this square: black or white!

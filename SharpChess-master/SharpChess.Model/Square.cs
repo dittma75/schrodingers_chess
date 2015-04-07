@@ -148,6 +148,13 @@ namespace SharpChess.Model
               0,   0,   0,   0,   0,  17,   0,  0,    15,   0,   0,   0,   0,   0,   0,  16, 
               0,   0,   0,   0,   0,   0,  17, 15,     0,   0,   0,   0,   0,   0,   0,   0
         };
+
+        //Constant lists of offsets for each piece's moves.
+        private static int[] KING_OFFSETS = {-1,1,-15,15,-16,16,-17,17};
+        private static int[] CONCEALED_OFFSETS = {-1,1,-15,15,-16,16,-17,17};
+        private static int[] KNIGHT_OFFSETS = {33,18,-31,-14,-33,-18,31,14};
+        private static int[] ROOK_OFFSETS = {-1,1,-16,16};
+        private static int[] BISHOP_OFFSETS = {-15,15,-17,17};
         #endregion
 
         #region Constructors and Destructors
@@ -319,179 +326,23 @@ namespace SharpChess.Model
         /// </param>
         public void AttackersMoveList(Moves moves, Player player)
         {
-            /*************************************************REFACTOR*******************************************/
-            Piece piece;
-
             // Pawn
-            piece = Board.GetPiece(this.Ordinal - player.PawnAttackLeftOffset);
-            if (piece != null && piece.Name == Piece.PieceNames.Pawn && piece.Player.Colour == player.Colour)
-            {
-                moves.Add(
-                    0, 
-                    0, 
-                    Move.MoveNames.Standard, 
-                    Board.GetPiece(this.Ordinal - player.PawnAttackLeftOffset), 
-                    Board.GetSquare(this.Ordinal - player.PawnAttackLeftOffset), 
-                    this, 
-                    this.Piece, 
-                    0, 
-                    0);
-            }
-
-            piece = Board.GetPiece(this.Ordinal - player.PawnAttackRightOffset);
-            if (piece != null && piece.Name == Piece.PieceNames.Pawn && piece.Player.Colour == player.Colour)
-            {
-                moves.Add(
-                    0, 
-                    0, 
-                    Move.MoveNames.Standard, 
-                    Board.GetPiece(this.Ordinal - player.PawnAttackRightOffset), 
-                    Board.GetSquare(this.Ordinal - player.PawnAttackRightOffset), 
-                    this, 
-                    this.Piece, 
-                    0, 
-                    0);
-            }
+            addPawnAttackMoves(moves, player);
 
             // Knight
-            piece = Board.GetPiece(this.Ordinal + 33);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 18);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 14);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 31);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 33);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 18);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 14);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 31);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
+            addKnightAttackMoves(moves, player);
 
             // Bishop & Queen
-            if ((piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, 15)) != null)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
-
-            if ((piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, 17)) != null)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
-
-            if ((piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, -15)) != null)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
-
-            if ((piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, -17)) != null)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
+            addBishopAttackMoves(moves, player);
 
             // Rook & Queen
-            if ((piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, 1)) != null)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
-
-            if ((piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, -1)) != null)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
-
-            if ((piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, 16)) != null)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
-
-            if ((piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, -16)) != null)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
+            addRookAttackMoves(moves, player);
 
             // King!
-            piece = Board.GetPiece(this.Ordinal + 16);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
+            addKingAttackMoves(moves, player);
 
-            piece = Board.GetPiece(this.Ordinal + 17);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 1);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 15);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 16);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 17);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 1);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 15);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                moves.Add(0, 0, Move.MoveNames.Standard, piece, piece.Square, this, this.Piece, 0, 0);
-            }
+            // Concealed
+            addConcealedAttackMoves(moves, player);
         }
 
         /// <summary>
@@ -505,162 +356,25 @@ namespace SharpChess.Model
         /// </returns>
         public Pieces PlayersPiecesAttackingThisSquare(Player player)
         {
-            /*************************************************REFACTOR*******************************************/
-            Piece piece;
             Pieces pieces = new Pieces();
 
             // Pawn
-            piece = Board.GetPiece(this.Ordinal - player.PawnAttackLeftOffset);
-            if (piece != null && piece.Name == Piece.PieceNames.Pawn && piece.Player.Colour == player.Colour)
-            {
-                pieces.Add(piece);
-            }
-
-            piece = Board.GetPiece(this.Ordinal - player.PawnAttackRightOffset);
-            if (piece != null && piece.Name == Piece.PieceNames.Pawn && piece.Player.Colour == player.Colour)
-            {
-                pieces.Add(piece);
-            }
+            addAttackingPawns(pieces, player);
 
             // Knight
-            piece = Board.GetPiece(this.Ordinal + 33);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                pieces.Add(piece);
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 18);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                pieces.Add(piece);
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 14);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                pieces.Add(piece);
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 31);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                pieces.Add(piece);
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 33);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                pieces.Add(piece);
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 18);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                pieces.Add(piece);
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 14);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                pieces.Add(piece);
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 31);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                pieces.Add(piece);
-            }
+            addAttackingKnights(pieces, player);
 
             // Bishop & Queen
-            if ((piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, 15)) != null)
-            {
-                pieces.Add(piece);
-            }
-
-            if ((piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, 17)) != null)
-            {
-                pieces.Add(piece);
-            }
-
-            if ((piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, -15)) != null)
-            {
-                pieces.Add(piece);
-            }
-
-            if ((piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, -17)) != null)
-            {
-                pieces.Add(piece);
-            }
+            addAttackingBishops(pieces, player);
 
             // Rook & Queen
-            if ((piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, 1)) != null)
-            {
-                pieces.Add(piece);
-            }
-
-            if ((piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, -1)) != null)
-            {
-                pieces.Add(piece);
-            }
-
-            if ((piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, 16)) != null)
-            {
-                pieces.Add(piece);
-            }
-
-            if ((piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, -16)) != null)
-            {
-                pieces.Add(piece);
-            }
+            addAttackingRooks(pieces, player);
 
             // King!
-            piece = Board.GetPiece(this.Ordinal + 16);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                pieces.Add(piece);
-            }
+            addAttackingKing(pieces, player);
 
-            piece = Board.GetPiece(this.Ordinal + 17);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                pieces.Add(piece);
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 1);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                pieces.Add(piece);
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 15);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                pieces.Add(piece);
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 16);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                pieces.Add(piece);
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 17);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                pieces.Add(piece);
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 1);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                pieces.Add(piece);
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 15);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                pieces.Add(piece);
-            }
+            // Concealed
+            addAttackingConcealeds(pieces, player);
 
             return pieces;
         }
@@ -792,163 +506,54 @@ namespace SharpChess.Model
             int bestValue = 0;
 
             // Pawn
-            piece = Board.GetPiece(this.Ordinal - player.PawnAttackLeftOffset);
-            if (piece != null && piece.Name == Piece.PieceNames.Pawn && piece.Player.Colour == player.Colour)
-            {
-                return piece.Value;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - player.PawnAttackRightOffset);
-            if (piece != null && piece.Name == Piece.PieceNames.Pawn && piece.Player.Colour == player.Colour)
+            piece = findPawnDefender(player);
+            if (piece != null)
             {
                 return piece.Value;
             }
 
             // Knight
-            piece = Board.GetPiece(this.Ordinal + 33);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return piece.Value;
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 18);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return piece.Value;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 14);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return piece.Value;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 31);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return piece.Value;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 33);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return piece.Value;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 18);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return piece.Value;
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 14);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return piece.Value;
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 31);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
+            piece = findKnightDefender(player);
+            if (piece != null)
             {
                 return piece.Value;
             }
 
             // Bishop & Queen
-            piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, 15);
+            piece = findBishopDefender(player);
             value = piece != null ? piece.Value : 0;
-            if (value > 0 && value < 9000)
-            {
-                return value;
-            }
-
             if (value > 0)
             {
-                bestValue = value;
+                if (value < 9000)
+                {
+                    return value;
+                }
+                else
+                {
+                    bestValue = value;
+                }
             }
 
-            piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, 17);
-            value = piece != null ? piece.Value : 0;
-            if (value > 0 && value < 9000)
+            // Concealed
+            piece = findConcealedDefender(player);
+            if (piece != null)
             {
-                return value;
-            }
-
-            if (value > 0)
-            {
-                bestValue = value;
-            }
-
-            piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, -15);
-            value = piece != null ? piece.Value : 0;
-            if (value > 0 && value < 9000)
-            {
-                return value;
-            }
-
-            if (value > 0)
-            {
-                bestValue = value;
-            }
-
-            piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, -17);
-            value = piece != null ? piece.Value : 0;
-            if (value > 0 && value < 9000)
-            {
-                return value;
-            }
-
-            if (value > 0)
-            {
-                bestValue = value;
+                return piece.Value;
             }
 
             // Rook & Queen
-            piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, 1);
+            piece = findRookDefender(player);
             value = piece != null ? piece.Value : 0;
             if (value > 0 && value < 9000)
             {
-                return value;
-            }
-
-            if (value > 0)
-            {
-                bestValue = value;
-            }
-
-            piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, -1);
-            value = piece != null ? piece.Value : 0;
-            if (value > 0 && value < 9000)
-            {
-                return value;
-            }
-
-            if (value > 0)
-            {
-                bestValue = value;
-            }
-
-            piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, 16);
-            value = piece != null ? piece.Value : 0;
-            if (value > 0 && value < 9000)
-            {
-                return value;
-            }
-
-            if (value > 0)
-            {
-                bestValue = value;
-            }
-
-            piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, -16);
-            value = piece != null ? piece.Value : 0;
-            if (value > 0 && value < 9000)
-            {
-                return value;
-            }
-
-            if (value > 0)
-            {
-                bestValue = value;
+                if (value < 9000)
+                {
+                    return value;
+                }
+                else
+                {
+                    bestValue = value;
+                }
             }
 
             if (bestValue > 0)
@@ -957,54 +562,13 @@ namespace SharpChess.Model
             }
 
             // King!
-            piece = Board.GetPiece(this.Ordinal + 16);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
+            piece = findKingDefender(player);
+            if (piece != null)
             {
                 return piece.Value;
             }
 
-            piece = Board.GetPiece(this.Ordinal + 17);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return piece.Value;
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 1);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return piece.Value;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 15);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return piece.Value;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 16);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return piece.Value;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 17);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return piece.Value;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 1);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return piece.Value;
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 15);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return piece.Value;
-            }
-
+            //No pieces are defending this square, so give it a high value.
             return 15000;
         }
 
@@ -1024,227 +588,76 @@ namespace SharpChess.Model
             Piece pieceBest = null;
 
             // Pawn
-            piece = Board.GetPiece(this.Ordinal - player.PawnAttackLeftOffset);
-            if (piece != null && piece.Name == Piece.PieceNames.Pawn && piece.Player.Colour == player.Colour)
-            {
-                return piece;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - player.PawnAttackRightOffset);
-            if (piece != null && piece.Name == Piece.PieceNames.Pawn && piece.Player.Colour == player.Colour)
+            piece = findPawnDefender(player);
+            if (piece != null)
             {
                 return piece;
             }
 
             // Knight
-            piece = Board.GetPiece(this.Ordinal + 33);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return piece;
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 18);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return piece;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 14);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return piece;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 31);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return piece;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 33);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return piece;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 18);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return piece;
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 14);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
-            {
-                return piece;
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 31);
-            if (piece != null && piece.Name == Piece.PieceNames.Knight && piece.Player.Colour == player.Colour)
+            piece = findKnightDefender(player);
+            if (piece != null)
             {
                 return piece;
             }
 
             // Bishop & Queen
-            piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, 15);
+            piece = findBishopDefender(player);
             if (piece != null)
             {
                 switch (piece.Name)
                 {
                     case Piece.PieceNames.Bishop:
                         return piece;
+                    /* The piece was a queen acting like a bishop.  We don't
+                     * want to return this unless we have no other piece
+                     * defending this square, because queens aren't cheap.
+                     */
                     case Piece.PieceNames.Queen:
                         pieceBest = piece;
                         break;
                 }
             }
 
-            piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, 17);
+            // Concealed
+            piece = findConcealedDefender(player);
             if (piece != null)
             {
-                switch (piece.Name)
-                {
-                    case Piece.PieceNames.Bishop:
-                        return piece;
-                    case Piece.PieceNames.Queen:
-                        pieceBest = piece;
-                        break;
-                }
-            }
-
-            piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, -15);
-            if (piece != null)
-            {
-                switch (piece.Name)
-                {
-                    case Piece.PieceNames.Bishop:
-                        return piece;
-                    case Piece.PieceNames.Queen:
-                        pieceBest = piece;
-                        break;
-                }
-            }
-
-            piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, -17);
-            if (piece != null)
-            {
-                switch (piece.Name)
-                {
-                    case Piece.PieceNames.Bishop:
-                        return piece;
-                    case Piece.PieceNames.Queen:
-                        pieceBest = piece;
-                        break;
-                }
+                return piece;
             }
 
             // Rook & Queen
-            piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, 1);
+            piece = findRookDefender(player);
             if (piece != null)
             {
                 switch (piece.Name)
                 {
                     case Piece.PieceNames.Rook:
                         return piece;
+                    /* The piece was a queen acting like a rook.  We don't
+                     * want to return this unless we have no other piece
+                     * defending this square, because queens aren't cheap.
+                     */
                     case Piece.PieceNames.Queen:
                         pieceBest = piece;
                         break;
                 }
             }
 
-            piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, -1);
-            if (piece != null)
-            {
-                switch (piece.Name)
-                {
-                    case Piece.PieceNames.Rook:
-                        return piece;
-                    case Piece.PieceNames.Queen:
-                        pieceBest = piece;
-                        break;
-                }
-            }
-
-            piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, 16);
-            if (piece != null)
-            {
-                switch (piece.Name)
-                {
-                    case Piece.PieceNames.Rook:
-                        return piece;
-                    case Piece.PieceNames.Queen:
-                        pieceBest = piece;
-                        break;
-                }
-            }
-
-            piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, -16);
-            if (piece != null)
-            {
-                switch (piece.Name)
-                {
-                    case Piece.PieceNames.Rook:
-                        return piece;
-                    case Piece.PieceNames.Queen:
-                        pieceBest = piece;
-                        break;
-                }
-            }
-
+            // This means a queen was found, but not a Bishop or Rook
             if (pieceBest != null)
             {
-                return pieceBest; // This means a queen was found, but not a Bishop or Rook
+                return pieceBest;
             }
 
             // King!
-            piece = Board.GetPiece(this.Ordinal + 16);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
+            piece = findKingDefender(player);
+            if (piece != null)
             {
                 return piece;
             }
 
-            piece = Board.GetPiece(this.Ordinal + 17);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return piece;
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 1);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return piece;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 15);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return piece;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 16);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return piece;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 17);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return piece;
-            }
-
-            piece = Board.GetPiece(this.Ordinal - 1);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return piece;
-            }
-
-            piece = Board.GetPiece(this.Ordinal + 15);
-            if (piece != null && piece.Name == Piece.PieceNames.King && piece.Player.Colour == player.Colour)
-            {
-                return piece;
-            }
-
+            //There is no piece defending this square.
             return null;
         }
 
@@ -1282,8 +695,7 @@ namespace SharpChess.Model
         /// <returns>true if attacker, false otherwise</returns>
         private bool checkForKnightAttacker(Player player)
         {
-            int[] move_offsets = new int[] { -14, 14, -18, 18, -31, 31, -33, 33 };
-            foreach (int offset in move_offsets)
+            foreach (int offset in KNIGHT_OFFSETS)
             {
                 //Check each offset spot for a Knight attacker.
                 Piece piece = Board.GetPiece(this.Ordinal + offset);
@@ -1303,8 +715,7 @@ namespace SharpChess.Model
         /// <returns>true if there is an attacker, false otherwise</returns>
         private bool checkForRookLineAttacker(Player player)
         {
-            int[] move_offsets = new int[] { -1, 1, -16, 16 };
-            foreach (int offset in move_offsets)
+            foreach (int offset in ROOK_OFFSETS)
             {
                 //Check the line aligned with this offset for an attacker.
                 if (Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, offset) != null)
@@ -1323,8 +734,7 @@ namespace SharpChess.Model
         /// <returns>true if attacker, false otherwise</returns>
         private bool checkForBishopLineAttacker(Player player)
         {
-            int[] move_offsets = new int[] { -15, 15, -17, 17 };
-            foreach (int offset in move_offsets)
+            foreach (int offset in BISHOP_OFFSETS)
             {
                 //Check the line aligned with this offset for an attacker.
                 if (Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, offset) != null)
@@ -1343,8 +753,7 @@ namespace SharpChess.Model
         private bool checkForConcealedAttacker(Player player)
         {
             //List of move offsets for a Concealed piece.
-            int[] move_offsets = new int[] { -1, 1, -15, 15, -16, 16, -17, 17 };
-            foreach (int offset in move_offsets)
+            foreach (int offset in CONCEALED_OFFSETS)
             {
                 //Check the first square of a Concealed piece's move.
                 Piece piece = Board.GetPiece(this.Ordinal + offset);
@@ -1358,7 +767,8 @@ namespace SharpChess.Model
                 if (piece == null)
                 {
                     piece = Board.GetPiece(this.Ordinal + 2 * offset);
-                    if (piece != null && piece.Name == Piece.PieceNames.Concealed &&
+                    if (piece != null && 
+                        piece.Name == Piece.PieceNames.Concealed &&
                         piece.Player.Colour == player.Colour)
                     {
                         return true;
@@ -1375,8 +785,7 @@ namespace SharpChess.Model
         /// <returns>true if attacker, false otherwise</returns>
         private bool checkForKingAttacker(Player player)
         {
-            int[] move_offset = new int[] { -1, 1, 15, -15, 16, -16, 17, -17 };
-            foreach (int offset in move_offset)
+            foreach (int offset in KING_OFFSETS)
             {
                 Piece piece = Board.GetPiece(this.Ordinal + offset);
                 if (piece != null && piece.Name == Piece.PieceNames.King &&
@@ -1386,6 +795,502 @@ namespace SharpChess.Model
                 }
             }
             return false;
+        }
+
+        /// <summary>
+        ///     Add the attacking pawn's moves to the list.
+        /// </summary>
+        /// <param name="moves">The moves list to add to.</param>
+        /// <param name="player">The player who owns the pawn.</param>
+        private void addPawnAttackMoves(Moves moves, Player player)
+        {
+            Piece piece = Board.GetPiece(this.Ordinal - player.PawnAttackLeftOffset);
+            if (piece != null &&
+                piece.Name == Piece.PieceNames.Pawn &&
+                piece.Player.Colour == player.Colour)
+            {
+                moves.Add(0,
+                          0,
+                          Move.MoveNames.Standard,
+                          Board.GetPiece(this.Ordinal - player.PawnAttackLeftOffset),
+                          Board.GetSquare(this.Ordinal - player.PawnAttackLeftOffset),
+                          this,
+                          this.Piece,
+                          0,
+                          0);
+            }
+
+            piece = Board.GetPiece(this.Ordinal - player.PawnAttackRightOffset);
+            if (piece != null &&
+                piece.Name == Piece.PieceNames.Pawn &&
+                piece.Player.Colour == player.Colour)
+            {
+                moves.Add(0,
+                          0,
+                          Move.MoveNames.Standard,
+                          Board.GetPiece(this.Ordinal - player.PawnAttackRightOffset),
+                          Board.GetSquare(this.Ordinal - player.PawnAttackRightOffset),
+                          this,
+                          this.Piece,
+                          0,
+                          0);
+            }
+        }
+        /// <summary>
+        ///     Add the attacking knight's moves to the moves list.
+        /// </summary>
+        /// <param name="moves">The moves list to add to.</param>
+        /// <param name="player">Player who owns the knight.</param>
+        private void addKnightAttackMoves(Moves moves, Player player)
+        {
+            foreach (int offset in KNIGHT_OFFSETS)
+            {
+                //If an enemy knight exists in one of these positions, add the move.
+                Piece piece = Board.GetPiece(this.Ordinal + offset);
+                if (piece != null && 
+                    piece.Name == Piece.PieceNames.Knight && 
+                    piece.Player.Colour == player.Colour)
+                {
+                    moves.Add(0,
+                              0, 
+                              Move.MoveNames.Standard, 
+                              piece, 
+                              piece.Square, 
+                              this, 
+                              this.Piece, 
+                              0, 
+                              0);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Add the attacking bishop's moves to the move list.
+        /// </summary>
+        /// <param name="moves">The moves list to add to</param>
+        /// <param name="player">The player who owns the bishop</param>
+        private void addBishopAttackMoves(Moves moves, Player player)
+        {
+            foreach (int offset in BISHOP_OFFSETS)
+            {
+                //If an enemy bishop exists on this diagonal, add the move.
+                Piece piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, offset);
+                if (piece != null)
+                {
+                    moves.Add(0,
+                              0,
+                              Move.MoveNames.Standard, 
+                              piece, 
+                              piece.Square, 
+                              this, 
+                              this.Piece, 
+                              0, 
+                              0);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Add the attacking rook's moves to the move list.
+        /// </summary>
+        /// <param name="moves">The moves list to add to.</param>
+        /// <param name="player">The player who owns the rook.</param>
+        private void addRookAttackMoves(Moves moves, Player player)
+        {
+            foreach (int offset in ROOK_OFFSETS)
+            {
+                /* If the enemy rook exists in a horizontal or vertical line
+                 * from the piece, add the move.
+                 */
+                Piece piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, offset);
+                if (piece != null)
+                {
+                    moves.Add(0,
+                              0,
+                              Move.MoveNames.Standard,
+                              piece,
+                              piece.Square,
+                              this,
+                              this.Piece,
+                              0,
+                              0);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Add the attacking king's moves to the move list.
+        /// </summary>
+        /// <param name="moves">The moves list to add to.</param>
+        /// <param name="player">The player who owns the king.</param>
+        private void addKingAttackMoves(Moves moves, Player player)
+        {
+            foreach (int offset in KING_OFFSETS)
+            {
+                //If the king exists at a move square, add the move to the list.
+                Piece piece = Board.GetPiece(this.Ordinal + offset);
+                if (piece != null &&
+                    piece.Name == Piece.PieceNames.King &&
+                    piece.Player.Colour == player.Colour)
+                {
+                    moves.Add(0,
+                              0,
+                              Move.MoveNames.Standard,
+                              piece,
+                              piece.Square,
+                              this,
+                              this.Piece,
+                              0,
+                              0);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Add the attacking concealed piece's moves to the move list.
+        /// </summary>
+        /// <param name="moves">The moves list to add to.</param>
+        /// <param name="player">The player who owns the concealed piece.</param>
+        private void addConcealedAttackMoves(Moves moves, Player player)
+        {
+            foreach (int offset in CONCEALED_OFFSETS)
+            {
+                /* If the concealed piece exists at a move square,
+                 * add the move to the list.
+                 */
+                Piece piece = Board.GetPiece(this.Ordinal + offset);
+                if (piece != null &&
+                    piece.Name == Piece.PieceNames.Concealed &&
+                    piece.Player.Colour == player.Colour)
+                {
+                    moves.Add(0,
+                              0,
+                              Move.MoveNames.Standard,
+                              piece,
+                              piece.Square,
+                              this,
+                              this.Piece,
+                              0,
+                              0);
+                }
+                /* If the first square isn't blocked, look for a concealed
+                 * piece at the second square
+                 */
+                if (piece == null)
+                {
+                    piece = Board.GetPiece(this.Ordinal + 2 * offset);
+                    if (piece != null &&
+                        piece.Name == Piece.PieceNames.Concealed &&
+                        piece.Player.Colour == player.Colour)
+                    {
+                        moves.Add(0,
+                                  0,
+                                  Move.MoveNames.Standard,
+                                  piece,
+                                  piece.Square,
+                                  this,
+                                  this.Piece,
+                                  0,
+                                  0);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Add any attacking pawns to the attacking pieces list.
+        /// </summary>
+        /// <param name="pieces">Attacking pieces list.</param>
+        /// <param name="player">Player who owns the pawn.</param>
+        private void addAttackingPawns(Pieces pieces, Player player)
+        {
+            //Add each pawn that can attack this square to the list.
+            Piece piece = Board.GetPiece(this.Ordinal - player.PawnAttackLeftOffset);
+            if (piece != null &&
+                piece.Name == Piece.PieceNames.Pawn
+                && piece.Player.Colour == player.Colour)
+            {
+                pieces.Add(piece);
+            }
+
+            piece = Board.GetPiece(this.Ordinal - player.PawnAttackRightOffset);
+            if (piece != null &&
+                piece.Name == Piece.PieceNames.Pawn &&
+                piece.Player.Colour == player.Colour)
+            {
+                pieces.Add(piece);
+            }
+        }
+
+        /// <summary>
+        ///     Add any attacking knights to the attacking pieces list.
+        /// </summary>
+        /// <param name="pieces">The attacking pieces list.</param>
+        /// <param name="player">The player who owns the knight.</param>
+        private void addAttackingKnights(Pieces pieces, Player player)
+        {
+            //Add each knight that can attack this square to the list.
+            foreach (int offset in KNIGHT_OFFSETS)
+            {
+                Piece piece = Board.GetPiece(this.Ordinal + offset);
+                if (piece != null &&
+                    piece.Name == Piece.PieceNames.Knight &&
+                    piece.Player.Colour == player.Colour)
+                {
+                    pieces.Add(piece);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Add any attacking bishops to the attacking pieces list.
+        /// </summary>
+        /// <param name="pieces">The attacking pieces list.</param>
+        /// <param name="player">The player who owns the bishop.</param>
+        private void addAttackingBishops(Pieces pieces, Player player)
+        {
+            //Add each bishop that can attack this square to the list.
+            foreach (int offset in BISHOP_OFFSETS)
+            {
+                Piece piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, offset);
+                if (piece != null)
+                {
+                    pieces.Add(piece);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Add any attacking rooks to the attacking pieces list.
+        /// </summary>
+        /// <param name="pieces">The attacking pieces list.</param>
+        /// <param name="player">The player who owns the rook.</param>
+        private void addAttackingRooks(Pieces pieces, Player player)
+        {
+            //Add each rook that can attack this square to the list.
+            foreach (int offset in ROOK_OFFSETS)
+            {
+                Piece piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, offset);
+                if (piece != null)
+                {
+                    pieces.Add(piece);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Add the attacking king to the attacking pieces list.
+        /// </summary>
+        /// <param name="pieces">The attacking pieces list.</param>
+        /// <param name="player">The player who owns the king.</param>
+        private void addAttackingKing(Pieces pieces, Player player)
+        {
+            //Add the king if it can attack this square to the list.
+            foreach (int offset in KING_OFFSETS)
+            {
+                Piece piece = Board.GetPiece(this.Ordinal + offset);
+                if (piece != null &&
+                    piece.Name == Piece.PieceNames.King &&
+                    piece.Player.Colour == player.Colour)
+                {
+                    pieces.Add(piece);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Add any attacking concealed pieces to the attacking
+        ///     pieces list.
+        /// </summary>
+        /// <param name="pieces">The attacking pieces list.</param>
+        /// <param name="player">The player who owns the concealed piece.</param>
+        private void addAttackingConcealeds(Pieces pieces, Player player)
+        {
+            //Add any concealed pieces that can attack this square to the list.
+            foreach (int offset in CONCEALED_OFFSETS)
+            {
+                Piece piece = Board.GetPiece(this.Ordinal + offset);
+                if (piece != null &&
+                    piece.Name == Piece.PieceNames.Concealed &&
+                    piece.Player.Colour == player.Colour)
+                {
+                    pieces.Add(piece);
+                }
+
+                //If the first square isn't occupied, try the second square.
+                if (piece == null)
+                {
+                    piece = Board.GetPiece(this.Ordinal + 2 * offset);
+                    if (piece != null &&
+                        piece.Name == Piece.PieceNames.Concealed &&
+                        piece.Player.Colour == player.Colour)
+                    {
+                        pieces.Add(piece);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Look for pawns that can defend this square.
+        /// </summary>
+        /// <param name="player">The player that owns the pawn.</param>
+        /// <returns>
+        ///     A pawn if one defends this square,
+        ///     null otherwise.
+        /// </returns>
+        private Piece findPawnDefender(Player player)
+        {
+            //Is there a left-offset pawn defending this square?
+            Piece piece = Board.GetPiece(this.Ordinal - player.PawnAttackLeftOffset);
+            if (piece != null &&
+                piece.Name == Piece.PieceNames.Pawn &&
+                piece.Player.Colour == player.Colour)
+            {
+                return piece;
+            }
+
+            //Is there a right-offset pawn defending this square?
+            piece = Board.GetPiece(this.Ordinal - player.PawnAttackRightOffset);
+            if (piece != null &&
+                piece.Name == Piece.PieceNames.Pawn &&
+                piece.Player.Colour == player.Colour)
+            {
+                return piece;
+            }
+
+            //No pawns are defending this square.
+            return null;
+        }
+        
+        /// <summary>
+        ///     Look for knights that can defend this square.
+        /// </summary>
+        /// <param name="player">The player that owns the knight.</param>
+        /// <returns>
+        ///     A knight if one defends this square,
+        ///     null otherwise.
+        /// </returns>
+        private Piece findKnightDefender(Player player)
+        {
+            //Check the locations of potential knight defenders.
+            foreach (int offset in KNIGHT_OFFSETS)
+            {
+                Piece piece = Board.GetPiece(this.Ordinal + offset);
+                if (piece != null &&
+                    piece.Name == Piece.PieceNames.Knight &&
+                    piece.Player.Colour == player.Colour)
+                {
+                    return piece;
+                }
+            }
+            //There are no knight defenders, so return null.
+            return null;
+        }
+
+        /// <summary>
+        ///     Look for bishops that can defend this square.
+        /// </summary>
+        /// <param name="player">The player that owns the bishop.</param>
+        /// <returns>
+        ///     A bishop if one defends this square,
+        ///     null otherwise.
+        /// </returns>
+        private Piece findBishopDefender(Player player)
+        {
+            //Look for a bishop defending this square.
+            foreach (int offset in BISHOP_OFFSETS)
+            {
+                Piece piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Bishop, this, offset);
+                if (piece != null)
+                {
+                    return piece;
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        ///     Look for concealed pieces that can defend this square.
+        /// </summary>
+        /// <param name="player">The player that owns the concealed piece.</param>
+        /// <returns>
+        ///     A concealed piece if one defends this square,
+        ///     null otherwise.
+        /// </returns>
+        private Piece findConcealedDefender(Player player)
+        {
+            //Look for a concealed piece defending this square.
+            foreach (int offset in CONCEALED_OFFSETS)
+            {
+                //Try the first square for a Concealed piece.
+                Piece piece = Board.GetPiece(this.Ordinal + offset);
+                if (piece != null &&
+                    piece.Name == Piece.PieceNames.Concealed &&
+                    piece.Player.Colour == player.Colour)
+                {
+                    return piece;
+                }
+                
+                //If the first square isn't blocked, check the second square.
+                if (piece == null)
+                {
+                    piece = Board.GetPiece(this.Ordinal + 2 * offset);
+                    if (piece != null &&
+                        piece.Name == Piece.PieceNames.Concealed &&
+                        piece.Player.Colour == player.Colour)
+                    {
+                        return piece;
+                    }
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        ///     Look for rooks that can defend this square.
+        /// </summary>
+        /// <param name="player">The player that owns the rook.</param>
+        /// <returns>
+        ///     A rook if one defends this square,
+        ///     null otherwise.
+        /// </returns>
+        private Piece findRookDefender(Player player)
+        {
+            //Look for a rook defending this square.
+            foreach (int offset in ROOK_OFFSETS)
+            {
+                Piece piece = Board.LinesFirstPiece(player.Colour, Piece.PieceNames.Rook, this, offset);
+                if (piece != null)
+                {
+                    return piece;
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        ///     Look for a king defending this square.
+        /// </summary>
+        /// <param name="player">The player that owns the king.</param>
+        /// <returns>
+        ///     A king if one defends this square,
+        ///     null otherwise.
+        /// </returns>
+        private Piece findKingDefender(Player player)
+        {
+            //Look for a king defending this square.
+            foreach (int offset in KING_OFFSETS)
+            {
+                Piece piece = Board.GetPiece(this.Ordinal + offset);
+                if (piece != null &&
+                    piece.Name == Piece.PieceNames.King &&
+                    piece.Player.Colour == player.Colour)
+                {
+                    return piece;
+                }
+            }
+            return null;
         }
         #endregion
     }
