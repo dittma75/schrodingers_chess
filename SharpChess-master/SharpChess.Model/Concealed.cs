@@ -227,15 +227,10 @@ namespace SharpChess.Model
         /// <summary>
         /// Reveals the concealed piece as what it actually is.
         /// </summary>
-        public Piece revealPiece()
+        public void revealPiece()
         {
-            //Add this piece's hidden_piece_type to this player's Pieces list at this piece's Square
-            //Remove this piece from player's Pieces
-            Player player = this.Base.Player;
-            Square square = this.Base.Square;
-            Piece revealed = new Piece(revealed_piece_top.Name, player, square.File, square.Rank, identifier);
-            player.Pieces.Add(revealed);
-            return revealed;
+            //To reveal this piece, we just have to switch out the piece top.
+            this.Base.Top = revealed_piece_top;
         }
         #endregion
 
