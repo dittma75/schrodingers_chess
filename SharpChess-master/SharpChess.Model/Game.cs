@@ -494,6 +494,15 @@ namespace SharpChess.Model
         }
 
         /// <summary>
+        ///     Initializes the Game's ReadyToMakeMoveEvents for both players.
+        /// </summary>
+        public static void initializeReadyMoveEvent()
+        {
+            Game.PlayerWhite.Brain.ReadyToMakeMoveEvent += Game.PlayerReadyToMakeMove;
+            Game.PlayerBlack.Brain.ReadyToMakeMoveEvent += Game.PlayerReadyToMakeMove;
+        }
+
+        /// <summary>
         ///   Demotes all pieces.
         /// </summary>
         public static void DemoteAllPieces()

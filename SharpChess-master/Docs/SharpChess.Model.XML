@@ -4715,6 +4715,11 @@
               Captures all pieces.
             </summary>
         </member>
+        <member name="M:SharpChess.Model.Game.initializeReadyMoveEvent">
+            <summary>
+                Initializes the Game's ReadyToMakeMoveEvents for both players.
+            </summary>
+        </member>
         <member name="M:SharpChess.Model.Game.DemoteAllPieces">
             <summary>
               Demotes all pieces.

@@ -2749,8 +2749,13 @@ namespace SharpChess
                 frmPieceOrder blackPieceOrder = new frmPieceOrder(frmPieceOrder.BLACK);
                 blackPieceOrder.ShowDialog(this);
 
-                //Pass the orders to the
+                //Pass the player orders to the Game players.
                 Game.New(whitePieceOrder.getOrder(), blackPieceOrder.getOrder());
+                Game.PlayerWhite.Brain.MoveConsideredEvent += this.Player_MoveConsidered;
+                Game.PlayerBlack.Brain.MoveConsideredEvent += this.Player_MoveConsidered;
+                Game.PlayerWhite.Brain.ThinkingBeginningEvent += this.Player_ThinkingBeginning;
+                Game.PlayerBlack.Brain.ThinkingBeginningEvent += this.Player_ThinkingBeginning;
+                Game.initializeReadyMoveEvent();
             }
         }
 
