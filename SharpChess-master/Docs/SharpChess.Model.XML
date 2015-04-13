@@ -2194,6 +2194,16 @@
             <param name="square">The square that the piece could move to.</param>
             <param name="moves">The moves list to add the move to.</param>
         </member>
+        <member name="M:SharpChess.Model.Concealed.AddThreatenedSquares(SharpChess.Model.Square,SharpChess.Model.Squares)">
+            <summary>
+                Add squares that are threatened by this concealed piece to 
+                the list of threatened squares.
+            </summary>
+            <param name="start_square">The square where the piece is.</param>
+            <param name="squares">
+                The list of squares threatened by the piece at start_square.
+            </param>
+        </member>
         <member name="P:SharpChess.Model.Concealed.Abbreviation">
             <summary>
             Gets Abbreviation.
@@ -2207,6 +2217,9 @@
         <member name="P:SharpChess.Model.Concealed.BasicValue">
             <summary>
             Gets basic value of the piece. e.g. pawn = 1, bishop = 3, queen = 9
+            A concealed piece is stronger than a bishop, but not nearly as
+            strong as a queen.  Similiar strength to a rook seems to be a good
+            compromise.
             </summary>
         </member>
         <member name="P:SharpChess.Model.Concealed.ImageIndex">

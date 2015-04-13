@@ -150,11 +150,11 @@ namespace SharpChess.Model
         };
 
         //Constant lists of offsets for each piece's moves.
-        private static int[] KING_OFFSETS = {-1,1,-15,15,-16,16,-17,17};
-        private static int[] CONCEALED_OFFSETS = {-1,1,-15,15,-16,16,-17,17};
-        private static int[] KNIGHT_OFFSETS = {33,18,-31,-14,-33,-18,31,14};
-        private static int[] ROOK_OFFSETS = {-1,1,-16,16};
-        private static int[] BISHOP_OFFSETS = {-15,15,-17,17};
+        private static readonly int[] KING_OFFSETS = {-1,1,-15,15,-16,16,-17,17};
+        private static readonly int[] CONCEALED_OFFSETS = {-1,1,-15,15,-16,16,-17,17};
+        private static readonly int[] KNIGHT_OFFSETS = {33,18,-31,-14,-33,-18,31,14};
+        private static readonly int[] ROOK_OFFSETS = {-1,1,-16,16};
+        private static readonly int[] BISHOP_OFFSETS = {-15,15,-17,17};
         #endregion
 
         #region Constructors and Destructors

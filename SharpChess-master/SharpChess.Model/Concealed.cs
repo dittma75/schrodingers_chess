@@ -46,7 +46,6 @@ namespace SharpChess.Model
             1, 7,  7,  7,  7,  7, 7, 1,   0, 0, 0, 0, 0, 0, 0, 0, 
             1, 1,  1,  1,  1,  1, 1, 1,   0, 0, 0, 0, 0, 0, 0, 0
         };
-
         private IPieceTop revealed_piece_top;
         private Piece.PieceIdentifierCodes identifier;
         #endregion
@@ -91,6 +90,9 @@ namespace SharpChess.Model
 
         /// <summary>
         /// Gets basic value of the piece. e.g. pawn = 1, bishop = 3, queen = 9
+        /// A concealed piece is stronger than a bishop, but not nearly as
+        /// strong as a queen.  Similiar strength to a rook seems to be a good
+        /// compromise.
         /// </summary>
         public int BasicValue
         {
@@ -132,47 +134,41 @@ namespace SharpChess.Model
                 return Piece.PieceNames.Concealed;
             }
         }
-        /*No idea what to do with this yet*/
-                /// <summary>
-                /// Gets the positional points assigned to this piece.
-                /// </summary>
-                public int PositionalPoints
+
+        /// <summary>
+        /// Gets the positional points assigned to this piece.
+        /// </summary>
+        public int PositionalPoints
+        {
+            get
+            {
+                int intPoints = 0;
+
+                /* After the opening, Concealed pieces are penalized slightly depending
+                    * on "taxicab" distance to the enemy king.
+                    */
+                if (Game.Stage != Game.GameStageNames.Opening)
                 {
-                    get
-                    {
-                        int intPoints = 0;
-
-                        intPoints += SquareValues[this.Base.Square.Ordinal] << 1;
-
-                        if (Game.Stage != Game.GameStageNames.End)
-                        {
-                            if (this.Base.CanBeDrivenAwayByPawn())
-                            {
-                                intPoints -= 30;
-                            }
-                        }
-
-                        // Mobility
-                        Squares squares = new Squares();
-                        squares.Add(this.Base.Square);
-                        Board.LineThreatenedBy(this.Base.Player, squares, this.Base.Square, 15);
-                        Board.LineThreatenedBy(this.Base.Player, squares, this.Base.Square, 17);
-                        Board.LineThreatenedBy(this.Base.Player, squares, this.Base.Square, -15);
-                        Board.LineThreatenedBy(this.Base.Player, squares, this.Base.Square, -17);
-                        int intSquareValue = 0;
-                        foreach (Square square in squares)
-                        {
-                            intSquareValue += SquareValues[square.Ordinal];
-                        }
-
-                        intPoints += intSquareValue >> 2;
-
-                        intPoints += this.Base.DefensePoints;
-
-                        return intPoints;
-                    }
+                    intPoints -= this.Base.TaxiCabDistanceToEnemyKingPenalty();
                 }
-/*        */
+
+                // Mobility
+                Squares squares = new Squares();
+                squares.Add(this.Base.Square);
+                AddThreatenedSquares(this.Base.Square, squares);
+                int intSquareValue = 0;
+                foreach (Square square in squares)
+                {
+                    intSquareValue += SquareValues[square.Ordinal];
+                }
+
+                intPoints += intSquareValue >> 2;
+
+                intPoints += this.Base.DefensePoints;
+
+                return intPoints;
+            }
+        }
         /// <summary>
         /// Gets the material value of this piece.
         /// </summary>
@@ -269,6 +265,49 @@ namespace SharpChess.Model
                 (square.Piece.Player.Colour != this.Base.Player.Colour && square.Piece.IsCapturable)))
             {
                 moves.Add(0, 0, Move.MoveNames.Standard, this.Base, this.Base.Square, square, square.Piece, 0, 0);
+            }
+        }
+
+        /// <summary>
+        ///     Add squares that are threatened by this concealed piece to 
+        ///     the list of threatened squares.
+        /// </summary>
+        /// <param name="start_square">The square where the piece is.</param>
+        /// <param name="squares">
+        ///     The list of squares threatened by the piece at start_square.
+        /// </param>
+        private void AddThreatenedSquares(Square start_square, Squares squares)
+        {
+            int[] concealed_offsets = { -1, 1, -15, 15, -16, 16, -17, 17 };
+            foreach (int offset in concealed_offsets)
+            {
+                int ordinal = start_square.Ordinal;
+                Square square = Board.GetSquare(ordinal + offset);
+                if (square != null)
+                {
+                    /* If the square is unoccupied or is occupied by a
+                     * capturable enemy piece, add it to the list.
+                     */
+                    if (square.Piece == null ||
+                        (square.Piece.Player.Colour != this.Base.Player.Colour && 
+                         square.Piece.IsCapturable))
+                    {
+                        squares.Add(square);
+                        /* First square was successfully added, let's try the
+                         * concealed piece's second square move.
+                         */
+                        square = Board.GetSquare(ordinal + 2 * offset);
+                        if (square != null)
+                        {
+                            if (square.Piece == null ||
+                                (square.Piece.Player.Colour != this.Base.Player.Colour &&
+                                 square.Piece.IsCapturable))
+                            {
+                                squares.Add(square);
+                            }
+                        }
+                    }
+                }
             }
         }
         #endregion
