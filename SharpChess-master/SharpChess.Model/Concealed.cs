@@ -195,6 +195,18 @@ namespace SharpChess.Model
         /// </param>
         public void GenerateLazyMoves(Moves moves, Moves.MoveListNames movesType)
         {
+            //if (this.revealed_piece_top.PositionalPoints > this.PositionalPoints * 2)
+            //{
+            //    moves.Add(Game.TurnNo,
+            //              this.Base.LastMoveTurnNo,
+            //              Model.Move.MoveNames.RevealMove,
+            //              this.Base,        //Piece affected
+            //              this.Base.Square, //Start square
+            //              this.Base.Square, //End square
+            //              null,                  //Piece to be captured
+            //              0,
+            //              this.revealed_piece_top.PositionalPoints);
+            //}
             switch (movesType)
             {
                 case Moves.MoveListNames.All:

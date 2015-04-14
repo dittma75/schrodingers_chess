@@ -3462,13 +3462,6 @@ namespace SharpChess
                 if (e.Button == MouseButtons.Right && pieceFrom.Name == Piece.PieceNames.Concealed)
                 {
                     Game.SuspendPondering();
-                    /* Cast the Top of this piece as a Concealed piece.
-                     * We know that it is a Concealed piece because its name
-                     * is Concealed.
-                     */
-                    Concealed concealed = (Concealed)pieceFrom.Top;
-                    //Get the piece that the Concealed piece is hiding.
-                    concealed.revealPiece();
                     //Add the reveal move to the move list.
                     this.m_movesPossible.Add(Game.TurnNo,
                                              pieceFrom.Base.LastMoveTurnNo,

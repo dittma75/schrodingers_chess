@@ -1019,6 +1019,15 @@ namespace SharpChess.Model
             MoveRedoList.Clear();
             Move move = piece.Move(moveName, square);
             move.EnemyStatus = move.Piece.Player.OpposingPlayer.Status;
+            //We are doing a reveal move on a Concealed piece.
+            if (moveName == Move.MoveNames.RevealMove &&
+                piece.Name == Piece.PieceNames.Concealed)
+            {
+                //We know that the piece is actually a Concealed piece on top.
+                Concealed concealed = (Concealed) piece.Top;
+                //Reveal the piece.
+                concealed.revealPiece();
+            }
             PlayerToPlay.Clock.Stop();
             MoveHistory.Last.TimeStamp = PlayerToPlay.Clock.TimeElapsed;
             if (PlayerToPlay.Intellegence == Player.PlayerIntellegenceNames.Computer)
