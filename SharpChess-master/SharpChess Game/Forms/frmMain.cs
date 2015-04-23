@@ -3408,17 +3408,17 @@ namespace SharpChess
         }
 
         /// <summary>
-        /// The pic square_ mouse down.
+        /// try to reveal it.
         /// </summary>
         /// <param name="sender">
-        /// The sender.
+        /// The sending picture square (representation of a piece).
         /// </param>
         /// <param name="e">
-        /// The e.
+        /// The mouse event.
         /// </param>
         private void picSquare_MouseDown(object sender, MouseEventArgs e)
         {
-            if (this.m_blnInMouseDown)// || e.Button != MouseButtons.Left)
+            if (this.m_blnInMouseDown)
             {
                 return;
             }
