@@ -3408,6 +3408,7 @@ namespace SharpChess
         }
 
         /// <summary>
+        /// The user clicked a piece on the board to move it or
         /// try to reveal it.
         /// </summary>
         /// <param name="sender">
