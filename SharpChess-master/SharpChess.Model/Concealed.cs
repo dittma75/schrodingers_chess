@@ -195,6 +195,7 @@ namespace SharpChess.Model
         /// </param>
         public void GenerateLazyMoves(Moves moves, Moves.MoveListNames movesType)
         {
+            //Currently causes StackOverflow
             //if (this.revealed_piece_top.PositionalPoints > this.PositionalPoints * 2)
             //{
             //    moves.Add(Game.TurnNo,
