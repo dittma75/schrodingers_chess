@@ -34,7 +34,6 @@ namespace SharpChess.Model
         /// <summary>
         /// Simple positional piece-square score values.
         /// </summary>
-        //No idea what to do with this right now.
         private static readonly int[] SquareValues =
         {
             1, 1,  1,  1,  1,  1, 1, 1,   0, 0, 0, 0, 0, 0, 0, 0, 
@@ -165,8 +164,8 @@ namespace SharpChess.Model
                 int intPoints = 0;
 
                 /* After the opening, Concealed pieces are penalized slightly depending
-                    * on "taxicab" distance to the enemy king.
-                    */
+                 * on "taxicab" distance to the enemy king.
+                 */
                 if (Game.Stage != Game.GameStageNames.Opening)
                 {
                     intPoints -= this.Base.TaxiCabDistanceToEnemyKingPenalty();
@@ -215,19 +214,6 @@ namespace SharpChess.Model
         /// </param>
         public void GenerateLazyMoves(Moves moves, Moves.MoveListNames movesType)
         {
-            //Currently causes StackOverflow
-            //if (this.revealed_piece_top.PositionalPoints > this.PositionalPoints * 2)
-            //{
-            //    moves.Add(Game.TurnNo,
-            //              this.Base.LastMoveTurnNo,
-            //              Model.Move.MoveNames.RevealMove,
-            //              this.Base,        //Piece affected
-            //              this.Base.Square, //Start square
-            //              this.Base.Square, //End square
-            //              null,                  //Piece to be captured
-            //              0,
-            //              this.revealed_piece_top.PositionalPoints);
-            //}
             switch (movesType)
             {
                 case Moves.MoveListNames.All:

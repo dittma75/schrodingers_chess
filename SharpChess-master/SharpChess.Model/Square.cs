@@ -149,11 +149,15 @@ namespace SharpChess.Model
               0,   0,   0,   0,   0,   0,  17, 15,     0,   0,   0,   0,   0,   0,   0,   0
         };
 
-        //Constant lists of offsets for each piece's moves.
+        /// <summary>King move offsets</summary>
         private static readonly int[] KING_OFFSETS = {-1,1,-15,15,-16,16,-17,17};
+        /// <summary>Concealed piece move offsets</summary>
         private static readonly int[] CONCEALED_OFFSETS = {-1,1,-15,15,-16,16,-17,17};
+        /// <summary>Knight move offsets</summary>
         private static readonly int[] KNIGHT_OFFSETS = {33,18,-31,-14,-33,-18,31,14};
+        /// <summary>Rook move offsets</summary>
         private static readonly int[] ROOK_OFFSETS = {-1,1,-16,16};
+        /// <summary>Bishop move offsets</summary>
         private static readonly int[] BISHOP_OFFSETS = {-15,15,-17,17};
         #endregion
 
@@ -316,7 +320,8 @@ namespace SharpChess.Model
         #region Public Methods
 
         /// <summary>
-        /// Appends a list of moves of all the pieces that are attacking this square.
+        /// Appends a list of moves of all the pieces that are attacking this
+        /// square.
         /// </summary>
         /// <param name="moves">
         /// Moves of pieces that are attacking this square.
@@ -449,8 +454,9 @@ namespace SharpChess.Model
         }
 
         /// <summary>
-        /// Determines whether a sliding piece could slide to this square from the specified start square, 
-        /// in the specified direction-offset. Checks that no pieces are blocking the route.
+        /// Determines whether a sliding piece could slide to this square
+        /// from the specified start square, in the specified
+        /// direction-offset. Checks that no pieces are blocking the route.
         /// </summary>
         /// <param name="squareStart">
         /// The starting square.
@@ -462,7 +468,8 @@ namespace SharpChess.Model
         /// True if the piece can be slid.
         /// </returns>
         /// <exception cref="ApplicationException">
-        /// An exception indicting that the alogrithm has hit the edge of the board.
+        /// An exception indicting that the alogrithm has hit the edge of the
+        /// board.
         /// </exception>
         public bool CanSlideToHereFrom(Square squareStart, int directionOffset)
         {
@@ -489,7 +496,8 @@ namespace SharpChess.Model
         }
 
         /// <summary>
-        /// Calculates defense points for the player on this square. Returns the value of the cheapest piece defending the square.
+        /// Calculates defense points for the player on this square.
+        /// Returns the value of the cheapest piece defending the square.
         /// If no pieces are defending, then returns a high value (15,000).
         /// </summary>
         /// <param name="player">
@@ -500,7 +508,6 @@ namespace SharpChess.Model
         /// </returns>
         public int DefencePointsForPlayer(Player player)
         {
-            /*************************************************REFACTOR*******************************************/
             Piece piece;
             int value = 0;
             int bestValue = 0;
@@ -556,9 +563,10 @@ namespace SharpChess.Model
                 }
             }
 
+            // This means a queen was found, but not a Bishop or Rook
             if (bestValue > 0)
             {
-                return bestValue; // This means a queen was found, but not a Bishop or Rook
+                return bestValue;
             }
 
             // King!
@@ -583,7 +591,6 @@ namespace SharpChess.Model
         /// </returns>
         public Piece CheapestPieceDefendingThisSquare(Player player)
         {
-            /*************************************************REFACTOR*******************************************/
             Piece piece;
             Piece pieceBest = null;
 

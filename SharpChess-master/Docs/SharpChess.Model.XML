@@ -2146,6 +2146,28 @@
             Simple positional piece-square score values.
             </summary>
         </member>
+        <member name="F:SharpChess.Model.Concealed.CONCEALED_OFFSETS">
+            <summary>
+            Concealed moveset offsets:
+            +/- 1 is the right/left move
+            15,16, and 17 are the up-left, up, and up-right moves
+            -15,-16, and -17 are the down-left, down, and down-right moves
+            These move numbers represent all moves one square from the piece.
+            The two-square moves are dependent on the results of the first
+            move, and are found by doubling the offset.
+            </summary>
+        </member>
+        <member name="F:SharpChess.Model.Concealed.revealed_piece_top">
+            <summary>
+            The piece that this Concealed piece represents and will become
+            when it is revealed.
+            </summary>
+        </member>
+        <member name="F:SharpChess.Model.Concealed.identifier">
+            <summary>
+            The ID of the piece to keep the FEN happy
+            </summary>
+        </member>
         <member name="M:SharpChess.Model.Concealed.#ctor(SharpChess.Model.Piece,SharpChess.Model.IPieceTop,SharpChess.Model.Piece.PieceIdentifierCodes)">
             <summary>
             Makes a new concealed piece with information about the piece it will be.
@@ -2179,13 +2201,8 @@
             moves list in the positive and negative directions of the
             offset starting from the location of the piece.
             </summary>
-            <param name="moves">moves list to add teh move to</param>
-            <param name="offset">direction of move
-                +/-1 is right/left, 
-                +/-15 is up/down left,
-                +/-16 is up/down,
-                +/-17 is up/down right
-            </param>
+            <param name="moves">moves list to add the move to</param>
+            <param name="offset">direction of move (See CONCEALED_OFFSETS)</param>
         </member>
         <member name="M:SharpChess.Model.Concealed.AddMove(SharpChess.Model.Square,SharpChess.Model.Moves)">
             <summary>
@@ -3595,6 +3612,21 @@
             The vectors.
             </summary>
         </member>
+        <member name="F:SharpChess.Model.Square.KING_OFFSETS">
+            <summary>King move offsets</summary>
+        </member>
+        <member name="F:SharpChess.Model.Square.CONCEALED_OFFSETS">
+            <summary>Concealed piece move offsets</summary>
+        </member>
+        <member name="F:SharpChess.Model.Square.KNIGHT_OFFSETS">
+            <summary>Knight move offsets</summary>
+        </member>
+        <member name="F:SharpChess.Model.Square.ROOK_OFFSETS">
+            <summary>Rook move offsets</summary>
+        </member>
+        <member name="F:SharpChess.Model.Square.BISHOP_OFFSETS">
+            <summary>Bishop move offsets</summary>
+        </member>
         <member name="M:SharpChess.Model.Square.#ctor(System.Int32)">
             <summary>
             Initializes a new instance of the <see cref="T:SharpChess.Model.Square"/> class.
@@ -3605,7 +3637,8 @@
         </member>
         <member name="M:SharpChess.Model.Square.AttackersMoveList(SharpChess.Model.Moves,SharpChess.Model.Player)">
             <summary>
-            Appends a list of moves of all the pieces that are attacking this square.
+            Appends a list of moves of all the pieces that are attacking this
+            square.
             </summary>
             <param name="moves">
             Moves of pieces that are attacking this square.
@@ -3638,8 +3671,9 @@
         </member>
         <member name="M:SharpChess.Model.Square.CanSlideToHereFrom(SharpChess.Model.Square,System.Int32)">
             <summary>
-            Determines whether a sliding piece could slide to this square from the specified start square, 
-            in the specified direction-offset. Checks that no pieces are blocking the route.
+            Determines whether a sliding piece could slide to this square
+            from the specified start square, in the specified
+            direction-offset. Checks that no pieces are blocking the route.
             </summary>
             <param name="squareStart">
             The starting square.
@@ -3651,12 +3685,14 @@
             True if the piece can be slid.
             </returns>
             <exception cref="T:System.ApplicationException">
-            An exception indicting that the alogrithm has hit the edge of the board.
+            An exception indicting that the alogrithm has hit the edge of the
+            board.
             </exception>
         </member>
         <member name="M:SharpChess.Model.Square.DefencePointsForPlayer(SharpChess.Model.Player)">
             <summary>
-            Calculates defense points for the player on this square. Returns the value of the cheapest piece defending the square.
+            Calculates defense points for the player on this square.
+            Returns the value of the cheapest piece defending the square.
             If no pieces are defending, then returns a high value (15,000).
             </summary>
             <param name="player">
