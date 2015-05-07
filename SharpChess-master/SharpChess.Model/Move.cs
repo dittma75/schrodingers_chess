@@ -538,7 +538,6 @@ namespace SharpChess.Model
                     move.Piece.Demote();
                     break;
                 case MoveNames.RevealMove:
-                    //move.Piece.Top = new Concealed(move.Piece, move.Piece.Top, move.Piece.IdentifierCode);
                     break;
             }
 

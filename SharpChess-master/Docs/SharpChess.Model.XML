@@ -2195,6 +2195,12 @@
             Reveals the concealed piece as what it actually is.
             </summary>
         </member>
+        <member name="M:SharpChess.Model.Concealed.AddRevealMove(SharpChess.Model.Moves)">
+            <summary>
+                Add a reveal move to the move list if it is lucrative to do so.
+            </summary>
+            <param name="moves">The list that a RevealMove will be on.</param>
+        </member>
         <member name="M:SharpChess.Model.Concealed.AddMovePair(SharpChess.Model.Moves,System.Int32)">
             <summary>
             Adds a set of moves for one space and two spaces forward to the

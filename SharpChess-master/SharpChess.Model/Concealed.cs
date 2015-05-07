@@ -241,15 +241,18 @@ namespace SharpChess.Model
             this.Base.Top = revealed_piece_top;
         }
 
-        public bool shouldReveal()
-        {
-            return true;
-            //return (this.revealed_piece_top.PositionalPoints > 
-            //        this.PositionalPoints * 2);
-        }
+        /// <summary>
+        ///     Add a reveal move to the move list if it is lucrative to do so.
+        /// </summary>
+        /// <param name="moves">The list that a RevealMove will be on.</param>
         public void AddRevealMove(Moves moves)
         {
-            if (this.revealed_piece_top.PositionalPoints > this.PositionalPoints * 2)
+            /* Make revealing the concealed piece an option if it's
+             * in a good spot or it's a queen.
+             */
+            if ((this.revealed_piece_top.PositionalPoints >
+                 this.PositionalPoints * 2) ||
+                this.revealed_piece_top.Abbreviation.Equals("Q"))
             {
                 moves.Add(Game.TurnNo,
                           this.Base.LastMoveTurnNo,
@@ -259,20 +262,8 @@ namespace SharpChess.Model
                           this.Base.Square,     //End square
                           null,                 //Piece to be captured
                           0,
-                          this.revealed_piece_top.PositionalPoints);
+                          0);
             }
-        }
-        public Move getRevealMove()
-        {
-            return new Move(Game.TurnNo,
-                        this.Base.LastMoveTurnNo,
-                        Model.Move.MoveNames.RevealMove,
-                        this.Base,            //Piece affected
-                        this.Base.Square,     //Start square
-                        this.Base.Square,     //End square
-                        null,                 //Piece to be captured
-                        0,
-                        this.revealed_piece_top.PositionalPoints);
         }
         #endregion
 

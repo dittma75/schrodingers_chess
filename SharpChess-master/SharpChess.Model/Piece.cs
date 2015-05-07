@@ -1011,7 +1011,10 @@ namespace SharpChess.Model
         /// </param>
         public void Uncapture(int ordinal)
         {
-            this.Player.Pieces.Insert(ordinal, this);
+            if (!containsDupe(this, this.Player.Pieces))
+            {
+                this.Player.Pieces.Insert(ordinal, this);
+            }
             this.Player.OpposingPlayer.CapturedEnemyPieces.Remove(this);
             this.IsInPlay = true;
             if (this.Name == PieceNames.Pawn)
@@ -1025,5 +1028,21 @@ namespace SharpChess.Model
         }
 
         #endregion
+
+        #region Private Methods
+        private bool containsDupe(Piece piece, Pieces pieces)
+        {
+            foreach (Piece stored_piece in pieces)
+            {
+                if (piece.IdentifierCode == stored_piece.IdentifierCode &&
+                    piece.Abbreviation.Equals("?"))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        #endregion
+
     }
 }
