@@ -661,12 +661,12 @@ namespace SharpChess.Model
              * we can mess with without tripping the enumerator
              * error
              */
-            Pieces player_pieces = new Pieces();
+            //Pieces player_pieces = new Pieces();
+            //foreach (Piece piece in this.Pieces)
+            //{
+            //    player_pieces.Add(piece);
+            //}
             foreach (Piece piece in this.Pieces)
-            {
-                player_pieces.Add(piece);
-            }
-            foreach (Piece piece in player_pieces)
             {
                 piece.GenerateLegalMoves(moves);
             }
