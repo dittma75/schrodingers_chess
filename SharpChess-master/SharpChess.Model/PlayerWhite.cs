@@ -38,11 +38,12 @@ namespace SharpChess.Model
         public PlayerWhite(int[] order)
         {
             this.Colour = PlayerColourNames.White;
+            //Computer players don't have a specified order; it is randomly generated.
             if (order == null)
             {
-                generateRandomOrder();
                 this.Intellegence = PlayerIntellegenceNames.Computer;
             }
+            //If an order was specified, the player is human.
             else
             {
                 this.Intellegence = PlayerIntellegenceNames.Human;
@@ -119,11 +120,6 @@ namespace SharpChess.Model
 
             //Arrange and place the concealed pieces.
             addArrangedPieces(order, ids);
-        }
-
-        private void generateRandomOrder()
-        {
-            //stub
         }
         #endregion
     }

@@ -38,10 +38,12 @@ namespace SharpChess.Model
         public PlayerBlack(int[] black_order)
         {
             this.Colour = PlayerColourNames.Black;
+            //Computer players don't have a specified order; it is randomly generated.
             if (black_order == null)
             {
                 this.Intellegence = PlayerIntellegenceNames.Computer;
             }
+            //If an order was specified, the player is human.
             else
             {
                 this.Intellegence = PlayerIntellegenceNames.Human;

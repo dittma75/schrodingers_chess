@@ -70,7 +70,22 @@ namespace SharpChess.Model
         /// </param>
         public void Add(Piece piece)
         {
-            this.pieces.Add(piece);
+            bool dupe = false;
+            foreach (Piece stored_piece in pieces)
+            {
+                if (piece.IdentifierCode == stored_piece.IdentifierCode)
+                {
+                    dupe = true;
+                }
+                if (dupe)
+                {
+                    break;
+                }
+            }
+            if (!dupe)
+            {
+                this.pieces.Add(piece);
+            }
         }
 
         /// <summary>
