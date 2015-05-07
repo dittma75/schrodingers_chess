@@ -659,14 +659,15 @@ namespace SharpChess.Model
         {
             /* Make a a copy of this players pieces that
              * we can mess with without tripping the enumerator
-             * error
+             * error.
              */
-            //Pieces player_pieces = new Pieces();
-            //foreach (Piece piece in this.Pieces)
-            //{
-            //    player_pieces.Add(piece);
-            //}
+            Pieces player_pieces = new Pieces();
             foreach (Piece piece in this.Pieces)
+            {
+                player_pieces.Add(piece);
+            }
+
+            foreach (Piece piece in player_pieces)
             {
                 piece.GenerateLegalMoves(moves);
             }
@@ -893,13 +894,15 @@ namespace SharpChess.Model
         /// </param>
         protected void addArrangedPieces(int[] order, Piece.PieceIdentifierCodes[] ids)
         {
+            //Generate a random order for computer players.
             if (order == null)
             {
                 order = generateRandomOrder();
             }
             
-
+            //White's back row has a rank of 0.
             int rank = 0;
+            //Black's back row has a rank of 7.
             if (this is PlayerBlack)
             {
                 rank = 7;
