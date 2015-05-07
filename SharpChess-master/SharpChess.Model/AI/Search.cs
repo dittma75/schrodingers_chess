@@ -443,7 +443,6 @@ namespace SharpChess.Model.AI
             // Generate "lazy" moves (lazy means we include moves that put our own king in check)
             Moves movesPossible = new Moves();
             player.GenerateLazyMoves(movesPossible, Moves.MoveListNames.All);
-
             // Stores the PV that is local to this node and it's children.
             Moves localPrincipalVariation = new Moves();
 
@@ -508,11 +507,23 @@ namespace SharpChess.Model.AI
                 this.TotalPositionsToSearch = movesPossible.Count;
                 this.SearchPositionNo = 0;
             }
-
+            bool tried_reveal = false;
             foreach (Move move in movesPossible)
             {
+                Move moveMade;
+                /* The best move is a concealed piece, so let's see if it would
+                 * be better to reveal it.
+                 */
+                if (movesPossible[0].Piece.Name == Piece.PieceNames.Concealed &&
+                    !tried_reveal)
+                {
+                    Piece c_piece = movesPossible[0].Piece;
+                    Concealed concealed = (Concealed)c_piece.Top;
+                    moveMade = concealed.getRevealMove();
+                    tried_reveal = true;
+                }
                 // Make the move
-                Move moveMade = move.Piece.Move(move.Name, move.To);
+                moveMade = move.Piece.Move(move.Name, move.To);
 
                 this.PositionsSearchedThisTurn++;
                 this.PositionsSearchedThisIteration++;

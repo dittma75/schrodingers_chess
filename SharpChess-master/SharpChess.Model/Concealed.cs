@@ -215,25 +215,12 @@ namespace SharpChess.Model
         /// </param>
         public void GenerateLazyMoves(Moves moves, Moves.MoveListNames movesType)
         {
-            //Currently causes StackOverflow
-            //if (this.revealed_piece_top.PositionalPoints > this.PositionalPoints * 2)
-            //{
-            //    moves.Add(Game.TurnNo,
-            //              this.Base.LastMoveTurnNo,
-            //              Model.Move.MoveNames.RevealMove,
-            //              this.Base,        //Piece affected
-            //              this.Base.Square, //Start square
-            //              this.Base.Square, //End square
-            //              null,                  //Piece to be captured
-            //              0,
-            //              this.revealed_piece_top.PositionalPoints);
-            //}
             switch (movesType)
             {
                 case Moves.MoveListNames.All:
                     /* Adds each Concealed piece one-square move and, if
-                     * possible, its two-square move to the move list.
-                     */
+                        * possible, its two-square move to the move list.
+                        */
                     foreach (int offset in CONCEALED_OFFSETS)
                     {
                         AddMovePair(moves, offset);
@@ -241,7 +228,7 @@ namespace SharpChess.Model
                     break;
                 default:
                     break;
-            }
+            } 
         }
 
         /// <summary>
@@ -251,6 +238,40 @@ namespace SharpChess.Model
         {
             //To reveal this piece, we just have to switch out the piece top.
             this.Base.Top = revealed_piece_top;
+        }
+
+        public bool shouldReveal()
+        {
+            return true;
+            //return (this.revealed_piece_top.PositionalPoints > 
+            //        this.PositionalPoints * 2);
+        }
+        public void AddRevealMove(Moves moves)
+        {
+            //if (this.revealed_piece_top.PositionalPoints > this.PositionalPoints * 2)
+            //{
+                moves.Add(Game.TurnNo,
+                          this.Base.LastMoveTurnNo,
+                          Model.Move.MoveNames.RevealMove,
+                          this.Base,            //Piece affected
+                          this.Base.Square,     //Start square
+                          this.Base.Square,     //End square
+                          null,                 //Piece to be captured
+                          0,
+                          this.revealed_piece_top.PositionalPoints);
+            //}
+        }
+        public Move getRevealMove()
+        {
+            return new Move(Game.TurnNo,
+                        this.Base.LastMoveTurnNo,
+                        Model.Move.MoveNames.RevealMove,
+                        this.Base,            //Piece affected
+                        this.Base.Square,     //Start square
+                        this.Base.Square,     //End square
+                        null,                 //Piece to be captured
+                        0,
+                        this.revealed_piece_top.PositionalPoints);
         }
         #endregion
 

@@ -414,6 +414,7 @@ namespace SharpChess.Model
                         case PieceNames.Bishop:
                             return 45;
 
+                        case PieceNames.Concealed:
                         case PieceNames.Rook:
                             return 30;
 
@@ -904,6 +905,13 @@ namespace SharpChess.Model
                     Board.GetPiece(this.Square.Ordinal - this.Player.PawnForwardOffset).Capture();
                         
                         // Take enemy pawn that is now behind us
+                    break;
+                case Model.Move.MoveNames.RevealMove:
+                    if (this.Name == Piece.PieceNames.Concealed)
+                    {
+                        Concealed concealed = (Concealed)this.Top;
+                        concealed.revealPiece();
+                    }
                     break;
             }
 
