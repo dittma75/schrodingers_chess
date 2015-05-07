@@ -196,8 +196,7 @@ namespace SharpChess.Model
         {
             get
             {
-                return 50;
-                //return revealed_piece_top.Value;
+                return revealed_piece_top.Value;
             }
         }
 
@@ -250,8 +249,8 @@ namespace SharpChess.Model
         }
         public void AddRevealMove(Moves moves)
         {
-            //if (this.revealed_piece_top.PositionalPoints > this.PositionalPoints * 2)
-            //{
+            if (this.revealed_piece_top.PositionalPoints > this.PositionalPoints * 2)
+            {
                 moves.Add(Game.TurnNo,
                           this.Base.LastMoveTurnNo,
                           Model.Move.MoveNames.RevealMove,
@@ -261,7 +260,7 @@ namespace SharpChess.Model
                           null,                 //Piece to be captured
                           0,
                           this.revealed_piece_top.PositionalPoints);
-            //}
+            }
         }
         public Move getRevealMove()
         {
