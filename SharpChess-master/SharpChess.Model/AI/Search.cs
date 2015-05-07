@@ -507,23 +507,10 @@ namespace SharpChess.Model.AI
                 this.TotalPositionsToSearch = movesPossible.Count;
                 this.SearchPositionNo = 0;
             }
-            bool tried_reveal = false;
             foreach (Move move in movesPossible)
             {
-                Move moveMade;
-                /* The best move is a concealed piece, so let's see if it would
-                 * be better to reveal it.
-                 */
-                if (movesPossible[0].Piece.Name == Piece.PieceNames.Concealed &&
-                    !tried_reveal)
-                {
-                    Piece c_piece = movesPossible[0].Piece;
-                    Concealed concealed = (Concealed)c_piece.Top;
-                    moveMade = concealed.getRevealMove();
-                    tried_reveal = true;
-                }
                 // Make the move
-                moveMade = move.Piece.Move(move.Name, move.To);
+                Move moveMade = move.Piece.Move(move.Name, move.To);
 
                 this.PositionsSearchedThisTurn++;
                 this.PositionsSearchedThisIteration++;
