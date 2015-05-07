@@ -67,7 +67,7 @@ namespace SharpChess.Model
         /// <summary>
         /// The ID of the piece to keep the FEN happy
         /// </summary>
-        private Piece.PieceIdentifierCodes identifier;
+        public Piece.PieceIdentifierCodes identifier;
         #endregion
 
         #region Constructors and Destructors
@@ -196,7 +196,8 @@ namespace SharpChess.Model
         {
             get
             {
-                return revealed_piece_top.Value;
+                return 50;
+                //return revealed_piece_top.Value;
             }
         }
 
@@ -225,6 +226,7 @@ namespace SharpChess.Model
                     {
                         AddMovePair(moves, offset);
                     }
+                    AddRevealMove(moves);
                     break;
                 default:
                     break;

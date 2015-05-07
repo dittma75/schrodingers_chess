@@ -540,7 +540,9 @@ namespace SharpChess.Model
         /// <returns> Returns True is game loaded successfully. </returns>
         public static bool LoadBackup()
         {
-            return LoadGame(BackupGamePath);
+            //Disable loading back-ups
+            //return LoadGame(BackupGamePath);
+            return false;
         }
 
         /// <summary>
@@ -1160,7 +1162,8 @@ namespace SharpChess.Model
             if (!WinBoard.Active)
             {
                 // Only save backups if not using WinBoard.
-                SaveGame(BackupGamePath);
+                // Disabled savegames.
+                // SaveGame(BackupGamePath);
             }
         }
 

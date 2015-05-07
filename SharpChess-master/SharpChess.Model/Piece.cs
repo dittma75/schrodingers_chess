@@ -565,7 +565,7 @@ namespace SharpChess.Model
         /// <summary>
         ///   Gets or sets the identifier code for the piece. e.g. WhitePawn1
         /// </summary>
-        private PieceIdentifierCodes IdentifierCode { get; set; }
+        public PieceIdentifierCodes IdentifierCode { get; set; }
 
         #endregion
 
@@ -909,8 +909,8 @@ namespace SharpChess.Model
                 case Model.Move.MoveNames.RevealMove:
                     if (this.Name == Piece.PieceNames.Concealed)
                     {
-                        Concealed concealed = (Concealed)this.Top;
-                        concealed.revealPiece();
+                        //Concealed concealed = (Concealed)this.Top;
+                        //concealed.revealPiece();
                     }
                     break;
             }

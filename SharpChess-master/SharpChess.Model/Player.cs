@@ -646,11 +646,6 @@ namespace SharpChess.Model
             foreach (Piece piece in this.Pieces)
             {
                 piece.GenerateLazyMoves(moves, movesType);
-                if (piece.Name == Piece.PieceNames.Concealed)
-                {
-                    Concealed c_piece = (Concealed)piece.Top;
-                    c_piece.AddRevealMove(moves);
-                }
             }
         }
 
@@ -662,6 +657,10 @@ namespace SharpChess.Model
         /// </param>
         public void GenerateLegalMoves(Moves moves)
         {
+            /* Make a a copy of this players pieces that
+             * we can mess with without tripping the enumerator
+             * error
+             */
             Pieces player_pieces = new Pieces();
             foreach (Piece piece in this.Pieces)
             {

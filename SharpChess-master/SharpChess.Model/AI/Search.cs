@@ -511,7 +511,10 @@ namespace SharpChess.Model.AI
             {
                 // Make the move
                 Move moveMade = move.Piece.Move(move.Name, move.To);
-
+                //if (moveMade.Name == Move.MoveNames.RevealMove)
+                //{
+                //    break;
+                //}
                 this.PositionsSearchedThisTurn++;
                 this.PositionsSearchedThisIteration++;
 

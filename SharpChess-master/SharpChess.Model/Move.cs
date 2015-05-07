@@ -537,6 +537,9 @@ namespace SharpChess.Model
                 case MoveNames.PawnPromotionKnight:
                     move.Piece.Demote();
                     break;
+                case MoveNames.RevealMove:
+                    //move.Piece.Top = new Concealed(move.Piece, move.Piece.Top, move.Piece.IdentifierCode);
+                    break;
             }
 
             Board.HashCodeA ^= move.From.Piece.HashCodeA; // XOR the piece back into the square it moved back to
