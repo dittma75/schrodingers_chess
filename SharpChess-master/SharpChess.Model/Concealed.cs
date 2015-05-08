@@ -67,7 +67,7 @@ namespace SharpChess.Model
         /// <summary>
         /// The ID of the piece to keep the FEN happy
         /// </summary>
-        public Piece.PieceIdentifierCodes identifier;
+        private Piece.PieceIdentifierCodes identifier;
         #endregion
 
         #region Constructors and Destructors
