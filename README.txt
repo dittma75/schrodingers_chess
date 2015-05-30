@@ -2,6 +2,13 @@ Kevin Dittmar
 7 May 2015
 Schrodinger's Chess README
 
+    Schrodinger's Chess is a variant of chess whose engine was based on the
+SharpChess engine (http://sharpchess.com/).  My contribution to this project was all
+modification necessary for the existing SharpChess engine to be used as a suitable
+engine for Schrodinger's Chess.  These modifications include small changes to the
+engine's AI, addition of sprites for the concealed pieces, and addition of GUIs
+for arranging the pieces at the game's start.
+
 Playing Schrodinger's Chess:
     On startup, you will be prompted to select the difficulty for the Artificial
 Intelligence.  This has no effect on a game between two human players.
@@ -39,7 +46,7 @@ Computer Player Instructions:
     toolbar below the menu bar.
     
 Schrodinger's Chess Rules (Variations from Standard Chess):
-1.	All pieces except for each player’s King and Pawns are obscured at the
+1.	All pieces except for each playerâ€™s King and Pawns are obscured at the
     start of the game.
 2.	The obscured pieces act as their own class of piece, which is allowed
     to move one or two spaces horizontally, vertically, and diagonally as
@@ -50,6 +57,6 @@ Schrodinger's Chess Rules (Variations from Standard Chess):
     piece in check, just like normal pieces can.
 5.	Since pieces can be arranged in non-standard positions, the castling
     maneuver between Rooks and the King is not allowed because it makes
-    no sense in Schrödinger’s Chess.
-6.	Unlike castling, revealing a piece counts as the player’s move for the
+    no sense in SchrÃ¶dingerâ€™s Chess.
+6.	Unlike castling, revealing a piece counts as the playerâ€™s move for the
     turn.
